@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Customised Strategic Partnership | Built Environment Indaba 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    .pkg-custom-wrap{
+      max-width:1100px;
+      margin:auto;
+      padding:3rem 1.5rem;
+      font-family:Inter,system-ui,sans-serif;
+      color:var(--text,#1F2933);
+    }
+
+    .pkg-custom-header{
+      display:flex;
+      align-items:center;
+      gap:1.2rem;
+      margin-bottom:2rem;
+    }
+
+    .pkg-custom-header img{
+      height:80px;
+    }
+
+    .pkg-custom-header h1{
+      color:var(--green-dark,#1F4F3A);
+      margin:0;
+      font-size:2rem;
+    }
+
+    .pkg-custom-tabs{
+      display:flex;
+      gap:1rem;
+      margin-bottom:2rem;
+      flex-wrap:wrap;
+    }
+
+    .pkg-custom-tabs button{
+      background:var(--white,#ffffff);
+      border:2px solid var(--border,#E3E7E5);
+      padding:0.85rem 2rem;
+      border-radius:10px;
+      font-family:inherit;
+      font-size:1rem;
+      font-weight:600;
+      color:var(--text,#1F2933);
+      cursor:pointer;
+      transition:all 0.2s;
+    }
+
+    .pkg-custom-tabs button:hover{
+      border-color:var(--green,#2E6B4E);
+      color:var(--green,#2E6B4E);
+    }
+
+    .pkg-custom-tabs button.active{
+      background:var(--green,#2E6B4E);
+      border-color:var(--green,#2E6B4E);
+      color:var(--white,#ffffff);
+    }
+
+    .pkg-custom-tab-content{
+      display:none;
+    }
+
+    .pkg-custom-tab-content.active{
+      display:block;
+    }
+
+    .pkg-custom-card{
+      background:var(--white,#ffffff);
+      border-radius:var(--radius,14px);
+      box-shadow:var(--shadow,0 10px 28px rgba(0,0,0,.08));
+      padding:2.5rem;
+    }
+
+    .pkg-custom-badge{
+      display:inline-block;
+      background:var(--gold,#F2B705);
+      color:var(--green-dark,#1F4F3A);
+      padding:.45rem 1rem;
+      border-radius:999px;
+      font-weight:700;
+      margin-bottom:1.2rem;
+    }
+
+    .pkg-custom-badge.tier2{
+      background:var(--green,#2E6B4E);
+      color:var(--white,#ffffff);
+    }
+
+    .pkg-custom-badge.tier3{
+      background:var(--red,#D6453D);
+      color:var(--white,#ffffff);
+    }
+
+    .pkg-custom-table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:1.5rem;
+    }
+
+    .pkg-custom-table th,
+    .pkg-custom-table td{
+      padding:1rem;
+      border-bottom:1px solid var(--border,#E3E7E5);
+      vertical-align:top;
+    }
+
+    .pkg-custom-table th{
+      text-align:left;
+      width:40%;
+      font-weight:600;
+      background:#f1f4f2;
+    }
+
+    .pkg-custom-table td{
+      font-weight:500;
+    }
+
+    .pkg-custom-price{
+      margin-top:2rem;
+      font-size:1.6rem;
+      font-weight:800;
+      color:var(--green-dark,#1F4F3A);
+    }
+
+    .pkg-custom-note{
+      margin-top:1rem;
+      font-size:.9rem;
+      color:#6b7280;
+    }
+
+    @media(max-width:768px){
+      .pkg-custom-header{
+        flex-direction:column;
+        text-align:center;
+      }
+      .pkg-custom-tabs{
+        flex-direction:column;
+      }
+      .pkg-custom-tabs button{
+        width:100%;
+      }
+      .pkg-custom-table th,
+      .pkg-custom-table td{
+        padding:0.75rem;
+        font-size:0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="pkg-custom-wrap">
+
+  <!-- HEADER -->
+  <div class="pkg-custom-header">
+    <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/08/Built-Environment-Logo-001.png"
+         alt="Built Environment Indaba Logo">
+    <h1>Customised Strategic Partnership</h1>
+  </div>
+
+  <!-- TABS -->
+  <div class="pkg-custom-tabs">
+    <button class="pkg-custom-tab-btn active" data-tab="tier1">Tier 1 – R1,000,000</button>
+    <button class="pkg-custom-tab-btn" data-tab="tier2">Tier 2 – R1,200,000</button>
+    <button class="pkg-custom-tab-btn" data-tab="tier3">Tier 3 – R1,400,000</button>
+  </div>
+
+  <!-- TIER 1 CONTENT -->
+  <div id="tier1" class="pkg-custom-tab-content active">
+    <div class="pkg-custom-card">
+      <span class="pkg-custom-badge">Strategic Partner – Tier 1</span>
+
+      <table class="pkg-custom-table">
+        <tr>
+          <th>Package Price</th>
+          <td>R1,000,000 (Excl. VAT)</td>
+        </tr>
+        <tr>
+          <th>Designation</th>
+          <td>Strategic Partner – Built Environment Indaba 2026</td>
+        </tr>
+        <tr>
+          <th>Speaking Opportunity</th>
+          <td>Keynote or panel speaking opportunity</td>
+        </tr>
+        <tr>
+          <th>Exhibition Stand</th>
+          <td>6m × 6m premium exhibition stand</td>
+        </tr>
+        <tr>
+          <th>Logo Placement</th>
+          <td>On all marketing material and main stage screens</td>
+        </tr>
+        <tr>
+          <th>Sector Session</th>
+          <td>Co-branded sector session or panel</td>
+        </tr>
+        <tr>
+          <th>VIP Experience</th>
+          <td>VIP breakfast or luncheon (shared)</td>
+        </tr>
+        <tr>
+          <th>Delegate Passes</th>
+          <td>10 complimentary delegate passes</td>
+        </tr>
+        <tr>
+          <th>Gala Dinner</th>
+          <td>VIP Gala Dinner table (10-seater)</td>
+        </tr>
+        <tr>
+          <th>Media Exposure</th>
+          <td>Joint press release (pre or post event)</td>
+        </tr>
+      </table>
+
+      <div class="pkg-custom-price">Total Investment: R1,000,000 (Excl. VAT)</div>
+      <div class="pkg-custom-note">
+        Tier 1 Strategic Partnership provides premium visibility and direct engagement with senior infrastructure decision-makers.
+      </div>
+    </div>
+  </div>
+
+  <!-- TIER 2 CONTENT -->
+  <div id="tier2" class="pkg-custom-tab-content">
+    <div class="pkg-custom-card">
+      <span class="pkg-custom-badge tier2">Strategic Partner – Tier 2</span>
+
+      <table class="pkg-custom-table">
+        <tr>
+          <th>Package Price</th>
+          <td>R1,200,000 (Excl. VAT)</td>
+        </tr>
+        <tr>
+          <th>Includes</th>
+          <td>All Tier 1 benefits included</td>
+        </tr>
+        <tr>
+          <th>Keynote Address</th>
+          <td>Opening or closing keynote address</td>
+        </tr>
+        <tr>
+          <th>Executive Roundtable</th>
+          <td>Exclusive executive roundtable (invite-only)</td>
+        </tr>
+        <tr>
+          <th>Enhanced Branding</th>
+          <td>Enhanced branding on delegate lanyards or registration desk</td>
+        </tr>
+        <tr>
+          <th>Matchmaking Session</th>
+          <td>Investor–project matchmaking session</td>
+        </tr>
+        <tr>
+          <th>Delegate Passes</th>
+          <td>15 complimentary delegate passes</td>
+        </tr>
+        <tr>
+          <th>Branded Lounge</th>
+          <td>Branded networking lounge or activation area</td>
+        </tr>
+        <tr>
+          <th>Press Releases</th>
+          <td>Joint press releases (pre and post event)</td>
+        </tr>
+        <tr>
+          <th>Media Interview</th>
+          <td>Dedicated media interview slot</td>
+        </tr>
+      </table>
+
+      <div class="pkg-custom-price">Total Investment: R1,200,000 (Excl. VAT)</div>
+      <div class="pkg-custom-note">
+        Tier 2 Strategic Partnership offers enhanced leadership positioning with exclusive executive access and expanded media exposure.
+      </div>
+    </div>
+  </div>
+
+  <!-- TIER 3 CONTENT -->
+  <div id="tier3" class="pkg-custom-tab-content">
+    <div class="pkg-custom-card">
+      <span class="pkg-custom-badge tier3">Strategic Partner – Tier 3</span>
+
+      <table class="pkg-custom-table">
+        <tr>
+          <th>Package Price</th>
+          <td>R1,400,000 (Excl. VAT)</td>
+        </tr>
+        <tr>
+          <th>Includes</th>
+          <td>All Tier 1 and Tier 2 benefits included</td>
+        </tr>
+        <tr>
+          <th>Event Co-Branding</th>
+          <td>"Built Environment Indaba 2026 in partnership with [Partner]"</td>
+        </tr>
+        <tr>
+          <th>VIP Hosted Session</th>
+          <td>Exclusive hosted VIP session with Ministers, DGs and CEOs</td>
+        </tr>
+        <tr>
+          <th>Government Briefing</th>
+          <td>Closed-door government or SOE briefing</td>
+        </tr>
+        <tr>
+          <th>Stage Branding</th>
+          <td>Main stage branding and speaking lectern branding</td>
+        </tr>
+        <tr>
+          <th>Delegate Passes</th>
+          <td>20 complimentary delegate passes</td>
+        </tr>
+        <tr>
+          <th>Premium Media</th>
+          <td>Premium media exposure including video feature</td>
+        </tr>
+        <tr>
+          <th>Outcomes Session</th>
+          <td>Policy or sector outcomes session ownership</td>
+        </tr>
+        <tr>
+          <th>Exclusivity</th>
+          <td>Maximum sector exclusivity</td>
+        </tr>
+      </table>
+
+      <div class="pkg-custom-price">Total Investment: R1,400,000 (Excl. VAT)</div>
+      <div class="pkg-custom-note">
+        Tier 3 Strategic Partnership delivers the highest level of influence, co-branding, and exclusive access to Ministers, DGs, and SOE leaders.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script data-keep="true">
+  // Tab switching functionality
+  const tabButtons = document.querySelectorAll('.pkg-custom-tab-btn');
+  const tabContents = document.querySelectorAll('.pkg-custom-tab-content');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const targetTab = button.getAttribute('data-tab');
+
+      // Remove active class from all buttons and contents
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabContents.forEach(content => content.classList.remove('active'));
+
+      // Add active class to clicked button and corresponding content
+      button.classList.add('active');
+      document.getElementById(targetTab).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>

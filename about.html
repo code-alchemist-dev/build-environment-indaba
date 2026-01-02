@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About the Indaba | Partial</title>
+  <style>
+    :root {
+      --green-primary: #2E6B4E;
+      --green-dark: #1F4F3A;
+      --gold: #F2B705;
+      --bg: #F7F9F8;
+      --white: #ffffff;
+      --text: #1F2933;
+      --muted: #000000;
+      --radius: 14px;
+      --shadow: 0 15px 64px rgba(0, 0, .08, .08);
+      --shadow-lg: 0 25px 80px rgba(0, 0, 0, .12);
+    }
+
+    .about-hero {
+      position: relative;
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem;
+      color: #fff;
+      background:
+        linear-gradient(rgba(31, 79, 58, .94), rgba(31, 79, 58, .70)),
+        url('https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A9204-scaled-1.jpg') center/cover no-repeat;
+      overflow: hidden;
+    }
+
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(242, 183, 5, 0.18), transparent 60%);
+      pointer-events: none;
+    }
+
+    .about-hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      margin-bottom: 1rem;
+    }
+
+    .about-hero p {
+      max-width: 900px;
+      margin: 0 auto;
+      color: #eef2f0;
+      font-size: 1.15rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 4rem 2rem 5rem;
+      background: transparent;
+    }
+
+    .section {
+      margin-bottom: 4.5rem;
+    }
+
+    .section-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-header h2 {
+      color: var(--green-dark);
+      margin-bottom: .6rem;
+    }
+
+    .section-header h2::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: var(--gold);
+      margin-top: .7rem;
+    }
+
+    .section-header p {
+      max-width: 720px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .story {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .story-card {
+      background: var(--white);
+      padding: 3rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .story-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--gold), var(--green-primary));
+    }
+
+    .story-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .story-card p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #374151;
+      margin-bottom: 1.1rem;
+    }
+
+    .story-image {
+      border-radius: var(--radius);
+      min-height: 420px;
+      background:
+        url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .mission-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+      border-radius: var(--radius);
+      padding: 2.6rem;
+      box-shadow: var(--shadow);
+      border: 2px solid rgba(242, 183, 5, 0.18);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .mission-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .mission-card h3 {
+      color: var(--green-dark);
+      margin: 0 0 1rem 0;
+      font-size: 1.4rem;
+    }
+
+    .mission-card p {
+      color: #4b5563;
+      line-height: 1.8;
+      font-size: 1.02rem;
+    }
+
+    .values {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .value {
+      background: var(--white);
+      padding: 2.4rem 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      border: 1px solid rgba(46, 107, 78, 0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .value:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .value span {
+      font-size: 2.4rem;
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+
+    .value h4 {
+      margin: .5rem 0 .4rem;
+      color: var(--green-dark);
+      font-size: 1.25rem;
+    }
+
+    .value p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.98rem;
+    }
+
+    .partners-section {
+      position: relative;
+    }
+
+    .partner-groups {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .partner-group {
+      background: #eef4f1;
+      border-radius: 20px;
+      padding: 1.5rem 1.5rem 1.8rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(46, 107, 78, 0.08);
+      overflow: hidden;
+    }
+
+    /* Full-width marquee sections - only for non-alt groups */
+    .partner-group:not(.alt):has(.partner-marquee) {
+      padding: 1.5rem 0 1.8rem;
+      border-radius: 0;
+      margin: 0 -2rem;
+      width: calc(100% + 4rem);
+    }
+
+    .partner-group:not(.alt):has(.partner-marquee) .partner-title {
+      padding: 0 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .partner-group.alt {
+      background: #0e1111;
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .partner-title {
+      text-align: center;
+      font-weight: 800;
+      color: var(--green-dark);
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .partner-group.alt .partner-title {
+      color: #ffffff;
+    }
+
+    .partner-logos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.5rem;
+      align-items: center;
+      justify-items: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* Marquee rows for single-line animated partners */
+    .partner-marquee {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.6rem 0;
+    }
+
+    .partner-group:not(.alt) .partner-marquee {
+      background: rgba(255, 255, 255, 0.5);
+      border-color: rgba(17, 24, 39, 0.08);
+    }
+
+    .marquee-track {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: max-content;
+      animation: marquee-left 18s linear infinite;
+    }
+
+    .marquee-track.pause:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee-left {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .marquee-track .logo-card {
+      min-width: 150px;
+      flex: 0 0 150px;
+    }
+
+    .logo-card {
+      width: 100%;
+      min-height: 120px;
+      background: #ffffff;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(17, 24, 39, 0.06);
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.01em;
+      font-size: 0.95rem;
+    }
+
+    .partner-group.alt .logo-card {
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .media-grid {
+      display: grid;
+      gap: 1.6rem;
+    }
+
+    .media-card {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 1.4rem;
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(17, 24, 39, 0.06);
+      overflow: hidden;
+    }
+
+    .media-thumb {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      min-height: 160px;
+    }
+
+    .media-body {
+      padding: 1.4rem 1.4rem 1.6rem 0;
+    }
+
+    .media-body h3 {
+      margin: 0 0 0.6rem 0;
+      color: var(--green-dark);
+    }
+
+    .media-body p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    @media(max-width: 992px) {
+      .story { grid-template-columns: 1fr; }
+      .media-card { grid-template-columns: 1fr; }
+      .media-thumb { min-height: 120px; }
+    }
+
+    @media(max-width: 640px) {
+      .about-hero { padding: 4rem 1.6rem; }
+      .about-hero h1 { font-size: 2.2rem; }
+      .section { margin-bottom: 3.5rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="about-hero">
+    <div>
+      <h1>About the Built Environment Indaba</h1>
+      <p>A leading African platform uniting government, industry, academia and civil society to shape the future of infrastructure, energy and sustainable development.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <section class="section">
+      <div class="section-header">
+        <h2>Our Story</h2>
+        <p>Built on collaboration, driven by impact, and focused on Africa’s future.</p>
+      </div>
+      <div class="story">
+        <div class="story-card">
+          <p>The Built Environment Indaba was established to respond to the urgent need for dialogue, innovation and collaboration across Africa’s infrastructure and built environment sectors.</p>
+          <p>The Indaba brings together policymakers, investors, professionals, researchers and communities to unlock practical solutions, promote investment, and accelerate delivery across the continent.</p>
+        </div>
+        <div class="story-image"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Mission & Vision</h2>
+      </div>
+      <div class="mission-grid">
+        <div class="mission-card">
+          <h3>Our Mission</h3>
+          <p>To provide a trusted platform that enables collaboration, investment, skills development and innovative thinking to transform infrastructure delivery in Africa.</p>
+        </div>
+        <div class="mission-card">
+          <h3>Our Vision</h3>
+          <p>A resilient, inclusive and sustainable African built environment that supports economic growth, social development and environmental stewardship.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Our Core Values</h2>
+      </div>
+      <div class="values">
+        <div class="value">
+          <span>🤝</span>
+          <h4>Collaboration</h4>
+          <p>Building partnerships across sectors and borders.</p>
+        </div>
+        <div class="value">
+          <span>⚖️</span>
+          <h4>Integrity</h4>
+          <p>Transparency, accountability and ethical leadership.</p>
+        </div>
+        <div class="value">
+          <span>💡</span>
+          <h4>Innovation</h4>
+          <p>Encouraging bold ideas and future-focused solutions.</p>
+        </div>
+        <div class="value">
+          <span>🌍</span>
+          <h4>Sustainability</h4>
+          <p>Long-term impact for people, communities and the planet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section partners-section">
+      <div class="section-header">
+        <h2>Strategic Partners</h2>
+        <p>Key organisations collaborating with the Built Environment Indaba.</p>
+      </div>
+      <div class="partner-groups">
+        <div class="partner-group">
+          <div class="partner-title">Anchor Sponsors</div>
+          <div class="partner-logos">
+            <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/34.png" alt="Anchor Sponsor" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+            <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/32.png" alt="Anchor Sponsor" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+            <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/35.png" alt="Anchor Sponsor" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+          </div>
+        </div>
+
+        <div class="partner-group alt">
+          <div class="partner-title">Government Partners</div>
+          <div class="partner-marquee">
+            <div class="marquee-track pause">
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/9.png" alt="Government Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/8.png" alt="Government Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/7.png" alt="Government Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/6.png" alt="Government Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/5.png" alt="Government Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/4.png" alt="Government Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/3.png" alt="Government Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/2-1.png" alt="Government Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/1.png" alt="Government Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="partner-group">
+          <div class="partner-title">Industry Bodies</div>
+          <div class="partner-logos">
+            <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/safcec.png" alt="Industry Body" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+            <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/MBSA.png" alt="Industry Body" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+            <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/BBCBE.png" alt="Industry Body" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+            <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/49.png" alt="Industry Body" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+            <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/50.png" alt="Industry Body" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+          </div>
+        </div>
+
+        <div class="partner-group alt">
+          <div class="partner-title">Industry Key Players</div>
+          <div class="partner-marquee">
+            <div class="marquee-track pause">
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/32.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/31.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/34.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/35.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/IDT.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/5.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/isa.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/BRICS.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/13.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/43.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/44.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/45.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/12.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <!-- duplicate for seamless loop -->
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/32.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/31.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/34.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/35.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/IDT.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/5.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/isa.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/BRICS.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/13.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/43.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/44.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/45.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+              <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/12.png" alt="Industry Partner" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="partner-group">
+          <div class="partner-title">Industry Stakeholders</div>
+          <div class="partner-logos">
+            <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/46.png" alt="Industry Stakeholder" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+            <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/BRICS.png" alt="Industry Stakeholder" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+            <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/47.png" alt="Industry Stakeholder" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+            <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/23.png" alt="Industry Stakeholder" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+            <div class="logo-card"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/48.png" alt="Industry Stakeholder" style="max-width:100%; max-height:100%; object-fit:contain;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Media and Public Relations</h2>
+        <p>Latest highlights and statements from the Built Environment Indaba.</p>
+      </div>
+      <div class="media-grid">
+        <article class="media-card">
+          <div class="media-thumb">Image placeholder</div>
+          <div class="media-body">
+            <h3>8th Annual BIM Africa Conference 13-14 March 2025 Cape Town</h3>
+            <p>Theme: Digital Revolution in Construction – Unlocking BIM’s Full Potential. The construction industry is experiencing a significant digital transformation fueled by Building Information Modeling (BIM), blockchain, data management, and more.</p>
+          </div>
+        </article>
+        <article class="media-card">
+          <div class="media-thumb">Image placeholder</div>
+          <div class="media-body">
+            <h3>Built Environment Indaba to address substandard project delivery</h3>
+            <p>Poor-quality projects, site invasions and inadequate transformation are key issues addressed at the Indaba as it convenes government, industry and communities to secure better delivery.</p>
+          </div>
+        </article>
+        <article class="media-card">
+          <div class="media-thumb">Image placeholder</div>
+          <div class="media-body">
+            <h3>BBC-BBCBE Media Statement on the VRP</h3>
+            <p>The South African government and seven listed construction companies signed the Settlement Agreement, paving the way for collaborative advancement in the built environment sector.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+</body>
+
+</html>

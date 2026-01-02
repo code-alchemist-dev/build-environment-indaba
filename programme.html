@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Programme | Partial</title>
+    <style>
+        /* Programme-specific layout only */
+        .programme {
+            max-width: 1300px;
+            margin: auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+
+        .programme .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .programme .header h1 {
+            color: var(--green-dark, #1F4F3A);
+            margin: 0 0 .4rem 0;
+        }
+
+        .programme .header p {
+            color: var(--muted, #000000);
+            margin: 0;
+        }
+
+        .programme .days {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .programme .days button {
+            padding: .8rem 2rem;
+            border-radius: 999px;
+            border: 2px solid var(--green-primary, #2E6B4E);
+            background: var(--white, #ffffff);
+            color: var(--green-dark, #1F4F3A);
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform .15s ease, box-shadow .2s ease;
+        }
+
+        .programme .days button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+        }
+
+        .programme .days button.active {
+            background: var(--green-primary, #2E6B4E);
+            color: var(--white, #ffffff);
+        }
+
+        .programme .agenda-download {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .programme .agenda-download button {
+            padding: .9rem 2rem;
+            border-radius: 999px;
+            border: none;
+            background: var(--gold, #F2B705);
+            color: var(--green-dark, #1F4F3A);
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+            transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+        }
+
+        .programme .agenda-download button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 26px rgba(0, 0, 0, .14);
+            filter: brightness(0.98);
+        }
+
+        .programme .block {
+            background: var(--white, #ffffff);
+            border-radius: var(--radius, 14px);
+            box-shadow: var(--shadow, 0 15px 64px rgba(0, 0, 0, .08));
+            margin-bottom: 2.5rem;
+            overflow: hidden;
+            border: 1px solid var(--border, #E3E7E5);
+        }
+
+        .programme .block-title {
+            background: linear-gradient(135deg, var(--green-dark, #1F4F3A), var(--green-primary, #2E6B4E));
+            color: var(--white, #ffffff);
+            padding: 1.2rem 1.5rem;
+            font-weight: 800;
+        }
+
+        .programme table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .programme td {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+
+        .programme .time {
+            width: 160px;
+            font-weight: 800;
+            color: var(--green-dark, #1F4F3A);
+            white-space: nowrap;
+        }
+
+        .programme .tag {
+            display: inline-block;
+            padding: .35rem .75rem;
+            border-radius: 999px;
+            font-size: .75rem;
+            font-weight: 800;
+            margin-bottom: .4rem;
+        }
+
+        .programme .break {
+            background: #f3f4f6;
+        }
+
+        .programme .track {
+            background: #e8f1ed;
+            color: var(--green-dark, #1F4F3A);
+        }
+
+        .programme .exhibit {
+            background: #fee2e2;
+            color: var(--red, #E34A35);
+        }
+
+        .programme .network {
+            background: #E34A35;
+            color: var(--white, #ffffff);
+        }
+
+        .programme .network td {
+            border-color: #1f2937;
+        }
+
+        .programme .network .time {
+            color: #fbbf24;
+        }
+
+        .programme .day {
+            display: none;
+        }
+
+        .programme .day.active {
+            display: block;
+        }
+
+        @media (max-width: 900px) {
+            .programme td {
+                display: block;
+            }
+
+            .programme .time {
+                margin-bottom: .4rem;
+            }
+        }
+
+        @media print {
+
+            .programme .days,
+            .programme .agenda-download {
+                display: none;
+            }
+
+            .programme .block {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="programme">
+        <div class="header">
+            <h1>Conference Programme</h1>
+            <p>Built Environment Indaba 2026</p>
+        </div>
+
+        <div class="days">
+            <button class="active" onclick="showDay('day1', this)">Day 1 – Thu 9 Apr</button>
+            <button onclick="showDay('day2', this)">Day 2 – Fri 10 Apr</button>
+        </div>
+
+        <div class="agenda-download">
+            <button onclick="downloadPDF()">📄 Download Agenda (PDF)</button>
+            <button onclick="downloadICal()">📅 Add Agenda to Calendar</button>
+        </div>
+
+        <div id="day1" class="day active">
+            <div class="block">
+                <div class="block-title">DAY ONE SESSIONS – Thursday, 9th April 2026</div>
+                <table>
+                    <tr>
+                        <td class="time">07:30 – 09:00</td>
+                        <td><span class="tag break">REGISTRATION AND WELCOME COFFEE</span></td>
+                    </tr>
+                    <tr>
+                        <td class="time">09:00 – 09:10</td>
+                        <td>Singing of the National and South Africa National Anthem</td>
+                    </tr>
+                    <tr>
+                        <td class="time">09:00 – 10:30</td>
+                        <td>
+                            <strong>OPENING CEREMONY</strong><br>
+                            09:10 – 09:20: Welcome and Opening Remarks: <strong>Program Director - TBC</strong><br>
+                            09:20 – 09:25: Occupational Health Information: The Canvas Riversands OSH Officer<br>
+                            09:25 – 09:45: Event Host Introduction: Master of Ceremony<br>
+                            09:45 – 10:30: <strong>Opening Keynote Address: Proposed Chief Executive of the Dangote
+                                Group, His Excellency Mr. Aliko Dankote-GCON</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="time">10:30 – 11:00</td>
+                        <td><span class="tag break">BREAK / TEA TIME / EXHIBITION WALK</span></td>
+                    </tr>
+                    <tr>
+                        <td class="time">11:00 – 11:30</td>
+                        <td>
+                            <strong>INFRASTRUCTURE DEVELOPMENT CLUSTER CONSTRUCTION INDUSTRY CONSULTATIVE
+                                SESSION</strong><br>
+                            Industry Welcome Address, Minister of Public Works and Infrastructure – <strong>Honourable
+                                Dean Macpherson MP</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="time">11:00 – 13:00</td>
+                        <td>
+                            <strong>Infrastructure Cluster Panel Discussion: Successful development of a Construction
+                                Masterplan</strong><br><br>
+                            <strong>Track 1:</strong> Department of Trade, Industry and Competition | National
+                            Treasury<br>
+                            <strong>Track 2:</strong> Department of Electricity and Energy<br>
+                            <strong>Track 3:</strong> Minister of Public Works and Infrastructure | Department of
+                            Cooperative Governance and Traditional Affairs<br>
+                            <strong>Track 4:</strong> Department of Forestry, Fisheries and the Environment | Department
+                            of Communication and Postal Services | Department of Higher Education and Training
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="time">13:00 – 13:30</td>
+                        <td>Session Closing Remarks: <strong>Infrastructure South Africa – Ms. Mameetse
+                                Masemola</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="time">13:00 – 14:00</td>
+                        <td><span class="tag break">BREAK / LUNCH / EXHIBITION WALK</span></td>
+                    </tr>
+                    <tr>
+                        <td class="time">14:00 – 15:30</td>
+                        <td>
+                            <strong>CONSTRUCTION INDUSTRY CONSULTATIVE AND WORKING SESSIONS
+                                (COMPLEMENTARY)</strong><br><br>
+                            <strong>Core Value Chain Elements</strong> | <strong>Fostering Innovation and
+                                Development</strong> | <strong>Inclusive Development</strong> | <strong>Research and
+                                Development</strong><br><br>
+                            14:00 – 14:30: Proposed Lead: DoE | Proposed Lead: DSBD | Proposed Lead: BBCBE | Proposed
+                            Lead: SAIIPL / Dr. Julius Tlotlo / SA-HFD<br>
+                            14:00 – 14:30: <strong>Solution Discussion</strong><br>
+                            14:00 – 14:30: <strong>Regulatory and Policy Making</strong> | <strong>Skills Development
+                                and Building Capacity</strong> | <strong>Financing Capacity Building</strong> |
+                            <strong>Research and Development</strong><br>
+                            14:00 – 14:30: Proposed Lead: CIDB | Proposed Lead: CETAUJ | Proposed Lead: IIEJ | Proposed
+                            Lead: CSIIR<br>
+                            14:00 – 14:30: <strong>Solution Discussion</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="time">15:30 – 16:00</td>
+                        <td><span class="tag break">BREAK / TEA TIME / EXHIBITION WALK</span></td>
+                    </tr>
+                    <tr>
+                        <td class="time">16:00 – 16:45</td>
+                        <td>Day 1 Closing Address <strong>African Export Import Bank – Chairman and President – Dr.
+                                George Elemlu</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="time">16:45 – 17:00</td>
+                        <td>Closing Remarks: <strong>Program Director - TBC</strong></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="block network">
+                <div class="block-title">NETWORKING COCKTAIL SESSION</div>
+                <table>
+                    <tr>
+                        <td class="time">17:30 – 20:00</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="time">17:30 – 17:45</td>
+                        <td>Welcome & Opening Remarks</td>
+                    </tr>
+                    <tr>
+                        <td class="time">17:45 – 17:55</td>
+                        <td>Message from Black Business Council in the Built Environment</td>
+                    </tr>
+                    <tr>
+                        <td class="time">17:55 – 18:05</td>
+                        <td>Message from South African Federation of Civil Engineering Contractors</td>
+                    </tr>
+                    <tr>
+                        <td class="time">18:05 – 18:15</td>
+                        <td>Message from Consulting Engineers South Africa</td>
+                    </tr>
+                    <tr>
+                        <td class="time">18:15 – 18:25</td>
+                        <td>Message from Main Sponsor 1: <strong>Tirisano Construction Fund</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="time">18:25 – 18:35</td>
+                        <td>Message from Main Sponsor 2: <strong>Raabex Building</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="time">18:35 – 18:45</td>
+                        <td>Message from Main Sponsor 3: <strong>TBC</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="time">18:45 – 19:15</td>
+                        <td>Keynote Speech: <strong>TBC</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="time">19:15 – 21:00</td>
+                        <td>Entertainment and Networking</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div id="day2" class="day">
+            <div class="block">
+                <div class="block-title">DAY TWO SESSIONS – Friday, 10th April 2026</div>
+                <table>
+                    <tr>
+                        <td class="time">07:30 – 09:00</td>
+                        <td><span class="tag break">REGISTRATION AND WELCOME COFFEE</span></td>
+                    </tr>
+                    <tr>
+                        <td class="time">09:00 – 09:10</td>
+                        <td>Welcome and Recap Remarks: <strong>Program Director - TBC</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="time">09:00 – 10:30</td>
+                        <td>
+                            <strong>DAY TWO PLENARY</strong><br>
+                            09:10 – 09:20: Occupational Health Information: The Canvas Riversands OSH Officer<br>
+                            09:20 – 10:00: Keynote Address Introduction: <strong>Tirisano Construction Fund –Acting
+                                Chief Executive Officer – Mr. Nkosenathi Butheiezi</strong><br>
+                            10:00 – 10:30: <strong>Keynote Address: Construction Economist – Prof. Yunus Ballim</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="time">11:00 – 11:30</td>
+                        <td><span class="tag break">BREAK / TEA TIME / EXHIBITION WALK</span></td>
+                    </tr>
+                    <tr>
+                        <td class="time">11:30 – 13:00</td>
+                        <td>
+                            <strong>Working Sessions:</strong><br>
+                            <strong>Climate and Environment</strong> | <strong>PPP and Concessions Rail
+                                Technology</strong> | <strong>Alternative Rail Technology</strong> | <strong>Project
+                                Preparation and Feasibility</strong><br><br>
+                            11:30 – 12:00: Proposed Lead: DoE | Proposed Lead: GTEC | Proposed Lead: Agreement |
+                            Proposed Lead: KPMG<br>
+                            <strong>Solution Discussion</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="time">13:00 – 14:00</td>
+                        <td><span class="tag break">BREAK / LUNCH / EXHIBITION WALK</span></td>
+                    </tr>
+                    <tr>
+                        <td class="time">14:00 – 15:30</td>
+                        <td>
+                            <strong>Working Sessions:</strong><br>
+                            <strong>Water Security</strong> | <strong>Energy Security</strong> | <strong>Student
+                                Accommodation</strong> | <strong>Contractor Development</strong><br><br>
+                            14:00 – 14:30: Proposed Lead: Randwater/ WRISEC | Proposed Lead: IPPOACTON | Proposed Lead:
+                            NHFC | Proposed Lead: ACCESS/ SANRAL<br>
+                            14:00 – 14:30: <strong>Solution Discussion</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="time">14:30 – 15:30</td>
+                        <td><strong>Solution Discussion</strong></td>
+                    </tr>
+                    <tr>
+                        <td class="time">15:30 – 15:45</td>
+                        <td><span class="tag break">BREAK / TEA TIME / EXHIBITION WALK</span></td>
+                    </tr>
+                    <tr>
+                        <td class="time">15:45 – 17:00</td>
+                        <td>
+                            <strong>CLOSING CEREMONY</strong><br>
+                            15:45 – 16:00: Summary of Indaba and Introduction of Closing Address Speaker – <strong>Built
+                                Environment Centre of Excellence – Mr. Audile Madezebele</strong><br>
+                            16:00 – 16:40: Closing Address: <strong>TBC</strong><br>
+                            16:40 – 16:50: The year ahead: <strong>Africa Built Environment Indaba – Mr. Carrington
+                                Titze</strong><br>
+                            16:50 – 17:00: Vote of Thanks: <strong>MC - TBC</strong>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showDay(dayId, btn) {
+            const programme = document.querySelector('.programme');
+            if (!programme) return;
+            programme.querySelectorAll('.day').forEach((day) => day.classList.remove('active'));
+            const target = programme.querySelector(`#${dayId}`);
+            if (target) target.classList.add('active');
+            programme.querySelectorAll('.days button').forEach((button) => button.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+        }
+
+        function downloadPDF() {
+            const originalTitle = document.title;
+            document.title = 'Built Environment Indaba 2026 – Programme';
+            window.print();
+            document.title = originalTitle;
+        }
+
+        function downloadICal() {
+            const ics = `BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:-//Built Environment Indaba 2026//EN
+BEGIN:VEVENT
+SUMMARY:Day 1 – Built Environment Indaba
+DTSTART:20260409T073000
+DTEND:20260409T170000
+LOCATION:Gallagher Convention Centre
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Networking Cocktail Session
+DTSTART:20260409T173000
+DTEND:20260409T200000
+LOCATION:Gallagher Convention Centre
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Day 2 – Built Environment Indaba
+DTSTART:20260410T073000
+DTEND:20260410T170000
+LOCATION:Gallagher Convention Centre
+END:VEVENT
+END:VCALENDAR`;
+            const blob = new Blob([ics], { type: 'text/calendar' });
+            const anchor = document.createElement('a');
+            anchor.href = URL.createObjectURL(blob);
+            anchor.download = 'Built_Environment_Indaba_2026_Agenda.ics';
+            anchor.click();
+        }
+    </script>
+</body>
+
+</html>

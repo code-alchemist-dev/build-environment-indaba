@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Built Environment Indaba | Media</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    .media-page {
+      background: var(--bg, #F7F9F8);
+      color: var(--text, #1F2933);
+      font-family: inherit;
+      line-height: 1.65;
+      padding-top: 10px;
+    }
+
+    .media-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    /* Media Hero */
+    .media-hero {
+      background: linear-gradient(135deg, rgba(46, 107, 78, 0.9), rgba(31, 79, 58, 0.8)), url('https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A9790-scaled-1.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      border-radius: 18px;
+      padding: 3.5rem 3rem;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.22);
+      margin: 2.5rem 0 2rem;
+      overflow: hidden;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .media-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(242, 183, 5, 0.15) 0, transparent 40%), radial-gradient(circle at 80% 70%, rgba(227, 74, 53, 0.18) 0, transparent 40%);
+      z-index: 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1.8rem;
+      position: relative;
+      z-index: 1;
+      align-items: center;
+    }
+
+    .hero-copy h1 {
+      font-size: 2.3rem;
+      letter-spacing: -0.02em;
+      margin: 0 0 1rem;
+    }
+
+    .hero-copy p {
+      margin: 0 0 1.2rem;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 640px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .hero-highlight {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 16px;
+      padding: 1.6rem;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.2);
+      display: grid;
+      gap: 1rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(242, 183, 5, 0.16);
+      color: var(--gold, #F2B705);
+      border: 1px solid rgba(242, 183, 5, 0.45);
+      padding: .45rem .85rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: .85rem;
+      width: fit-content;
+    }
+
+    .hero-highlight h3 {
+      font-size: 1.4rem;
+      color: #fff;
+      margin: 0;
+    }
+
+    .hero-highlight p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .hero-highlight a {
+      color: var(--gold, #F2B705);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .hero-highlight a:hover {
+      text-decoration: underline;
+    }
+
+    /* Section Header */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin: 3rem 0 1rem;
+    }
+
+    .section-header h2 {
+      color: var(--green-dark, #1F4F3A);
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    /* Pill Tabs */
+    .pill-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+    }
+
+    .pill-tabs button {
+      border: 1px solid var(--border, #E3E7E5);
+      background: var(--white, #ffffff);
+      color: var(--green-dark, #1F4F3A);
+      padding: .65rem 1.1rem;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .2s ease;
+      font-family: inherit;
+    }
+
+    .pill-tabs button.active {
+      background: var(--gold, #F2B705);
+      color: var(--green-dark, #1F4F3A);
+      border-color: var(--gold, #F2B705);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Media Categories */
+    .media-category {
+      display: none;
+      margin-top: 1.8rem;
+    }
+
+    .media-category.active {
+      display: block;
+    }
+
+    /* Featured Row */
+    .featured-row {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .feature-card {
+      background: linear-gradient(135deg, var(--green-primary, #2E6B4E) 0%, var(--green-dark, #1F4F3A) 100%);
+      color: #fff;
+      border-radius: 18px;
+      padding: 1.6rem;
+      box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
+      display: grid;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(242, 183, 5, 0.22) 0, transparent 35%);
+      pointer-events: none;
+    }
+
+    .feature-card img {
+      width: 100%;
+      border-radius: 12px;
+      height: 200px;
+      object-fit: cover;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .feature-card h3 {
+      font-size: 1.35rem;
+      margin: 0;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .feature-card a {
+      color: var(--gold, #F2B705);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .feature-card a:hover {
+      text-decoration: underline;
+    }
+
+    .feature-meta {
+      display: flex;
+      gap: .75rem;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 600;
+    }
+
+    /* Headline Stack */
+    .headline-stack {
+      background: var(--white, #ffffff);
+      border: 1px solid var(--border, #E3E7E5);
+      border-radius: 16px;
+      box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
+      padding: 1.2rem 1.4rem;
+      display: grid;
+      gap: .85rem;
+    }
+
+    .headline-item {
+      padding: .65rem .75rem;
+      border-radius: 12px;
+      transition: background .15s ease, transform .15s ease;
+      cursor: pointer;
+    }
+
+    .headline-item:hover {
+      background: var(--bg, #F7F9F8);
+      transform: translateX(2px);
+    }
+
+    .headline-item strong {
+      display: block;
+      color: var(--green-dark, #1F4F3A);
+      margin-bottom: .25rem;
+    }
+
+    .headline-item span {
+      color: #6b7280;
+      font-size: .92rem;
+    }
+
+    /* Press Grid */
+    .press-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.6rem;
+    }
+
+    .press-card {
+      background: var(--white, #ffffff);
+      border-radius: var(--radius, 14px);
+      box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .25s ease, box-shadow .25s ease;
+      position: relative;
+    }
+
+    .press-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+    }
+
+    .press-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      background: linear-gradient(135deg, rgba(46, 107, 78, 0.15), rgba(31, 79, 58, 0.25));
+    }
+
+    .press-content {
+      padding: 1.3rem 1.4rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .press-date {
+      font-size: .9rem;
+      color: #6b7280;
+    }
+
+    .press-content h3 {
+      color: var(--green-dark, #1F4F3A);
+      font-size: 1.12rem;
+      margin: 0;
+    }
+
+    .press-content p {
+      margin: 0;
+      flex: 1;
+      color: var(--muted, #6b7280);
+    }
+
+    .press-content a {
+      font-weight: 700;
+      color: var(--green-primary, #2E6B4E);
+      text-decoration: none;
+      border-bottom: 2px solid var(--gold, #F2B705);
+      width: max-content;
+    }
+
+    /* Media Enquiry */
+    .media-enquiry {
+      margin-top: 3.5rem;
+      background: linear-gradient(135deg, #2E6B4E, #1F4F3A);
+      border-radius: 18px;
+      padding: 3rem 2.5rem;
+      color: #fff;
+      box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
+      display: grid;
+      gap: 1rem;
+    }
+
+    .media-enquiry h2 {
+      color: #fff;
+      margin: 0;
+    }
+
+    .media-enquiry p {
+      color: #e5efe9;
+      margin: 0;
+    }
+
+    .media-enquiry-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 1.8rem;
+      align-items: start;
+    }
+
+    .contact-card {
+      background: #ffffff;
+      color: #1F2933;
+      border-radius: 14px;
+      padding: 1.6rem 1.8rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .contact-card strong {
+      color: var(--green-dark, #1F4F3A);
+      display: block;
+      margin-bottom: .4rem;
+    }
+
+    .contact-card a {
+      color: var(--green-primary, #2E6B4E);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    @media(max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width: 768px) {
+      .media-enquiry-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .media-hero {
+        padding: 2.6rem 1.8rem;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .press-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="media-page">
+    <main>
+      <div class="media-container">
+
+        <section class="media-hero">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <h1>Media hub for Built Environment Indaba</h1>
+              <p>Your single source for press releases, broadcast coverage, editorial features, and official event assets.
+                Stay current with the latest stories and download ready-to-use media kits.</p>
+            </div>
+
+            <div class="hero-highlight">
+              <span class="badge">Top story</span>
+              <h3>South Africa's infrastructure projects aim for greener future</h3>
+              <p>Business Report highlights how the Indaba is accelerating sustainable delivery across key corridors.</p>
+              <a href="https://www.iol.co.za/business-report/south-africas-infrastructure-projects-aim-for-greener-future-as-government-prioritises-just-energy-transition-6ff2e0cd-8b96-4a30-999c-3b9332b6443f"
+                target="_blank">Read article →</a>
+            </div>
+          </div>
+        </section>
+
+        <div class="section-header">
+          <h2>Latest coverage</h2>
+          <div class="pill-tabs">
+            <button class="active" data-target="press">Press releases</button>
+            <button data-target="news">Broadcast news</button>
+            <button data-target="articles">News articles</button>
+            <button data-target="literature">Event literature</button>
+          </div>
+        </div>
+
+        <div class="featured-row">
+          <div class="feature-card">
+            <span class="badge">In focus</span>
+            <img src="https://centralnews.co.za/wp-content/uploads/2025/04/Water-security.jpg" alt="Water security">
+            <div class="feature-meta">13 April 2025 | Central News</div>
+            <h3>Mahlobo reaffirms commitment to water security at BBCBE Indaba</h3>
+            <p>Ministerial address on partnerships, resilience, and innovation for national water infrastructure.</p>
+            <a href="https://centralnews.co.za/mahloko-reaffirms-commitment-to-water-security-through-partnerships-and-innovation-at-bbcbe-indaba/"
+              target="_blank">Read article →</a>
+          </div>
+
+          <div class="headline-stack">
+            <div class="headline-item">
+              <strong>We can no longer blame apartheid for economic failures - BBCBE</strong>
+              <span>Engineering News | 10 Apr 2025</span>
+            </div>
+            <div class="headline-item">
+              <strong>Unqualified contractors blamed for building collapses</strong>
+              <span>eNCA | 10 Apr 2025</span>
+            </div>
+            <div class="headline-item">
+              <strong>Reimagining empowerment to stop construction mafia</strong>
+              <span>Daily Maverick | 31 Mar 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="media-category active" id="press">
+          <div class="press-grid">
+            <div class="press-card">
+              <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A9723-1-scaled.jpg"
+                alt="Business Report">
+              <div class="press-content">
+                <div class="press-date">March 2025 | Business Report</div>
+                <h3>South Africa's infrastructure projects aim for greener future</h3>
+                <p>National infrastructure priorities and BEI's role in sustainable delivery.</p>
+                <a href="https://www.iol.co.za/business-report/south-africas-infrastructure-projects-aim-for-greener-future-as-government-prioritises-just-energy-transition-6ff2e0cd-8b96-4a30-999c-3b9332b6443f"
+                  target="_blank">Read Article →</a>
+              </div>
+            </div>
+
+            <div class="press-card">
+              <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A9737-scaled.jpg" alt="Engineering News">
+              <div class="press-content">
+                <div class="press-date">10 April 2025 | Engineering News</div>
+                <h3>We can no longer blame apartheid for economic failures - BBCBE</h3>
+                <p>Leadership commentary on accountability and delivery.</p>
+                <a href="https://www.engineeringnews.co.za/article/we-can-no-longer-blame-apartheid-for-economic-failures-bbcbes-masimene-says-2025-04-10"
+                  target="_blank">Read Article →</a>
+              </div>
+            </div>
+
+            <div class="press-card">
+              <img src="https://centralnews.co.za/wp-content/uploads/2025/04/Water-security.jpg" alt="Central News">
+              <div class="press-content">
+                <div class="press-date">13 April 2025 | Central News</div>
+                <h3>Mahlobo reaffirms commitment to water security at BBCBE Indaba</h3>
+                <p>Ministerial address on partnerships and innovation.</p>
+                <a href="https://centralnews.co.za/mahloko-reaffirms-commitment-to-water-security-through-partnerships-and-innovation-at-bbcbe-indaba/"
+                  target="_blank">Read Article →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="media-category" id="news">
+          <div class="press-grid">
+            <div class="press-card">
+              <img src="https://cdn.enca.com/sites/default/files/styles/article_teaser/public/2025-04/Construction.jpg"
+                alt="Broadcast clip">
+              <div class="press-content">
+                <div class="press-date">10 April 2025 | eNCA</div>
+                <h3>Unqualified contractors blamed for building collapses</h3>
+                <p>Broadcast coverage on construction safety and quality.</p>
+                <a href="https://storage.googleapis.com/bcclips/20250411/10022933-10_13502CB.mp4" target="_blank">Watch Coverage →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="media-category" id="articles">
+          <div class="press-grid">
+            <div class="press-card">
+              <img src="https://www.dailymaverick.co.za/wp-content/uploads/2025/03/BEE-construction.jpg"
+                alt="Daily Maverick">
+              <div class="press-content">
+                <div class="press-date">31 March 2025 | Daily Maverick</div>
+                <h3>Reimagining empowerment to stop construction mafia</h3>
+                <p>Editorial analysis on BEE reform and governance.</p>
+                <a href="https://www.dailymaverick.co.za/article/2025-03-31-reimagining-bee-laws-to-stop-construction-mafia/"
+                  target="_blank">Read Article →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="media-category" id="literature">
+          <div class="press-grid">
+            <div class="press-card">
+              <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A9790-scaled-1.jpg"
+                alt="Programme">
+              <div class="press-content">
+                <div class="press-date">2025 Official Programme</div>
+                <h3>Built Environment Indaba Programme</h3>
+                <p>Sessions, speakers, and themes.</p>
+                <a href="#" target="_blank">Download PDF →</a>
+              </div>
+            </div>
+
+            <div class="press-card">
+              <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A9723-1-scaled.jpg"
+                alt="Media Report">
+              <div class="press-content">
+                <div class="press-date">2025 Media Report</div>
+                <h3>Media Coverage Report - March to April 2025</h3>
+                <p>Reach, sentiment, and analysis.</p>
+                <a href="#" target="_blank">Download Report →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section id="enquiry" class="media-enquiry">
+          <h2>Media enquiries</h2>
+          <div class="media-enquiry-grid">
+            <p>For press enquiries, interview requests, accreditation, speaker access or media partnerships relating to the
+              Built Environment Indaba, please contact:</p>
+
+            <div class="contact-card">
+              <strong>Media & Communications</strong>
+              Africa Built Environment Indaba (Pty) Ltd<br><br>
+
+              📧 <a href="mailto:media@builtenvironmentindaba.africa">media@builtenvironmentindaba.africa</a><br>
+              ☎️ <a href="tel:+27827582254">+27 82 758 2254</a><br><br>
+
+              Operating hours:<br>
+              Monday - Friday | 09:00 - 17:00
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script data-keep="true">
+    // Tab switching for media categories
+    (function initMediaTabs() {
+      const tabs = document.querySelectorAll('.pill-tabs button');
+      const sections = document.querySelectorAll('.media-category');
+      if (!tabs.length || !sections.length) return;
+
+      function setActive(target) {
+        tabs.forEach((btn) => btn.classList.toggle('active', btn.dataset.target === target));
+        sections.forEach((section) => section.classList.toggle('active', section.id === target));
+      }
+
+      tabs.forEach((btn) => {
+        btn.addEventListener('click', () => setActive(btn.dataset.target));
+      });
+
+      const initial = document.querySelector('.pill-tabs button.active')?.dataset.target || tabs[0]?.dataset.target;
+      if (initial) setActive(initial);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Learn More | Built Environment Indaba 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    .more-page {
+      background: var(--bg, #F7F9F8);
+      color: var(--text, #1F2933);
+      font-family: inherit;
+      line-height: 1.65;
+    }
+
+    .more-section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 4rem 2rem;
+    }
+
+    .more-section h2 {
+      color: var(--green-dark, #1F4F3A);
+      margin-bottom: .6rem;
+      font-size: 2rem;
+    }
+
+    .more-section h2::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: var(--red, #E34A35);
+      margin-top: .7rem;
+    }
+
+    .more-section-intro {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      text-align: center;
+      color: var(--muted, #6b7280);
+      font-size: 1.1rem;
+    }
+
+    /* WHY ATTEND CARDS */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .why-card {
+      background: var(--white, #ffffff);
+      padding: 2rem;
+      border-radius: var(--radius, 14px);
+      box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
+      transition: transform .25s;
+      grid-column: span 2;
+    }
+
+    .why-card:nth-child(4) {
+      grid-column: 2 / 4;
+    }
+
+    .why-card:nth-child(5) {
+      grid-column: 4 / 6;
+    }
+
+    .why-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .why-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--green-primary, #2E6B4E), var(--gold, #F2B705));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      font-size: 1.8rem;
+    }
+
+    .why-card h3 {
+      color: var(--green-dark, #1F4F3A);
+      margin: 0 0 .8rem;
+      font-size: 1.3rem;
+    }
+
+    .why-card p {
+      color: var(--muted, #6b7280);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* PLAN YOUR VISIT BENTO GRID */
+    .visit-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      grid-auto-rows: minmax(200px, auto);
+    }
+
+    .visit-card {
+      background: var(--white, #ffffff);
+      padding: 2rem;
+      border-radius: var(--radius, 14px);
+      box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
+      transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .visit-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .15);
+    }
+
+    .visit-card.featured {
+      grid-column: span 2;
+      grid-row: span 2;
+      background: linear-gradient(135deg, var(--green-primary, #2E6B4E) 0%, var(--green-dark, #1F4F3A) 100%);
+      color: #fff;
+      padding: 3rem;
+    }
+
+    .visit-card.featured .visit-card-icon {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      width: 90px;
+      height: 90px;
+      font-size: 2.5rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .visit-card.featured h3 {
+      color: #fff;
+      font-size: 1.8rem;
+    }
+
+    .visit-card.featured .visit-card-content {
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .visit-card.featured .visit-card-content strong {
+      color: var(--gold, #F2B705);
+    }
+
+    .visit-card.featured .visit-card-content a {
+      color: var(--gold, #F2B705);
+      font-weight: 700;
+    }
+
+    .visit-card.featured .visit-card-content a:hover {
+      color: #fff;
+    }
+
+    .visit-card.featured .visit-highlight {
+      background: var(--gold, #F2B705);
+      color: var(--green-dark, #1F4F3A);
+    }
+
+    .visit-card.medium {
+      grid-column: span 2;
+      background: linear-gradient(135deg, var(--bg, #F7F9F8) 0%, var(--white, #ffffff) 100%);
+    }
+
+    .visit-card.accent {
+      background: linear-gradient(135deg, var(--gold, #F2B705) 0%, #FFD54F 100%);
+      color: var(--green-dark, #1F4F3A);
+    }
+
+    .visit-card.accent h3,
+    .visit-card.accent .visit-card-content strong {
+      color: var(--green-dark, #1F4F3A);
+    }
+
+    .visit-card.accent .visit-card-icon {
+      background: var(--white, #ffffff);
+      color: var(--green-dark, #1F4F3A);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .visit-card.accent .visit-card-content {
+      color: var(--green-dark, #1F4F3A);
+    }
+
+    .visit-card.accent .visit-card-content a {
+      color: var(--green-dark, #1F4F3A);
+      text-decoration: underline;
+    }
+
+    .visit-card.bordered {
+      border: 2px solid var(--green-primary, #2E6B4E);
+      background: var(--white, #ffffff);
+    }
+
+    .visit-card.full-width {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, var(--bg, #F7F9F8) 0%, var(--white, #ffffff) 100%);
+    }
+
+    .visit-card-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--green-primary, #2E6B4E), var(--green-dark, #1F4F3A));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      box-shadow: 0 8px 24px rgba(46, 107, 78, 0.25);
+      flex-shrink: 0;
+    }
+
+    .visit-card h3 {
+      color: var(--green-dark, #1F4F3A);
+      margin: 0 0 1rem;
+      font-size: 1.4rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .visit-card-content {
+      color: var(--muted, #6b7280);
+      line-height: 1.8;
+      font-size: 0.95rem;
+      flex-grow: 1;
+    }
+
+    .visit-card-content strong {
+      color: var(--green-dark, #1F4F3A);
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .visit-card-content a {
+      color: var(--green-primary, #2E6B4E);
+      font-weight: 600;
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .visit-card-content a:hover {
+      color: var(--gold, #F2B705);
+      text-decoration: underline;
+    }
+
+    .visit-highlight {
+      background: var(--gold, #F2B705);
+      color: var(--green-dark, #1F4F3A);
+      padding: .3rem .6rem;
+      border-radius: 6px;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    /* FAQ ACCORDION */
+    .faq-list {
+      max-width: 900px;
+      margin: 2rem auto 0;
+    }
+
+    .faq-item {
+      background: var(--white, #ffffff);
+      border-radius: var(--radius, 14px);
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: var(--green-dark, #1F4F3A);
+      transition: background .2s;
+    }
+
+    .faq-question:hover {
+      background: var(--bg, #F7F9F8);
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--gold, #F2B705);
+      transition: transform .3s;
+    }
+
+    .faq-item.active .faq-question::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease;
+    }
+
+    .faq-answer-content {
+      padding: 0 1.5rem 1.5rem;
+      color: var(--muted, #6b7280);
+      line-height: 1.7;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+    }
+
+    /* DOCUMENTS */
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .doc-card {
+      background: var(--white, #ffffff);
+      padding: 1.5rem;
+      border-radius: var(--radius, 14px);
+      box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: transform .25s;
+      text-decoration: none;
+      color: var(--text, #1F2933);
+    }
+
+    .doc-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .doc-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--bg, #F7F9F8);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .doc-info h4 {
+      margin: 0 0 .3rem;
+      color: var(--green-dark, #1F4F3A);
+      font-size: 1.1rem;
+    }
+
+    .doc-info p {
+      margin: 0;
+      color: var(--muted, #6b7280);
+      font-size: .9rem;
+    }
+
+    @media(max-width: 1024px) {
+      .visit-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .visit-card.featured {
+        grid-column: span 2;
+        grid-row: span 1;
+      }
+
+      .visit-card.medium {
+        grid-column: span 1;
+      }
+    }
+
+    @media(max-width: 768px) {
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .why-card {
+        grid-column: span 1;
+      }
+
+      .doc-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width: 640px) {
+      .visit-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .visit-card.featured,
+      .visit-card.medium {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+
+      .more-section {
+        padding: 3rem 1.5rem;
+      }
+
+      .more-section h2 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="more-page">
+    <!-- WHY ATTEND SECTION -->
+    <section class="more-section" id="why-attend">
+      <h2>Why attend</h2>
+      <p>
+        As one of the key players in the built environment sector, the #BEI2026 aims to serve as a platform where
+        key stakeholders will collaborate and convene under one roof to engage, discuss and provide solutions to the
+        challenges facing the industry.
+      </p>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">🌱</div>
+          <h3>Grow Network</h3>
+          <p>Grow your network at the fully representative built environment sector event.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon">🤝</div>
+          <h3>Connect</h3>
+          <p>Connect and engage with industry experts in conversations and become part of the solution to
+            challenges faced by the sectors.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon">🎉</div>
+          <h3>Socialise</h3>
+          <p>Socialise and network with industry peers at the event gala dinner.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon">💡</div>
+          <h3>Gain insights</h3>
+          <p>Gain insights and understanding of current and future regulatory frameworks that governs the sectors.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon">🔍</div>
+          <h3>Explore</h3>
+          <p>Explore the latest infrastructure technologies, alternative building technologies and other
+            innovations in the exhibition centre.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAN YOUR VISIT SECTION -->
+    <section class="more-section" id="plan-visit" style="background: var(--white); margin: 0; max-width: 100%;">
+      <div style="max-width: 1300px; margin: auto; padding: 4rem 2rem;">
+        <h2>Plan your visit</h2>
+        <p>
+          Everything you need to know to make the most of your Built Environment Indaba 2026 experience.
+        </p>
+
+        <div class="visit-grid">
+          <!-- Featured Large Card -->
+          <div class="visit-card featured">
+            <div class="visit-card-icon">🎟️</div>
+            <h3>Registration & Badge Collection</h3>
+            <div class="visit-card-content">
+              Secure your spot ahead of time! Badges and access bands will be ready for collection before the
+              event begins—no on-site registration on event days. Pick up your credentials at the exhibition
+              hall entrance with your confirmation email and valid ID.
+              <strong>Collection Times:</strong>
+              📅 Tuesday, 8th April 2026: 15:00 – 17:00<br>
+              📅 Wednesday, 9th April 2026: 15:00 – 18:00
+              <strong>Important:</strong>
+              Badges are personal and non-transferable. Each delegate must collect their own.<br><br>
+              Questions? <a href="mailto:registrations@builtenvironmentindaba.africa">Contact Registration
+                Team</a>
+            </div>
+          </div>
+
+          <!-- Medium Card -->
+          <div class="visit-card medium">
+            <div class="visit-card-icon">🚆</div>
+            <h3>How to get there</h3>
+            <div class="visit-card-content">
+              Smart travel options for savvy delegates:
+              <strong>Gautrain & E-hailing</strong>
+              Enjoy discounted fares with code <span class="visit-highlight">BEI2026</span> for a seamless,
+              stress-free commute.
+              <strong>Parking</strong>
+              Limited on-site parking available—we highly recommend public transport to beat the traffic!
+              <strong>Flying in?</strong>
+              Our in-house transport partner offers convenient airport transfers and shuttle services.<br>
+              <a href="mailto:transfers@builtenvironmentindaba.africa">Book your ride</a>
+            </div>
+          </div>
+
+          <!-- Accent Card -->
+          <div class="visit-card accent">
+            <div class="visit-card-icon">📍</div>
+            <h3>Event Location</h3>
+            <div class="visit-card-content">
+              <strong>The Canvas Riversands</strong>
+              Riversands Commercial Park, Johannesburg<br><br>
+              <a href="https://maps.google.com/?q=The+Canvas+Riversands+Johannesburg" target="_blank"
+                rel="noopener">📍 View on Google Maps</a>
+              <strong>Event Dates:</strong>
+              09–10 April 2026
+            </div>
+          </div>
+
+          <!-- Bordered Card -->
+          <div class="visit-card bordered">
+            <div class="visit-card-icon">🏨</div>
+            <h3>Where to stay</h3>
+            <div class="visit-card-content">
+              <strong>Exclusive deals</strong>
+              We've partnered with premium hotels offering special corporate event rates through our in-house
+              travel agency. Get the best rates near The Canvas Riversands.
+              <strong>Book your stay:</strong>
+              <a href="mailto:travel@builtenvironmentindaba.africa">Contact Travel Team</a>
+            </div>
+          </div>
+
+          <!-- Full Width Card -->
+          <div class="visit-card full-width">
+            <div class="visit-card-icon">🍽️</div>
+            <h3>Catering & Refreshments</h3>
+            <div class="visit-card-content">
+              <strong>Fuel your networking</strong>
+              All event catering will be served throughout the exhibition hall, keeping you energized for two
+              full days of insights and connections. Recharge lounges are exclusively reserved for VIPs,
+              speakers, and media.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOCUMENTS SECTION -->
+    <section class="more-section" id="documents">
+      <h2>Event Documents & Resources</h2>
+      <p>
+        Download brochures, exhibitor guides, and key resources for the Built Environment Indaba 2026.
+      </p>
+
+      <div class="doc-grid">
+        <a href="#" class="doc-card">
+          <div class="doc-icon">📄</div>
+          <div class="doc-info">
+            <h4>Event Brochure</h4>
+            <p>Full program overview and speaker lineup</p>
+          </div>
+        </a>
+
+        <a href="#" class="doc-card">
+          <div class="doc-icon">🗓️</div>
+          <div class="doc-info">
+            <h4>Programme Schedule</h4>
+            <p>Detailed session timetable</p>
+          </div>
+        </a>
+
+        <a href="#" class="doc-card">
+          <div class="doc-icon">🏢</div>
+          <div class="doc-info">
+            <h4>Exhibitor Guide</h4>
+            <p>Stand specifications and booking info</p>
+          </div>
+        </a>
+
+        <a href="#" class="doc-card">
+          <div class="doc-icon">🤝</div>
+          <div class="doc-info">
+            <h4>Sponsorship Packages</h4>
+            <p>Partnership opportunities and benefits</p>
+          </div>
+        </a>
+
+        <a href="#" class="doc-card">
+          <div class="doc-icon">📍</div>
+          <div class="doc-info">
+            <h4>Venue Map</h4>
+            <p>Canvas Riversands floor plan</p>
+          </div>
+        </a>
+
+        <a href="#" class="doc-card">
+          <div class="doc-icon">🏨</div>
+          <div class="doc-info">
+            <h4>Accommodation Guide</h4>
+            <p>Partner hotels and booking links</p>
+          </div>
+        </a>
+
+        <a href="#" class="doc-card">
+          <div class="doc-icon">📋</div>
+          <div class="doc-info">
+            <h4>Registration Form</h4>
+            <p>Delegate registration details</p>
+          </div>
+        </a>
+
+        <a href="#" class="doc-card">
+          <div class="doc-icon">📊</div>
+          <div class="doc-info">
+            <h4>2025 Event Report</h4>
+            <p>Highlights and outcomes from previous Indaba</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="more-section" id="faq" style="background: var(--white); margin: 0; max-width: 100%;">
+      <div style="max-width: 1200px; margin: auto; padding: 4rem 2rem;">
+        <h2>Frequently Asked Questions</h2>
+        <p>
+          Find answers to common questions about the Built Environment Indaba 2026.
+        </p>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-question">What is the Built Environment Indaba?</div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                The Built Environment Indaba is South Africa's premier gathering for infrastructure
+                delivery, bringing together government, private sector, academia, and civil society to
+                unlock construction capacity, funding, and transformation pathways. The 2026 edition focuses
+                on practical solutions, pipeline access, and sector collaboration.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">Who should attend?</div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Contractors (emerging and established), consultants, engineers, architects, government
+                officials, financiers, suppliers, developers, policymakers, and anyone involved in
+                infrastructure delivery or built environment projects in South Africa.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">What are the registration fees?</div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Delegate registration: Free<br>
+                Exhibition space: R12,000 to R258,234.46 EXCL VAT<br>
+                Sponsorship packages: Diamond, Gold, Silver, and Partner tiers available. Contact us for
+                detailed pricing.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">Where and when is the event?</div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                <strong>Dates:</strong> 09–10 April 2026<br>
+                <strong>Venue:</strong> The Canvas Riversands, Johannesburg<br>
+                <strong>Format:</strong> Two full days of keynotes, sector sessions, networking lounges, and
+                exhibition showcase.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">What networking opportunities are available?</div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                The Access & Growth Lounge runs throughout both days, offering curated connections with
+                Access Bank, industry partners, Black Industrialist Program representatives, Built
+                Environment Centre of Excellence, and key Construction Industry Partners. Evening cocktail
+                sessions hosted by BBCBE Foundation provide additional informal networking.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">How do I become a sponsor or partner?</div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                We offer multiple partnership and sponsorship tiers (Diamond, Gold, Silver, and Strategic
+                Partner). Each package includes exhibition space, branding, speaking opportunities, and
+                delegate passes. Contact us at <a href="mailto:info@builtenvironmentindaba.africa"
+                  style="color:var(--green-primary);">info@builtenvironmentindaba.africa</a> or use the
+                "Become a Partner" / "Sponsor Event" forms on our homepage.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">Is accommodation provided?</div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                We have negotiated rates with partner hotels near The Canvas Riversands. Details will be
+                shared upon registration. [PLACEHOLDER - Add hotel partner list and booking links]
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">Will sessions be recorded?</div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                Selected keynote and sector sessions will be recorded and made available to registered
+                delegates post-event. Media partners will provide live coverage highlights.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentElement;
+        const isActive = item.classList.contains('active');
+
+        // Close all items
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+
+        // Toggle current item
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

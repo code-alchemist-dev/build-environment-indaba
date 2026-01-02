@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Speakers | Partial</title>
+  <style>
+    /* Speakers view styles only */
+    
+    .speakers {
+      max-width: 1280px;
+      margin: auto;
+      padding: 3.5rem 2rem 5rem;
+      background: transparent;
+    }
+
+    .speakers * {
+      box-sizing: border-box;
+    }
+
+    .speakers .header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .speakers .header h1 {
+      color: var(--green-dark, #1F4F3A);
+      margin: 0 0 .6rem 0;
+    }
+
+    .speakers .header p {
+      max-width: 760px;
+      margin: auto;
+      color: var(--muted, #6b7280);
+    }
+
+    .speakers .filters {
+      display: flex;
+      gap: .9rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2.25rem;
+    }
+
+    .speakers .filters button {
+      padding: .65rem 1.5rem;
+      border-radius: 999px;
+      border: none;
+      background: #e3e8e6;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .speakers .filters button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,.12);
+    }
+
+    .speakers .filters button.active {
+      background: var(--green-primary, #2E6B4E);
+      color: #fff;
+    }
+
+    .speakers .grid {
+      display: grid !important;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+      gap: 2rem;
+      align-items: stretch;
+      padding: 0;
+    }
+
+    @media (min-width: 1200px) {
+      .speakers .grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      }
+    }
+
+    .speakers .card {
+      background: var(--white, #ffffff);
+      border-radius: var(--radius, 18px);
+      box-shadow: 0 20px 50px rgba(0,0,0,.08);
+      overflow: hidden;
+      transition: transform .2s ease, box-shadow .2s ease;
+      cursor: pointer;
+      border: 1px solid var(--border, #E3E7E5);
+      display: flex;
+      flex-direction: column;
+      min-height: 380px;
+      width: 100%;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .speakers .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 70px rgba(0,0,0,.12);
+    }
+
+    .speakers .photo {
+      height: 260px;
+      background: #ccd0d6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #374151;
+      letter-spacing: .02em;
+    }
+
+    .speakers .card-body {
+      padding: 1.6rem;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: .35rem;
+    }
+
+    .speakers .name {
+      font-weight: 800;
+      color: var(--green-dark, #1F4F3A);
+      margin-bottom: .25rem;
+    }
+
+    .speakers .role {
+      font-size: .9rem;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .speakers .org {
+      font-size: .85rem;
+      color: var(--muted, #6b7280);
+      margin-top: .25rem;
+    }
+
+    .speakers .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .speakers .modal.active { display: flex; }
+
+    .speakers .modal-box {
+      background: #fff;
+      border-radius: 18px;
+      max-width: 520px;
+      width: 90%;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.12);
+    }
+
+    .speakers .modal-box h3 {
+      color: var(--green-dark, #1F4F3A);
+      margin-top: 0;
+      margin-bottom: .6rem;
+    }
+
+    .speakers .modal-box p {
+      color: var(--muted, #6b7280);
+      line-height: 1.6;
+    }
+
+    .speakers .close-btn {
+      margin-top: 1.5rem;
+      padding: .6rem 1.6rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--green-primary, #2E6B4E);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .speakers .photo { height: 220px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="speakers">
+    <div class="header">
+      <h1>Speakers</h1>
+      <p>
+        Meet the industry leaders, policymakers, and experts shaping
+        infrastructure, energy and development across Africa.
+      </p>
+    </div>
+
+    <div class="filters">
+      <button class="active" onclick="filterSpeakers('all', this)">All</button>
+      <button onclick="filterSpeakers('government', this)">Government</button>
+      <button onclick="filterSpeakers('private', this)">Private Sector</button>
+      <button onclick="filterSpeakers('regulator', this)">Regulators</button>
+    </div>
+
+    <div class="grid">
+      <div class="card speaker government"
+           onclick="openModal('Minister of Public Works & Infrastructure','Minister of Public Works & Infrastructure','Keynote speaker focusing on national infrastructure delivery, public sector reform and partnerships.')">
+        <div class="photo">Photo</div>
+        <div class="card-body">
+          <div class="name">Minister of Public Works</div>
+          <div class="role">Keynote Speaker</div>
+          <div class="org">Government of South Africa</div>
+        </div>
+      </div>
+
+       <div class="card speaker regulator"
+         onclick="openModal('CIDB Executive','Executive - CIDB','Discussion on regulatory reform, contractor development and industry transformation.')">
+        <div class="photo">Photo</div>
+        <div class="card-body">
+          <div class="name">CIDB Executive</div>
+          <div class="role">Panelist</div>
+          <div class="org">Construction Industry Development Board</div>
+        </div>
+      </div>
+
+      <div class="card speaker private"
+           onclick="openModal('IPP Industry Leader','Independent Power Producer','Insights into IPP investment, PPA structuring and energy market trends.')">
+        <div class="photo">Photo</div>
+        <div class="card-body">
+          <div class="name">IPP Industry Leader</div>
+          <div class="role">Conference Speaker</div>
+          <div class="org">Energy Sector</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal" class="modal" aria-hidden="true">
+      <div class="modal-box" role="dialog" aria-modal="true">
+        <h3 id="modalName">Speaker Name</h3>
+        <p id="modalRole" style="font-weight:700;color:var(--green-dark,#1F4F3A);margin-top:0;">Role</p>
+        <p id="modalBio">Biography text goes here.</p>
+        <button class="close-btn" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,3378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Built Environment Indaba 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="https://builtenvironmentindaba.africa/wp-content/uploads/2025/08/Indaba.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =====================================================
+   BUILT ENVIRONMENT INDABA – LOGO-DRIVEN THEME
+   ===================================================== */
+    :root {
+      --green-primary: #2E6B4E;
+      --green-dark: #1F4F3A;
+      --gold: #F2B705;
+      --red: #E34A35;
+      --red-accent: #D6453D;
+
+      --bg: #F7F9F8;
+      --white: #ffffff;
+      --text: #1F2933;
+      --muted: #000000;
+      --border: #E3E7E5;
+
+      --radius: 14px;
+      --shadow: 0 15px 64px rgba(0, 0, .08, .08);
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    /* SPA shell */
+    main#spa-root {
+      min-height: 50vh;
+    }
+
+    .spa-view[hidden] {
+      display: none !important;
+    }
+
+    .view-placeholder {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 3rem 2rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .anchor-spacer {
+      position: relative;
+      top: -110px;
+      height: 1px;
+      visibility: hidden;
+    }
+
+    /* Keep in-page scroll targets visible below the sticky header */
+    .spa-view,
+    .hero,
+    section,
+    .anchor-spacer {
+      scroll-margin-top: 120px;
+    }
+
+    /* Make images scale within containers */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block
+    }
+
+    /* =====================================================
+   HEADER – LOGO FLUSH LEFT
+   ===================================================== */
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    /* Full-width header container */
+    .nav {
+      width: 100%;
+      padding: 1rem 2rem 1rem 0;
+      /* no left padding */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* LOGO – HARD LEFT */
+    .brand {
+      margin-left: 0;
+    }
+
+    .brand img {
+      height: 100px;
+      /* big & visible */
+      width: auto;
+      display: block;
+    }
+
+    /* NAVIGATION – RIGHT */
+    .main-nav {
+      padding-right: 2rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .main-nav a,
+    .main-nav .dropdown {
+      margin-left: 2rem;
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--text);
+      position: relative;
+    }
+
+    .main-nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 0;
+      height: 2px;
+      background: var(--red);
+      transition: .3s;
+    }
+
+    .main-nav a:hover::after {
+      width: 100%;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-toggle {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+    }
+
+    .dropdown-toggle::after {
+      content: '▾';
+      font-size: .8rem;
+      transition: transform .2s;
+    }
+
+    .dropdown:hover .dropdown-toggle::after {
+      transform: rotate(-180deg);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 1rem);
+      left: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      min-width: 180px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all .3s ease;
+      z-index: 1000;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: .8rem 1.2rem;
+      margin: 0;
+      color: var(--text);
+      text-decoration: none;
+      transition: background .2s;
+    }
+
+    .dropdown-menu a:first-child {
+      border-radius: 10px 10px 0 0;
+    }
+
+    .dropdown-menu a:last-child {
+      border-radius: 0 0 10px 10px;
+    }
+
+    .dropdown-menu a:hover {
+      background: var(--bg);
+    }
+
+    .dropdown-menu a::after {
+      display: none;
+    }
+
+    /* Right-side wrapper to keep nav and register grouped */
+    .nav-right {
+      display: flex;
+      align-items: center;
+    }
+
+    /* Hamburger button */
+    .menu-toggle {
+      display: none !important;
+      /* hidden on desktop */
+      background: transparent;
+      border: none;
+      padding: .4rem;
+      margin-right: 1rem;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--text);
+      margin: 6px 0;
+      transition: .25s;
+    }
+
+    .nav-right.open .menu-toggle span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg)
+    }
+
+    .nav-right.open .menu-toggle span:nth-child(2) {
+      opacity: 0
+    }
+
+    .nav-right.open .menu-toggle span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg)
+    }
+
+    /* Register button styling */
+    .register-btn {
+      margin-left: 2rem;
+      padding: .6rem 1.1rem;
+      border-radius: 10px;
+      background: var(--gold);
+      color: var(--green-dark);
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      transition: .25s;
+    }
+
+    .register-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.03);
+    }
+
+    /* =====================================================
+   HERO
+   ===================================================== */
+    .hero {
+      background:
+        linear-gradient(rgba(31, 79, 58, .94), rgba(31, 79, 58, .70)),
+        url('https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A9790-scaled-1.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      max-width: 900px;
+      margin: 0 auto 2.8rem;
+      color: #eef2f0;
+      font-size: 1.15rem;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: .9rem 1.9rem;
+      margin: .4rem;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: .25s;
+    }
+
+    .cta.primary {
+      background: var(--gold);
+      color: var(--green-dark);
+    }
+
+    .cta.primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .cta.secondary {
+      border: 2px solid #ffffff;
+      color: #ffffff;
+    }
+
+    /* Borderless lineup link below hero buttons */
+    .cta.lineup {
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      padding: 0;
+      margin-top: 1rem;
+      display: block;
+      /* force new line below the four buttons */
+      font-weight: 600;
+      font-size: 1.5rem;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .cta.lineup:hover {
+      transform: none;
+      filter: brightness(1.05);
+    }
+
+    .cta.lineup::after {
+      content: " \2192";
+      /* right arrow */
+      transition: transform .2s ease;
+    }
+
+    .cta.lineup:hover::after {
+      transform: translateX(2px);
+    }
+
+    /* =====================================================
+   SECTIONS
+   ===================================================== */
+    .section {
+      max-width: 1200px;
+      margin: auto;
+      padding: .4rem 2rem;
+    }
+
+    .section h2 {
+      color: var(--green-dark);
+      margin-bottom: .6rem;
+    }
+
+    .section h2::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background: var(--red);
+      margin-top: .7rem;
+    }
+
+    .section p {
+      max-width: 950px;
+      color: var(--muted);
+    }
+
+    /* Overview layout */
+    .overview {
+      max-width: 1400px;
+      padding: .4rem 1rem;
+      margin: auto;
+    }
+
+    .overview-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .overview-logo {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(31, 79, 58, 0.15));
+      transition: transform 0.3s ease;
+    }
+
+    .overview-logo:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+
+    .overview h2 {
+      /* font-size: 2.25rem; */
+      /* color: var(--text); */
+      margin-bottom: 0;
+      margin: 0;
+    }
+
+    .overview p {
+      max-width: 1200px;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1.65fr 1fr;
+      gap: 1.4rem;
+      align-items: stretch;
+    }
+
+    .overview-video iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      height: auto;
+      border: none;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .overview-quote {
+      background: #f8d94c;
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+      min-height: 100%;
+      font-weight: 700;
+      line-height: 1.75;
+    }
+
+    .overview-quote p {
+      color: #ffffff;
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    /* Carousel */
+    .carousel {
+      position: relative;
+      margin-top: 3.2rem;
+    }
+
+    .carousel-viewport {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 1.5rem;
+      transition: transform .4s ease;
+      align-items: stretch;
+    }
+
+    .card {
+      min-width: 520px;
+      flex: 0 0 320px;
+      height: 360px;
+      background: var(--white);
+      padding: 0;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border-top: 8px solid var(--red);
+      overflow: hidden;
+      display: flex;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      display: block;
+      object-fit: cover;
+    }
+
+    .card a {
+      display: flex;
+      flex: 1;
+    }
+
+    .carousel-controls {
+      display: flex;
+      justify-content: flex-end;
+      gap: .6rem;
+      margin-top: 1rem;
+    }
+
+    .carousel-btn {
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--text);
+      border-radius: 10px;
+      padding: .55rem .85rem;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .carousel-btn:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+    }
+
+    .carousel-btn:hover:not(:disabled) {
+      background: var(--bg);
+      transform: translateY(-1px);
+    }
+
+    /* 2-column grid */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.2rem;
+      margin-top: 3.2rem;
+    }
+
+    .grid-2col .card {
+      position: relative;
+      background: linear-gradient(135deg, #2E6B4E 0%, #1F4F3A 100%);
+      background-size: cover;
+      background-position: center;
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border: none;
+      border-top: none;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform .3s ease, box-shadow .3s ease;
+      gap: 1rem;
+    }
+
+    .grid-2col .card:nth-child(1) {
+      /* Diamond SVG as background */
+      background-image: url("https://purepng.com/public/uploads/large/purepng.com-diamondobjectsstoneobjectdiamondjeweljewellery-631521883994wxfoy.png");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .grid-2col .card:nth-child(2) {
+      background-image: url('https://png.pngtree.com/png-clipart/20241123/original/pngtree-a-pile-of-gold-bars-png-image_17287482.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .grid-2col .card:nth-child(3) {
+      background-image: url('https://pngimg.com/d/silver_PNG17190.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .grid-2col .card:nth-child(4) {
+      background-image: url('https://pngimg.com/d/gear_PNG57.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .grid-2col .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(46, 107, 78, 0.85) 0%, rgba(31, 79, 58, 0.9) 100%);
+      z-index: 1;
+    }
+
+    .grid-2col .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, .15);
+    }
+
+    .grid-2col .card h3 {
+      position: relative;
+      z-index: 2;
+      color: #ffffff;
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      text-align: center;
+    }
+
+    .grid-2col .card p {
+      position: relative;
+      z-index: 2;
+      color: #ffffff;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0;
+      opacity: 0.95;
+    }
+
+    .grid-2col .card-link {
+      position: relative;
+      z-index: 2;
+      color: #ffffff;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-size: 1.25rem;
+      transition: filter .2s ease;
+      display: inline-block;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .grid-2col .card-link:hover {
+      filter: brightness(1.05);
+    }
+
+    .grid-2col .card-link::after {
+      content: " ↗";
+      display: inline-block;
+    }
+
+    /* Partners block (below packages grid) */
+    .partners {
+      margin-top: 4rem;
+      text-align: center;
+    }
+
+    .partners h3 {
+      font-size: 2rem;
+      color: var(--green-dark);
+      margin-bottom: .8rem;
+    }
+
+    .partners p {
+      max-width: 1000px;
+      margin: 0 auto 1.8rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .partners-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2.2rem 3.2rem;
+      padding: 1rem 0 1.6rem;
+    }
+
+    .partners-logos img {
+      height: 52px;
+      opacity: .92;
+      filter: contrast(.95) saturate(.95);
+    }
+
+    .partners-cta {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--green-dark);
+      padding: .9rem 1.4rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
+      transition: transform .2s ease;
+    }
+
+    .partners-cta:hover {
+      transform: translateY(-2px);
+    }
+
+    /* =====================================================
+   STATS
+   ===================================================== */
+    .stats {
+      background: var(--green-primary);
+      color: white;
+      padding: 2rem 1rem;
+      overflow: hidden;
+    }
+
+    .stats-grid {
+      display: flex;
+      gap: 2.5rem;
+      text-align: center;
+      width: max-content;
+      animation: statsMarquee 12s ease-in-out infinite alternate;
+    }
+
+    .stats-grid>div {
+      flex: 0 0 auto;
+      min-width: 320px;
+    }
+
+    .stats .number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    @keyframes statsMarquee {
+      from {
+        transform: translateX(-25%);
+      }
+
+      to {
+        transform: translateX(25%);
+      }
+    }
+
+    /* =====================================================
+   FOOTER
+   ===================================================== */
+    footer {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-primary) 100%);
+      color: #ffffff;
+      padding: 3.5rem 2rem 2rem;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-brand h3 {
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .footer-section h4 {
+      color: var(--gold);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.7rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s ease;
+      display: inline-block;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+      transform: translateX(3px);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-icon:hover {
+      background: var(--gold);
+      transform: translateY(-3px);
+    }
+
+    .social-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: #ffffff;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 1.5rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.9rem;
+    }
+
+    .footer-bottom strong {
+      color: var(--gold);
+    }
+
+    @media(max-width:768px) {
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      footer {
+        padding: 2.5rem 1.5rem 1.5rem;
+      }
+    }
+
+    .package-buttons {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: .8rem;
+      width: 100%;
+      margin-bottom: 1.6rem;
+    }
+
+    .package-buttons button {
+      background: var(--bg);
+      border: 2px solid var(--gold);
+      color: var(--green-dark);
+      padding: .9rem 1rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: .2s;
+      width: 100%;
+    }
+
+    .package-buttons button.selected {
+      background: var(--gold);
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
+    }
+
+    /* Size toggle buttons for booth options */
+    .size-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: .8rem;
+      width: 100%;
+      margin: .4rem 0 1.2rem;
+    }
+
+    .size-buttons button {
+      background: var(--bg);
+      border: 2px solid var(--green-primary);
+      color: var(--green-dark);
+      padding: .9rem 1rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: .2s;
+      width: 100%;
+    }
+
+    .size-buttons button.selected {
+      background: var(--green-primary);
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
+    }
+
+    /* Partnership category buttons */
+    .partnership-category-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      width: 100%;
+      margin-bottom: 1.6rem;
+    }
+
+    .partnership-category-buttons button {
+      background: var(--white);
+      border: 2px solid var(--gold);
+      color: var(--green-dark);
+      padding: 1rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: .2s;
+      width: 100%;
+      font-size: 1rem;
+    }
+
+    .partnership-category-buttons button.selected {
+      background: var(--gold);
+      color: var(--green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .15);
+    }
+
+    .partnership-category-buttons button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+    }
+
+    /* Booth details panel */
+    .booth-panel {
+      background: var(--bg);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+      padding: 1.2rem;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 1.4rem;
+      align-items: start;
+    }
+
+    .booth-media {
+      height: 220px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(22, 76, 59, .15), rgba(22, 76, 59, .35));
+      border: 1px solid #E3E7E5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--green-dark);
+      font-weight: 700;
+    }
+
+    .booth-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+      display: block;
+    }
+
+    .booth-details h4 {
+      margin: 0 0 .25rem;
+      color: var(--green-dark);
+      font-size: 1.25rem;
+    }
+
+    .booth-details h3 {
+      margin: 0 0 .65rem;
+      font-size: 1.4rem;
+      color: var(--black);
+    }
+
+    .booth-details ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      line-height: 1.55;
+    }
+
+    @media(max-width: 720px) {
+      .booth-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .booth-media {
+        height: 160px;
+      }
+    }
+
+    /* =====================================================
+   MODAL STYLES
+   ===================================================== */
+    .modal {
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.28s ease, visibility 0.28s ease;
+    }
+
+    .modal.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      background: var(--white);
+      border-radius: var(--radius);
+      max-width: 600px;
+      width: 90%;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      position: relative;
+      transform: translateY(18px) scale(0.985);
+      opacity: 0;
+      transition: transform 0.28s ease, opacity 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .modal.active .modal-content {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-primary) 100%);
+      color: white;
+      padding: 2rem;
+      border-radius: var(--radius) var(--radius) 0 0;
+      position: relative;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      color: white;
+      font-size: 1.75rem;
+    }
+
+    .modal-header h2::after {
+      display: none;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(90deg);
+    }
+
+    .modal-body {
+      padding: .5rem 2rem 2rem 2rem;
+    }
+
+    .modal-body p {
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-body .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--green-dark);
+      padding: 0.9rem 1.5rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .modal-body .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .info-list li {
+      margin-bottom: .8rem;
+    }
+
+    .info-highlight {
+      background: linear-gradient(135deg, var(--green-primary), var(--red));
+      color: white;
+      padding: 1.6rem;
+      border-radius: var(--radius);
+      margin-top: 2rem;
+    }
+
+    .info-highlight strong {
+      color: var(--gold);
+    }
+
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media(max-width:768px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+      }
+
+      .brand img {
+        height: 90px;
+      }
+
+      .main-nav {
+        padding-right: 0;
+        margin-top: 1rem;
+        display: none;
+        /* hidden until menu opened */
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .main-nav a {
+        margin: 0.6rem 1.2rem 0 0;
+      }
+
+      .nav-right {
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
+
+      .nav-right .register-btn {
+        margin: .6rem 0 0 0;
+      }
+
+      /* Show hamburger on mobile */
+      .menu-toggle {
+        display: block !important;
+      }
+
+      /* When open, show the nav */
+      .nav-right.open .main-nav {
+        display: flex;
+      }
+    }
+
+    /* Tablet */
+    @media(max-width:1024px) {
+      .section {
+        padding: 4rem 1.5rem
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+    }
+
+    /* Mobile */
+    @media(max-width:600px) {
+      .hero {
+        padding: 4rem 1.4rem
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 6vw, 2.4rem)
+      }
+
+      .hero h3 {
+        font-size: 1rem
+      }
+
+      .hero p {
+        font-size: 1rem
+      }
+
+      /* Stack CTAs full width for easier tapping */
+      .cta {
+        display: block;
+        width: 100%;
+        max-width: 420px;
+        margin: .6rem auto 0
+      }
+
+      .cta.primary {
+        padding: .9rem 1.2rem
+      }
+
+      .cta.lineup {
+        margin-top: 1rem;
+        text-align: center;
+      }
+
+      .main-nav a {
+        margin: .5rem .9rem 0 0
+      }
+
+      .grid {
+        grid-template-columns: 1fr
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1.6rem
+      }
+
+      footer {
+        font-size: .85rem;
+        padding: 2rem 1.4rem
+      }
+    }
+
+    /* Small phones */
+    @media(max-width:480px) {
+      .brand img {
+        height: 72px
+      }
+
+      .hero h1 {
+        font-size: 2rem
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/08/Built-Environment-Logo-001.png"
+          alt="Built Environment Indaba Logo">
+      </div>
+
+      <div class="nav-right">
+        <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="main-nav" id="primary-navigation">
+          <a href="#/home" data-route-link="home">Home</a>
+          <a href="#/about" data-route-link="about">About us</a>
+          <a href="#/programme" data-route-link="programme">Programme</a>
+          <a href="#/speakers" data-route-link="speakers">Speakers</a>
+          <div class="dropdown">
+            <span class="dropdown-toggle">Learn More</span>
+            <div class="dropdown-menu">
+              <a href="#/more" data-route-link="more">Why attend</a>
+              <a href="#/more" data-route-link="more" data-scroll-target="plan-visit">Plan your visit</a>
+              <a href="#/more" data-route-link="more" data-scroll-target="documents">Documents</a>
+              <a href="#/more" data-route-link="more" data-scroll-target="faq">FAQ</a>
+            </div>
+          </div>
+          <a href="#/media" data-route-link="media">Media</a>
+          <a href="#/contact" data-route-link="contact">Contact us</a>
+        </nav>
+        <a href="#" class="register-btn">Register via WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="spa-root">
+    <section class="spa-view" data-route="home" data-title="Built Environment Indaba 2026">
+
+      <!-- HERO -->
+      <section class="hero">
+        <h1>Built Environment Indaba 2026</h1>
+        <p>
+          Partnering with Government and Key Stakeholders to deliver infrastructure
+          projects through innovative funding and delivery models.
+        </p>
+        <h3>Thursday, 9th April to Friday, 10th April 2026 | The Canvas Riversands, Johannesburg</h3>
+        <a href="#" class="cta primary" data-modal="register">Register as a Delegate</a>
+        <a href="#" class="cta primary" data-modal="exhibition">Book Exhibition Space</a>
+        <a href="#" class="cta primary" data-modal="partner">Become a Partner</a>
+        <a href="#" class="cta primary" data-modal="support">Support Event</a>
+        <a href="#" class="cta primary" data-modal="media">Register as Media #BEI2026</a>
+        <a href="#/lineup" class="cta lineup" data-route-link="lineup">View Event Lineup</a>
+      </section>
+
+      <div id="plan-visit" class="anchor-spacer" aria-hidden="true"></div>
+      <div id="documents" class="anchor-spacer" aria-hidden="true"></div>
+      <div id="faq" class="anchor-spacer" aria-hidden="true"></div>
+
+      <!-- ABOUT -->
+      <section class="section">
+        <h2>About the Indaba</h2>
+        <p>
+          The 2026 Built Environment Indaba is a high-level platform uniting government, the private sector, academia,
+          civil
+          society and labour to unlock the full potential of South Africa's built environment.
+          Through collaborative funding, skills development and innovative delivery models, the Indaba drives practical
+          solutions to critical infrastructure challenges.
+          By fostering meaningful partnerships across key sectors, the Indaba accelerates infrastructure delivery,
+          economic
+          transformation and long-term sustainability.
+        </p>
+
+        <div class="carousel" data-carousel>
+          <div class="carousel-viewport">
+            <div class="carousel-track" data-carousel-track>
+              <div class="card">
+                <a href="https://builtenvironmentindaba.africa/" target="_blank" rel="noopener">
+                  <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A99705-scaled-1.jpg"
+                    alt="Built Environment Indaba 2025" loading="lazy">
+                </a>
+              </div>
+              <div class="card">
+                <a href="https://builtenvironmentindaba.africa/" target="_blank" rel="noopener">
+                  <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A9276-scaled-1.jpg"
+                    alt="Built Environment Indaba 2025" loading="lazy">
+                </a>
+              </div>
+              <div class="card">
+                <a href="https://builtenvironmentindaba.africa/" target="_blank" rel="noopener">
+                  <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A9252-scaled-1.jpg"
+                    alt="Built Environment Indaba 2025" loading="lazy">
+                </a>
+              </div>
+              <div class="card">
+                <a href="https://builtenvironmentindaba.africa/" target="_blank" rel="noopener">
+                  <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A9198-scaled-1.jpg"
+                    alt="Built Environment Indaba 2025" loading="lazy">
+                </a>
+              </div>
+              <div class="card">
+                <a href="https://builtenvironmentindaba.africa/" target="_blank" rel="noopener">
+                  <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A9177-scaled-1.jpg"
+                    alt="Built Environment Indaba 2025" loading="lazy">
+                </a>
+              </div>
+              <div class="card">
+                <a href="https://builtenvironmentindaba.africa/" target="_blank" rel="noopener">
+                  <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A8879-scaled-1.jpg"
+                    alt="Built Environment Indaba 2025" loading="lazy">
+                </a>
+              </div>
+              <div class="card">
+                <a href="https://builtenvironmentindaba.africa/" target="_blank" rel="noopener">
+                  <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A9066-scaled-1.jpg"
+                    alt="Built Environment Indaba 2025" loading="lazy">
+                </a>
+              </div>
+              <div class="card">
+                <a href="https://builtenvironmentindaba.africa/" target="_blank" rel="noopener">
+                  <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A9135-scaled-1.jpg"
+                    alt="Built Environment Indaba 2025" loading="lazy">
+                </a>
+              </div>
+              <div class="card">
+                <a href="https://builtenvironmentindaba.africa/" target="_blank" rel="noopener">
+                  <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A9204-scaled-1.jpg"
+                    alt="Built Environment Indaba 2025" loading="lazy">
+                </a>
+              </div>
+              <div class="card">
+                <a href="https://builtenvironmentindaba.africa/" target="_blank" rel="noopener">
+                  <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A8989-scaled-1.jpg"
+                    alt="Built Environment Indaba 2025" loading="lazy">
+                </a>
+              </div>
+              <div class="card">
+                <a href="https://builtenvironmentindaba.africa/" target="_blank" rel="noopener">
+                  <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A8598-scaled-1.jpg"
+                    alt="Built Environment Indaba 2025" loading="lazy">
+                </a>
+              </div>
+              <div class="card">
+                <a href="https://builtenvironmentindaba.africa/" target="_blank" rel="noopener">
+                  <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A8601-scaled-1.jpg"
+                    alt="Built Environment Indaba 2025" loading="lazy">
+                </a>
+              </div>
+              <div class="card">
+                <a href="https://builtenvironmentindaba.africa/" target="_blank" rel="noopener">
+                  <img src="https://builtenvironmentindaba.africa/wp-content/uploads/2024/11/066A8607-scaled-1.jpg"
+                    alt="Built Environment Indaba 2025" loading="lazy">
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-controls">
+            <button class="carousel-btn" data-carousel-prev aria-label="Previous">◀</button>
+            <button class="carousel-btn" data-carousel-next aria-label="Next">▶</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section class="stats">
+        <div class="stats-grid">
+          <div>
+            <div class="number">600+</div>
+            <div>Delegates</div>
+          </div>
+          <div>
+            <div class="number">50+</div>
+            <div>Exhibitors</div>
+          </div>
+          <div>
+            <div class="number">6+</div>
+            <div>Academic Institutions</div>
+          </div>
+          <div>
+            <div class="number">10+</div>
+            <div>National Government</div>
+          </div>
+          <div>
+            <div class="number">5+</div>
+            <div>Provincial Government</div>
+          </div>
+          <div>
+            <div class="number">7+</div>
+            <div>Local Government</div>
+          </div>
+          <div>
+            <div class="number">12+</div>
+            <div>Public Sector</div>
+          </div>
+          <div>
+            <div class="number">8+</div>
+            <div>Private Sector</div>
+          </div>
+          <div>
+            <div class="number">8+</div>
+            <div>Financial Institutions</div>
+          </div>
+          <div>
+            <div class="number">8+</div>
+            <div>State Owned</div>
+          </div>
+          <div>
+            <div class="number">2</div>
+            <div>Days</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- OVERVIEW -->
+      <section class="section">
+        <div class="overview">
+          <div class="overview-header">
+            <img src="./images/bbcbe_logo_img_p1_1_nobg.png" alt="Fly Africa for Africa Logo" class="overview-logo">
+            <h2>Overview</h2>
+          </div>
+          <div class="overview-video">
+            <iframe src="https://www.youtube.com/embed/22By17dCtKo?si=b8UgGkjejCmRG52B" title="Africa Energy Indaba"
+              allowfullscreen></iframe>
+          </div>
+          <p>
+            The Inaugural BBCBE Built Environment Indaba 2024, hosted by the Black Business Council in the Built
+            Environment
+            (BBCBE), was a pivotal event addressing South Africa's built environment sector. The BBCBE, a non-racial and
+            non-political organisation, focuses on uniting black contractors, manufacturers, suppliers, and
+            professionals to
+            rectify historical inequalities and boost the participation of black businesses in the mainstream economy.
+          </p>
+          <p>
+            In 2025, the Indaba deepened this engagement by strengthening partnerships, refining sector-specific
+            discussions, and aligning stakeholders around innovative funding, procurement reform, and skills
+            development.
+            Building on this momentum, the 2026 Built Environment Indaba represents a decisive shift from dialogue to
+            delivery, focusing on coordinated action, mindset change, and practical implementation.
+          </p>
+          <p>
+            The 2026 Indaba prioritises collaborative funding models, accelerated skills development, and improved
+            infrastructure delivery across key sectors including energy, water, transport and logistics, human
+            settlements,
+            and infrastructure finance, with the explicit aim of unlocking the built environment sector, driving
+            inclusive
+            economic growth, and ensuring long-term sustainability and resilience.
+          </p>
+        </div>
+      </section>
+
+      <!-- PACKAGES BENEFITS -->
+      <section class="section">
+        <h2>Partnership and Sponsorship Benefits</h2>
+        <p>
+          The 2026 Built Environment Indaba will offer the following package options with their associated suggested
+          fees:
+        </p>
+        <div class="grid-2col">
+          <div class="card">
+            <h3>Diamond Package</h3>
+            <div>
+              <a href="#/diamond-pack" class="card-link">View Details</a>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Gold Package</h3>
+            <div>
+              <a href="#/gold-pack" class="card-link">View Details</a>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Silver Package</h3>
+            <div>
+              <a href="#/silver-pack" class="card-link">View Details</a>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Customised Package</h3>
+            <div>
+              <a href="#/customised-pack" class="card-link">View Details</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Partners block inside the same section -->
+        <div class="partners">
+          <h3>Trusted Partners and Participants</h3>
+          <p>
+            Africa Built Environment Indaba (Pty) Ltd has already secured sponsorship and/or partnership
+            commitments from the following partners:
+
+          </p>
+          <div class="partners-logos">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv1spFcSXPO5bB26ud4kBWOS6gt451WQBg7g&s"
+              alt="Tirisano Construction Fund logo">
+            <img
+              src="https://images.squarespace-cdn.com/content/v1/5cc369f4d7819e3f9fa5db30/1559330425948-17V50G0RU4NJYSA9TGO3/CETA_Horizontal_Color.png"
+              alt="CETA logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkYLChFDLbxCsc4pf_V9U58bSGdYhi-a5arw&s"
+              alt="CIDB logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4Ylx8KKwNxTa3vjakBnfqNf-EjYfM8tA1hg&s"
+              alt="SANRAL logo">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/en/thumb/5/52/Development_Bank_of_Southern_Africa_%28DBSA%29_logo.svg/1200px-Development_Bank_of_Southern_Africa_%28DBSA%29_logo.svg.png"
+              alt="DBSA logo">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e6/Rand_Water_logo.svg/1200px-Rand_Water_logo.svg.png"
+              alt="RANDWATER logo">
+          </div>
+          <a href="#" class="partners-cta">View All Partners</a>
+        </div>
+      </section>
+
+    </section>
+
+    <section class="spa-view" data-route="about" data-title="About | Built Environment Indaba 2026"
+      data-src="about.html" hidden>
+    </section>
+
+    <section class="spa-view" data-route="programme" data-title="Programme | Built Environment Indaba 2026"
+      data-src="programme.html" hidden>
+    </section>
+
+    <section class="spa-view" data-route="speakers" data-title="Speakers | Built Environment Indaba 2026"
+      data-src="speakers.html" hidden>
+    </section>
+
+    <section class="spa-view" data-route="more" data-title="More | Built Environment Indaba 2026" data-src="more.html"
+      hidden>
+    </section>
+
+    <section class="spa-view" data-route="media" data-title="Media | Built Environment Indaba 2026"
+      data-src="media.html" hidden>
+    </section>
+
+    <section class="spa-view" data-route="lineup" data-title="Lineup | Built Environment Indaba 2026"
+      data-src="lineup.html" hidden>
+    </section>
+
+    <section class="spa-view" data-route="diamond-pack" data-title="diamond-pack| Built Environment Indaba 2026"
+      data-src="packages/diamond-pack.html" hidden>
+    </section>
+
+    <section class="spa-view" data-route="gold-pack" data-title="Gold Pack | Built Environment Indaba 2026"
+      data-src="packages/gold-pack.html" hidden>
+    </section>
+
+    <section class="spa-view" data-route="silver-pack" data-title="Silver Pack | Built Environment Indaba 2026"
+      data-src="packages/silver.html" hidden>
+    </section>
+
+    <section class="spa-view" data-route="customised-pack" data-title="Customised Pack | Built Environment Indaba 2026"
+      data-src="packages/customised-pack.html" hidden>
+    </section>
+
+    <section class="spa-view" data-route="contact" data-title="Contact | Built Environment Indaba 2026"
+      data-src="contact.html" hidden>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <!-- Brand Section -->
+      <div class="footer-brand">
+        <h3>Built Environment Indaba</h3>
+        <p>
+          Partnering with Government and Key Stakeholders to deliver infrastructure projects through innovative funding
+          and delivery models.
+        </p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/people/Built-Environment-Indaba/61573190528100/" target="_blank"
+            rel="noopener" class="social-icon" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </svg>
+          </a>
+          <a href="https://x.com/BEIndaba" target="_blank" rel="noopener" class="social-icon" aria-label="X (Twitter)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/beindaba/" target="_blank" rel="noopener" class="social-icon"
+            aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z" />
+            </svg>
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#/home" data-route-link="home">Home</a></li>
+          <li><a href="#/about" data-route-link="about">About Us</a></li>
+          <li><a href="#/programme" data-route-link="programme">Programme</a></li>
+          <li><a href="#/speakers" data-route-link="speakers">Speakers</a></li>
+          <li><a href="#/media" data-route-link="media">Media</a></li>
+        </ul>
+      </div>
+
+      <!-- Participate -->
+      <div class="footer-section">
+        <h4>Participate</h4>
+        <ul class="footer-links">
+          <li><a href="Indaba Deligate Register.html">Register</a></li>
+          <li><a href="Indaba Exhibition Booking.html">Exhibition</a></li>
+          <li><a href="Indaba Sponsor.html">Sponsorship</a></li>
+          <li><a href="Indaba Become Partner.html">Partnership</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-section">
+        <h4>Contact Us</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:info@builtenvironmentindaba.africa">info@builtenvironmentindaba.africa</a></li>
+          <li><a href="tel:+27000000000">+27 (0) 00 000 0000</a></li>
+          <li>Sandton Convention Centre<br>Johannesburg, South Africa</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 <strong>Built Environment Indaba</strong>. All rights reserved.<br>
+      Developed by DataTank Solutions.
+    </div>
+  </footer>
+
+  <!-- MODALS -->
+  <!-- Register Modal -->
+  <div id="modal-register" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Why Attend?</h2>
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <ul class="info-list">
+          <li>✔ Engage directly with government and policy leaders</li>
+          <li>✔ Explore infrastructure funding and delivery models</li>
+          <li>✔ Network with contractors, financiers and developers</li>
+          <li>✔ Gain insights into national infrastructure priorities</li>
+          <li>✔ Access partnerships and project opportunities</li>
+        </ul>
+
+        <div class="info-highlight">
+          <p>
+            <strong>Event Dates:</strong> 09 - 10 April 2026<br>
+            <strong>Time:</strong> 09:00 - 17:00<br>
+            <strong>Venue:</strong> Sandton Convention Centre<br>
+            <strong>Location:</strong> Johannesburg, South Africa
+          </p>
+        </div>
+        <p>Complete your registration to secure your place at this flagship event.</p>
+        <button class="btn-primary" data-modal="register-form">Start Registration</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Form Modal -->
+  <div id="modal-register-form" class="modal">
+    <div class="modal-content" style="max-width: 900px;">
+      <div class="modal-header">
+        <h2>Delegate Registration Form</h2>
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="delegateForm">
+          <div id="delegateStatus"
+            style="display:none;margin-bottom:1rem;padding:0.75rem 1rem;border-radius:10px;font-weight:600;"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.3rem;">
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:.35rem;">First Name</label>
+              <input type="text" name="first_name" required
+                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+            </div>
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Last Name</label>
+              <input type="text" name="last_name" required
+                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.3rem;">
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Email Address</label>
+              <input type="email" name="email" required
+                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+            </div>
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Mobile Number</label>
+              <input type="tel" name="mobile" required
+                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+            </div>
+          </div>
+
+          <div style="margin-bottom:1.3rem;">
+            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Organisation / Company</label>
+            <input type="text" name="organisation" required
+              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+          </div>
+
+          <div style="margin-bottom:1.3rem;">
+            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Sector</label>
+            <select name="sector" required
+              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+              <option value="">Select sector</option>
+              <option>National Government</option>
+              <option>Provincial Government</option>
+              <option>Local Government</option>
+              <option>State Owned Entity</option>
+              <option>Private Sector</option>
+              <option>Financial Institution</option>
+              <option>Academic Institution</option>
+              <option>Professional Body</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom:1.3rem;">
+            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Designation</label>
+            <select name="designation" required
+              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+              <option value="">Select designation</option>
+              <option>Executive / Director</option>
+              <option>Senior Management</option>
+              <option>Project Manager</option>
+              <option>Engineer / Technical Specialist</option>
+              <option>Procurement / Supply Chain</option>
+              <option>Finance / Infrastructure Funding</option>
+              <option>Policy / Planning</option>
+              <option>Academic / Researcher</option>
+              <option>Technology</option>
+              <option>Consultant</option>
+              <option>Student</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom:1.3rem;">
+            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Delegate Type</label>
+            <select name="delegate_type" required
+              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+              <option value="">Select delegate type</option>
+              <option>Standard Delegate</option>
+              <option>Government Delegate</option>
+              <option>Academic Delegate</option>
+              <option>Student Delegate</option>
+              <option>Exhibitor / Partner Delegate</option>
+            </select>
+          </div>
+
+          <input type="hidden" name="form_source" value="delegate_modal">
+
+          <button class="btn-primary" type="submit" style="width:100%;margin-top:1rem;">Submit Registration</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exhibition Modal -->
+  <div id="modal-exhibition" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Why Exhibit?</h2>
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <ul class="benefits">
+          <li>✔ Direct access to government and SOE decision-makers</li>
+          <li>✔ Showcase products, services and infrastructure solutions</li>
+          <li>✔ Network with financiers, developers and contractors</li>
+          <li>✔ Align your brand with national infrastructure priorities</li>
+          <li>✔ Generate qualified leads and partnerships</li>
+        </ul>
+
+        <div class="info-highlight">
+          <p>
+            <strong>Event Dates:</strong> 09 - 10 April 2026<br>
+            <strong>Time:</strong> 09:00 - 17:00<br>
+            <strong>Venue:</strong> Sandton Convention Centre<br>
+            <strong>Location:</strong> Johannesburg, South Africa
+          </p>
+        </div>
+        <p>Limited spaces available. Book early to secure your preferred location.</p>
+        <button class="btn-primary" data-modal="exhibition-form">Book Your Space</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exhibition Form Modal -->
+  <div id="modal-exhibition-form" class="modal">
+    <div class="modal-content" style="max-width: 900px;">
+      <div class="modal-header">
+        <h2>Exhibition Booking Form</h2>
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="exhibitionForm">
+          <div id="exhibitionStatus"
+            style="display:none;margin-bottom:1rem;padding:0.75rem 1rem;border-radius:10px;font-weight:600;"></div>
+          <div style="margin-bottom:1.3rem;">
+            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Company Name</label>
+            <input type="text" name="company_name" required
+              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.3rem;">
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Contact Name</label>
+              <input type="text" name="contact_name" required
+                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+            </div>
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Job Title</label>
+              <input type="text" name="job_title" required
+                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.3rem;">
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Email Address</label>
+              <input type="email" name="email" required
+                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+            </div>
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Phone Number</label>
+              <input type="tel" name="phone" required
+                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+            </div>
+          </div>
+
+          <div style="margin-bottom:1.3rem;">
+            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Sector</label>
+            <select name="sector" required
+              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+              <option value="">Select sector</option>
+              <option>Government / SOE</option>
+              <option>Construction & Engineering</option>
+              <option>Infrastructure Finance</option>
+              <option>Energy & Utilities</option>
+              <option>Water & Sanitation</option>
+              <option>Transport & Logistics</option>
+              <option>Property Development</option>
+              <option>Professional Services</option>
+              <option>Academic / Research</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom:1.3rem;">
+            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Exhibition Package</label>
+            <div class="package-buttons">
+              <button type="button" data-value="Basic">Basic</button>
+              <button type="button" data-value="Silver">Silver</button>
+              <button type="button" data-value="Gold">Gold</button>
+              <button type="button" data-value="Premium">Premium</button>
+              <button type="button" data-value="Custom">Custom</button>
+            </div>
+            <input type="hidden" id="selectedPackage" name="package" required>
+          </div>
+
+          <!-- Booth Size and Dynamic Details -->
+          <div style="margin-bottom:1.3rem;">
+            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Booth Size</label>
+            <div class="size-buttons" id="sizeButtonsContainer">
+              <button type="button" data-size="3x3">(3mx3m)</button>
+              <button type="button" data-size="6x3">(6mx3m)</button>
+            </div>
+            <input type="hidden" id="selectedSize" name="booth_size" required>
+            <div class="booth-panel" id="boothPanel">
+              <div class="booth-media"><img id="boothImage" alt="Booth preview" /></div>
+              <div class="booth-details">
+                <h4 id="boothSizeLabel">(3mx3m)</h4>
+                <h3 id="boothPriceLabel">Pricing on request</h3>
+                <ul id="boothFeatures">
+                  <li>Aluminium shell scheme with white infills</li>
+                  <li>1x Plug point and long-arm floodlight</li>
+                  <li>Cafe table + two white chairs</li>
+                  <li>Back-wall graphic print area</li>
+                  <li>Fascia board with cutout company name</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-bottom:1.3rem;">
+            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Additional Requirements</label>
+            <select name="additional_requirements" required
+              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+              <option>No additional requirements</option>
+              <option>Electricity Supply</option>
+              <option>Audio / Visual Setup</option>
+              <option>Extra Space</option>
+              <option>Custom Branding</option>
+            </select>
+          </div>
+
+          <input type="hidden" name="form_source" value="exhibition_modal">
+
+          <button class="btn-primary" type="submit" style="width:100%;margin-top:1rem;">Submit Booking Request</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Partner Modal -->
+  <div id="modal-partner" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Why Partner?</h2>
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <ul class="benefits">
+          <li>✔ Strategic visibility with government and SOEs</li>
+          <li>✔ Position your organisation as an industry leader</li>
+          <li>✔ Influence infrastructure dialogue and delivery</li>
+          <li>✔ Access high-level networking and deal flow</li>
+          <li>✔ Align with national development priorities</li>
+        </ul>
+
+        <div class="info-highlight">
+          <p>
+            <strong>Event Dates:</strong> 09 - 10 April 2026<br>
+            <strong>Time:</strong> 09:00 - 17:00<br>
+            <strong>Venue:</strong> Sandton Convention Centre<br>
+            <strong>Location:</strong> Johannesburg, South Africa
+          </p>
+        </div>
+        <p>Explore customized partnership packages tailored to your objectives.</p>
+        <button class="btn-primary" data-modal="partner-form">View Partnership Options</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Partner Form Modal -->
+  <div id="modal-partner-form" class="modal">
+    <div class="modal-content" style="max-width: 700px;">
+      <div class="modal-header">
+        <h2>Partnership Application Form</h2>
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="partnerForm">
+          <div id="partnerStatus"
+            style="display:none;margin-bottom:1rem;padding:0.75rem 1rem;border-radius:10px;font-weight:600;"></div>
+          <div style="margin-bottom:1.3rem;">
+            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Organisation / Company Name</label>
+            <input type="text" name="organisation" required
+              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.3rem;">
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Contact Person</label>
+              <input type="text" name="contact_person" required
+                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+            </div>
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Designation</label>
+              <input type="text" name="designation" required
+                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.3rem;">
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Email Address</label>
+              <input type="email" name="email" required
+                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+            </div>
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Mobile Number</label>
+              <input type="tel" name="mobile" required
+                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+            </div>
+          </div>
+
+          <div style="margin-bottom:1.3rem;">
+            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Sector</label>
+            <select name="sector" required
+              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+              <option value="">Select sector</option>
+              <option>Construction & Engineering</option>
+              <option>Infrastructure Finance</option>
+              <option>Government / SOE</option>
+              <option>Energy & Utilities</option>
+              <option>Water & Sanitation</option>
+              <option>Transport & Logistics</option>
+              <option>Property Development</option>
+              <option>Professional Services</option>
+              <option>Technology & Innovation</option>
+              <option>Academic / Research</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom:1.3rem;">
+            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Partnership Categories</label>
+            <div class="partnership-category-buttons">
+              <button type="button" data-value="Silver Partner" data-modal="partner-silver">Silver Partner</button>
+              <button type="button" data-value="Gold Partner" data-modal="partner-gold">Gold Partner</button>
+              <button type="button" data-value="Platinum Partner" data-modal="partner-platinum">Platinum
+                Partner</button>
+            </div>
+            <input type="hidden" id="selectedPartnershipCategory" name="partnership_category" required>
+          </div>
+
+          <div style="margin-bottom:1.3rem;">
+            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Partnership Objectives / Notes</label>
+            <textarea rows="4" name="objectives" required
+              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;resize:vertical;"></textarea>
+          </div>
+
+          <input type="hidden" name="form_source" value="partner_modal">
+
+          <button class="btn-primary" type="submit" style="width:100%;margin-top:1rem;">Submit Partnership
+            Request</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Silver Partner Package Modal -->
+  <div id="modal-partner-silver" class="modal">
+    <div class="modal-content" style="max-width: 800px;">
+      <div class="modal-header">
+        <h2>Silver Partner Package</h2>
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h3>Branding & Advertising</h3>
+        <ul class="info-list">
+          <li>Corporate logo on all marketing material as Silver Partner</li>
+          <li>Linked logo & 300-word profile on the conference website</li>
+          <li>Corporate logo on all event signage</li>
+          <li>Feature newsletter article circulated to the built environment sector</li>
+        </ul>
+
+        <h3>Onsite Exposure</h3>
+        <ul class="info-list">
+          <li>All event branding includes your logo as Silver Partner</li>
+          <li>6-seater table at the Gala Dinner</li>
+          <li>5 Cocktail Networking tickets</li>
+          <li>2-page editorial in the official Built Environment Publication</li>
+          <li>Corporate brochure included in delegate bags</li>
+        </ul>
+
+        <h3>Conference Participation</h3>
+        <ul class="info-list">
+          <li>Speaking opportunity (at organiser's discretion)</li>
+          <li>5 complimentary delegate passes</li>
+        </ul>
+
+        <h3>Exhibition</h3>
+        <ul class="info-list">
+          <li>300-word company profile in the Exhibitor Directory</li>
+          <li>E-invitation to invite clients to your stand</li>
+        </ul>
+
+        <div class="info-highlight" style="margin-top:2rem;">
+          <h2 style="color:var(--white);margin:0;">R 375 000.00 (Excl. VAT)</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gold Partner Package Modal -->
+  <div id="modal-partner-gold" class="modal">
+    <div class="modal-content" style="max-width: 800px;">
+      <div class="modal-header">
+        <h2>Gold Partner Package</h2>
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h3>Branding & Advertising</h3>
+        <ul class="info-list">
+          <li>Corporate logo on all marketing material as Gold Partner</li>
+          <li>Linked logo & 400-word profile on the conference website</li>
+          <li>Corporate logo on all event signage</li>
+          <li>Feature newsletter article circulated to the built environment sector and membership database</li>
+        </ul>
+
+        <h3>Onsite Exposure</h3>
+        <ul class="info-list">
+          <li>All event branding includes your logo as Gold Partner</li>
+          <li>8-seater table at the Gala Dinner attended by senior government officials</li>
+          <li>8 Cocktail Networking tickets</li>
+          <li>3-page editorial in the official Built Environment Bi-Monthly Publication</li>
+          <li>Corporate brochure included in all delegate bags</li>
+        </ul>
+
+        <h3>Conference Participation</h3>
+        <ul class="info-list">
+          <li>Panel participation opportunity (at organiser's discretion)</li>
+          <li>8 complimentary delegate passes</li>
+        </ul>
+
+        <h3>Exhibition</h3>
+        <ul class="info-list">
+          <li>400-word company profile in the Exhibitor Directory</li>
+          <li>E-invitation to invite clients to your stand</li>
+        </ul>
+
+        <div class="info-highlight" style="margin-top:2rem;">
+          <h2 style="color:var(--white);margin:0;">R 500 000.00 (Excl. VAT)</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Platinum Partner Package Modal -->
+  <div id="modal-partner-platinum" class="modal">
+    <div class="modal-content" style="max-width: 800px;">
+      <div class="modal-header">
+        <h2>Platinum Partner Package</h2>
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h3>Branding & Advertising</h3>
+        <ul class="info-list">
+          <li>Corporate logo on all marketing material as Platinum Partner</li>
+          <li>Linked logo & 500-word profile on the conference website</li>
+          <li>Corporate logo on all event signage</li>
+          <li>Feature newsletter article circulated to the built environment sector and membership database</li>
+        </ul>
+
+        <h3>Onsite Exposure</h3>
+        <ul class="info-list">
+          <li>All event branding includes your logo as Platinum Partner</li>
+          <li>10-seater table at the Gala Dinner attended by the Deputy President of South Africa</li>
+          <li>10 Cocktail Networking tickets</li>
+          <li>4-page editorial in the official Built Environment Bi-Monthly Publication</li>
+          <li>Corporate brochure included in all delegate bags</li>
+        </ul>
+
+        <h3>Conference Participation</h3>
+        <ul class="info-list">
+          <li>Senior Executive panel participation (at organiser's discretion)</li>
+          <li>10 complimentary delegate passes</li>
+        </ul>
+
+        <h3>Exhibition</h3>
+        <ul class="info-list">
+          <li>500-word company profile in the Exhibitor Directory</li>
+          <li>E-invitation to invite clients to your stand</li>
+        </ul>
+
+        <div class="info-highlight" style="margin-top:2rem;">
+          <h2 style="color:var(--white);margin:0;">R 750 000.00 (Excl. VAT)</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Support Modal -->
+  <div id="modal-support" class="modal">
+    <div class="modal-content" style="max-width: 1000px;">
+      <div class="modal-header">
+        <h2>Support the Built Environment Indaba</h2>
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2.5rem;">
+          <div style="background:var(--bg);padding:1.5rem;border-radius:14px;text-align:center;">
+            <div style="font-size:2rem;margin-bottom:0.5rem;">🍸</div>
+            <h3 style="color:var(--green-dark);margin:0 0 0.75rem;">Networking Cocktail Access</h3>
+            <p style="margin:0;color:var(--text);line-height:1.6;">Exclusive evening networking with senior government,
+              SOEs, financiers and industry leaders.</p>
+          </div>
+          <div style="background:var(--bg);padding:1.5rem;border-radius:14px;text-align:center;">
+            <div style="font-size:2rem;margin-bottom:0.5rem;">🤝</div>
+            <h3 style="color:var(--green-dark);margin:0 0 0.75rem;">Meaningful Connections</h3>
+            <p style="margin:0;color:var(--text);line-height:1.6;">Build relationships beyond the conference floor in a
+              relaxed executive setting.</p>
+          </div>
+          <div style="background:var(--bg);padding:1.5rem;border-radius:14px;text-align:center;">
+            <div style="font-size:2rem;margin-bottom:0.5rem;">🌍</div>
+            <h3 style="color:var(--green-dark);margin:0 0 0.75rem;">Support Impact</h3>
+            <p style="margin:0;color:var(--text);line-height:1.6;">Your contribution supports dialogue, delivery-focused
+              outcomes and sector transformation.</p>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:1.5rem;">
+          <div
+            style="background:linear-gradient(135deg, var(--green-primary), var(--green-dark));color:white;padding:2rem;border-radius:14px;text-align:center;">
+            <h3 style="color:white;margin:0 0 1rem;font-size:1.3rem;">Individual Supporter</h3>
+            <div style="font-size:2.5rem;font-weight:700;color:var(--gold);margin:1rem 0;">R1 500</div>
+            <ul style="list-style:none;padding:0;margin:1.5rem 0;text-align:left;">
+              <li style="padding:0.5rem 0;">✓ Networking Cocktail Access</li>
+              <li style="padding:0.5rem 0;">✓ Name on Supporters List</li>
+            </ul>
+          </div>
+          <div
+            style="background:linear-gradient(135deg, var(--green-primary), var(--green-dark));color:white;padding:2rem;border-radius:14px;text-align:center;">
+            <h3 style="color:white;margin:0 0 1rem;font-size:1.3rem;">Corporate Supporter</h3>
+            <div style="font-size:2.5rem;font-weight:700;color:var(--gold);margin:1rem 0;">R5 000</div>
+            <ul style="list-style:none;padding:0;margin:1.5rem 0;text-align:left;">
+              <li style="padding:0.5rem 0;">✓ 2 Cocktail Invitations</li>
+              <li style="padding:0.5rem 0;">✓ Company Name Recognition</li>
+            </ul>
+          </div>
+          <div
+            style="background:linear-gradient(135deg, var(--green-primary), var(--green-dark));color:white;padding:2rem;border-radius:14px;text-align:center;">
+            <h3 style="color:white;margin:0 0 1rem;font-size:1.3rem;">Champion Supporter</h3>
+            <div style="font-size:2.5rem;font-weight:700;color:var(--gold);margin:1rem 0;">R10 000+</div>
+            <ul style="list-style:none;padding:0;margin:1.5rem 0;text-align:left;">
+              <li style="padding:0.5rem 0;">✓ 4 Cocktail Invitations</li>
+              <li style="padding:0.5rem 0;">✓ Priority Recognition</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="text-align:center;">
+          <button class="btn-primary" data-modal="support-form">Support Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Support Form Modal -->
+  <div id="modal-support-form" class="modal">
+    <div class="modal-content" style="max-width: 900px;">
+      <div class="modal-header">
+        <h2>Confirm Your Support</h2>
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="supportForm">
+          <div id="supportStatus"
+            style="display:none;margin-bottom:1rem;padding:0.75rem 1rem;border-radius:10px;font-weight:600;"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2.5rem;">
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:.5rem;color:var(--text);">Full Name</label>
+              <input type="text" name="full_name" required
+                style="width:100%;padding:.85rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;font-size:1rem;">
+            </div>
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:.5rem;color:var(--text);">Email Address</label>
+              <input type="email" name="email" required
+                style="width:100%;padding:.85rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;font-size:1rem;">
+            </div>
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:.5rem;color:var(--text);">Organisation</label>
+              <input type="text" name="organisation" required
+                style="width:100%;padding:.85rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;font-size:1rem;">
+            </div>
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:.5rem;color:var(--text);">Support Level</label>
+              <select name="support_level" required
+                style="width:100%;padding:.85rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;font-size:1rem;background:white;">
+                <option value="">Select level</option>
+                <option>Individual Supporter - R1 500</option>
+                <option>Corporate Supporter - R5 000</option>
+                <option>Champion Supporter - R10 000+</option>
+              </select>
+            </div>
+          </div>
+
+          <input type="hidden" name="form_source" value="support_modal">
+
+          <div style="text-align:center;">
+            <button class="btn-primary" type="submit"
+              style="padding:0.9rem 3rem;font-size:1rem;border-radius:10px;">Send Support Request</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const spaRoot = document.getElementById('spa-root');
+      if (!spaRoot) return;
+
+      const views = {};
+      spaRoot.querySelectorAll('.spa-view').forEach((view) => {
+        const route = view.dataset.route || 'home';
+        views[route] = view;
+      });
+
+      const styleCache = new Set();
+
+      const injectStyles = (doc, route) => {
+        doc.querySelectorAll('style').forEach((styleEl, idx) => {
+          const key = `${route}-style-${idx}-${styleEl.textContent.length}`;
+          if (styleCache.has(key)) return;
+          styleCache.add(key);
+          const clone = styleEl.cloneNode(true);
+          clone.dataset.spaStyle = route;
+          document.head.appendChild(clone);
+        });
+
+        doc.querySelectorAll('link[rel="stylesheet"]').forEach((linkEl) => {
+          const href = linkEl.getAttribute('href');
+          if (!href || styleCache.has(href)) return;
+          styleCache.add(href);
+          const clone = linkEl.cloneNode(true);
+          clone.dataset.spaStyle = route;
+          document.head.appendChild(clone);
+        });
+      };
+
+      const loadViewContent = async (view, route) => {
+        if (!view.dataset.src || view.dataset.loaded) return;
+        try {
+          const response = await fetch(view.dataset.src);
+          const html = await response.text();
+          const doc = new DOMParser().parseFromString(html, 'text/html');
+
+          // Keep scripts marked with data-keep
+          const keptScripts = Array.from(doc.querySelectorAll('script[data-keep="true"]')).map(s => s.textContent);
+
+          doc.querySelectorAll('header, footer, script').forEach((el) => el.remove());
+          injectStyles(doc, route);
+          const body = doc.body || doc.documentElement;
+          view.innerHTML = body ? body.innerHTML : html;
+
+          // Re-inject and execute kept scripts
+          keptScripts.forEach(scriptContent => {
+            const script = document.createElement('script');
+            script.textContent = scriptContent;
+            view.appendChild(script);
+          });
+
+          view.dataset.loaded = 'true';
+        } catch (err) {
+          console.error(`Failed to load route "${route}"`, err);
+          view.innerHTML = '<div class="view-placeholder">We could not load this section right now. Please try again soon.</div>';
+        }
+      };
+
+      const hideAll = () => {
+        Object.values(views).forEach((view) => {
+          view.hidden = true;
+        });
+      };
+
+      const scrollToTarget = (targetId, container) => {
+        if (!targetId) return;
+        const scoped = container ? container.querySelector(`#${targetId}`) : null;
+        const el = scoped || document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      };
+
+      const showView = async (route, scrollTarget) => {
+        const targetView = views[route] || views.home;
+        if (targetView.dataset.src && !targetView.dataset.loaded) {
+          await loadViewContent(targetView, route);
+        }
+        hideAll();
+        targetView.hidden = false;
+        if (targetView.dataset.title) {
+          document.title = targetView.dataset.title;
+        }
+        if (scrollTarget) {
+          // Wait for content to render before scrolling
+          setTimeout(() => scrollToTarget(scrollTarget, targetView), 100);
+        } else {
+          targetView.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      };
+
+      const parseHash = (hash) => {
+        if (!hash) return { route: 'home', scrollTarget: '' };
+        const cleaned = hash.replace(/^#/, '');
+        const [path, query] = cleaned.split('?');
+        const route = (path || 'home').replace(/^\//, '') || 'home';
+        const params = new URLSearchParams(query || '');
+        const scrollTarget = params.get('section') || params.get('scroll') || '';
+        return { route, scrollTarget };
+      };
+
+      const navigate = async (hash, pushState = true) => {
+        const targetHash = hash || '#/home';
+        const { route, scrollTarget } = parseHash(targetHash);
+        await showView(route, scrollTarget);
+        if (pushState) {
+          history.pushState({ route, scrollTarget }, '', targetHash.startsWith('#') ? targetHash : `#${targetHash}`);
+        }
+      };
+
+      document.querySelectorAll('[data-route-link]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+          const route = link.getAttribute('data-route-link') || 'home';
+          const scrollTarget = link.dataset.scrollTarget || '';
+          const hash = scrollTarget ? `#/${route}?section=${scrollTarget}` : `#/${route}`;
+          event.preventDefault();
+          navigate(hash, true);
+          const navRight = document.querySelector('.nav-right');
+          if (navRight && navRight.classList.contains('open')) {
+            navRight.classList.remove('open');
+          }
+        });
+      });
+
+      window.addEventListener('popstate', () => navigate(location.hash, false));
+      navigate(location.hash || '#/home', false);
+    })();
+  </script>
+
+  <script>
+    // Helpers for the programme view (loaded via SPA without its own scripts)
+    window.showDay = function showDay(dayId, btn) {
+      const scope = btn?.closest('.programme') || document.querySelector('.programme');
+      if (!scope) return;
+      scope.querySelectorAll('.day').forEach((day) => day.classList.remove('active'));
+      const target = scope.querySelector(`#${dayId}`);
+      if (target) target.classList.add('active');
+      scope.querySelectorAll('.days button').forEach((button) => button.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    };
+
+    window.downloadPDF = function downloadPDF() {
+      const originalTitle = document.title;
+      document.title = 'Built Environment Indaba 2026 - Programme';
+      window.print();
+      document.title = originalTitle;
+    };
+
+    window.downloadICal = function downloadICal() {
+      const ics = `BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:-//Built Environment Indaba 2026//EN
+BEGIN:VEVENT
+SUMMARY:Day 1 - Built Environment Indaba
+DTSTART:20260409T073000
+DTEND:20260409T170000
+LOCATION:Gallagher Convention Centre
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Networking Cocktail Session
+DTSTART:20260409T173000
+DTEND:20260409T200000
+LOCATION:Gallagher Convention Centre
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:Day 2 - Built Environment Indaba
+DTSTART:20260410T073000
+DTEND:20260410T170000
+LOCATION:Gallagher Convention Centre
+END:VEVENT
+END:VCALENDAR`;
+      const blob = new Blob([ics], { type: 'text/calendar' });
+      const anchor = document.createElement('a');
+      anchor.href = URL.createObjectURL(blob);
+      anchor.download = 'Built_Environment_Indaba_2026_Agenda.ics';
+      anchor.click();
+    };
+
+    // Helpers for the speakers view (scripts are stripped when loaded into the SPA)
+    window.openModal = function openModal(name, role, bio) {
+      const modal = document.querySelector('.speakers #modal');
+      if (!modal) return;
+      const nameEl = modal.querySelector('#modalName');
+      const roleEl = modal.querySelector('#modalRole');
+      const bioEl = modal.querySelector('#modalBio');
+      if (nameEl) nameEl.textContent = name || '';
+      if (roleEl) roleEl.textContent = role || '';
+      if (bioEl) bioEl.textContent = bio || '';
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+    };
+
+    window.closeModal = function closeModal() {
+      const modal = document.querySelector('.speakers #modal');
+      if (!modal) return;
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+    };
+
+    window.filterSpeakers = function filterSpeakers(type, btn) {
+      const scope = btn?.closest('.speakers') || document.querySelector('.speakers');
+      if (!scope) return;
+      scope.querySelectorAll('.filters button').forEach((b) => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      scope.querySelectorAll('.speaker').forEach((card) => {
+        const match = type === 'all' || card.classList.contains(type);
+        card.style.display = match ? 'block' : 'none';
+      });
+    };
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // Supabase client for persisting form submissions
+    const SUPABASE_URL = window.SUPABASE_URL || 'https://kppbvsjzbtglfescuqqs.supabase.co';
+    const SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtwcGJ2c2p6YnRnbGZlc2N1cXFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczMTc4ODIsImV4cCI6MjA4Mjg5Mzg4Mn0.5HEX-LT1V7RL3jsCuQfVMioiv0o9FKXqyCYxO4gYBH4';
+    const supabaseClient = (window.supabase && SUPABASE_URL && SUPABASE_ANON_KEY && !SUPABASE_URL.includes('YOUR-PROJECT') && !SUPABASE_ANON_KEY.includes('YOUR-ANON-KEY'))
+      ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+      : null;
+
+    (function () {
+      const toggle = document.querySelector('.menu-toggle');
+      const right = document.querySelector('.nav-right');
+      if (!toggle || !right) return;
+      toggle.addEventListener('click', function () {
+        const isOpen = right.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+      });
+    })();
+
+    // Enhanced carousel with auto-play and randomization
+    (function () {
+      const carousel = document.querySelector('[data-carousel]');
+      if (!carousel) return;
+      const track = carousel.querySelector('[data-carousel-track]');
+      const prev = carousel.querySelector('[data-carousel-prev]');
+      const next = carousel.querySelector('[data-carousel-next]');
+      let cards = Array.from(track.children);
+      if (cards.length === 0) return;
+
+      // Randomize cards order
+      for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        track.appendChild(cards[j]);
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+      }
+
+      let index = 0;
+      let autoPlayInterval = null;
+      let isPaused = false;
+
+      const update = () => {
+        const cardWidth = cards[0].getBoundingClientRect().width;
+        const gapPx = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '0');
+        const offset = (cardWidth + gapPx) * index * -1;
+        track.style.transform = `translateX(${offset}px)`;
+        prev.disabled = index === 0;
+        next.disabled = index >= cards.length - 1;
+      };
+
+      const autoAdvance = () => {
+        if (isPaused) return;
+        if (index < cards.length - 1) {
+          index++;
+        } else {
+          index = 0; // Loop back to start
+        }
+        update();
+      };
+
+      const startAutoPlay = () => {
+        stopAutoPlay();
+        autoPlayInterval = setInterval(autoAdvance, 3500);
+      };
+
+      const stopAutoPlay = () => {
+        if (autoPlayInterval) {
+          clearInterval(autoPlayInterval);
+          autoPlayInterval = null;
+        }
+      };
+
+      prev.addEventListener('click', () => {
+        if (index > 0) {
+          index--;
+          update();
+          isPaused = true;
+          stopAutoPlay();
+          setTimeout(() => { isPaused = false; startAutoPlay(); }, 5000);
+        }
+      });
+
+      next.addEventListener('click', () => {
+        if (index < cards.length - 1) {
+          index++;
+          update();
+          isPaused = true;
+          stopAutoPlay();
+          setTimeout(() => { isPaused = false; startAutoPlay(); }, 5000);
+        }
+      });
+
+      // Pause on hover
+      carousel.addEventListener('mouseenter', () => { isPaused = true; });
+      carousel.addEventListener('mouseleave', () => { isPaused = false; });
+
+      window.addEventListener('resize', () => { update(); });
+
+      update();
+      startAutoPlay();
+    })();
+
+    // Modal functionality with return-to-previous behavior
+    (function () {
+      const modalTriggers = document.querySelectorAll('[data-modal]');
+      const modals = document.querySelectorAll('.modal');
+      const closeButtons = document.querySelectorAll('.modal-close');
+
+      const openModal = (modalId, prevId = null) => {
+        const modal = document.getElementById(`modal-${modalId}`);
+        if (!modal) return;
+
+        // Close all modals first
+        modals.forEach(m => m.classList.remove('active'));
+
+        // Track the modal to return to when this one closes
+        if (prevId) {
+          modal.setAttribute('data-prev-modal', prevId);
+        } else {
+          modal.removeAttribute('data-prev-modal');
+        }
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      };
+
+      // Open modal from triggers
+      modalTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          const modalId = trigger.getAttribute('data-modal');
+          const currentOpen = document.querySelector('.modal.active');
+          const prevId = currentOpen ? currentOpen.id.replace('modal-', '') : null;
+          openModal(modalId, prevId);
+        });
+      });
+
+      const closeModal = (modal) => {
+        if (!modal) return;
+        const prev = modal.getAttribute('data-prev-modal');
+        modal.classList.remove('active');
+        if (prev) {
+          // Re-open the previous modal
+          openModal(prev);
+        } else {
+          document.body.style.overflow = '';
+        }
+      };
+
+      // Close modal via close button
+      closeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          closeModal(button.closest('.modal'));
+        });
+      });
+
+      // Close modal via backdrop click
+      modals.forEach(modal => {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closeModal(modal);
+          }
+        });
+      });
+
+      // Close modal via ESC key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          const open = document.querySelector('.modal.active');
+          if (open) closeModal(open);
+        }
+      });
+    })();
+
+    // Exhibition form package selector
+    (function () {
+      const container = document.querySelector('#modal-exhibition-form .package-buttons');
+      const hiddenInput = document.getElementById('selectedPackage');
+      if (!container || !hiddenInput) return;
+
+      const buttons = container.querySelectorAll('button');
+
+      const selectButton = (btn) => {
+        buttons.forEach(b => b.classList.toggle('selected', b === btn));
+        const value = btn.getAttribute('data-value');
+        hiddenInput.value = value || '';
+        if (window.updateSizeButtons) window.updateSizeButtons(value);
+        if (window.renderBoothPanel) window.renderBoothPanel();
+      };
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => selectButton(btn));
+      });
+
+      // Default selection on load (matches first option)
+      if (buttons.length) {
+        selectButton(buttons[0]);
+      }
+    })();
+
+    // Partnership category selector
+    (function () {
+      const container = document.querySelector('.partnership-category-buttons');
+      const hiddenInput = document.getElementById('selectedPartnershipCategory');
+      if (!container || !hiddenInput) return;
+
+      const buttons = container.querySelectorAll('button');
+
+      const selectButton = (btn) => {
+        buttons.forEach(b => b.classList.toggle('selected', b === btn));
+        const value = btn.getAttribute('data-value');
+        hiddenInput.value = value || '';
+      };
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          // Select the button
+          selectButton(btn);
+
+          // Open the detail modal if it has data-modal attribute
+          const detailModalId = btn.getAttribute('data-modal');
+          if (detailModalId) {
+            const detailModal = document.getElementById(`modal-${detailModalId}`);
+            if (detailModal) {
+              // Don't close the parent form modal, just open detail modal on top
+              detailModal.classList.add('active');
+            }
+          }
+        });
+      });
+    })();
+
+    // Exhibition booth size selector + dynamic info panel
+    (function () {
+      const sizeContainer = document.getElementById('sizeButtonsContainer');
+      const sizeHidden = document.getElementById('selectedSize');
+
+      if (!sizeContainer || !sizeHidden) return;
+
+      const packageSizeOptions = {
+        'Basic': [
+          { key: '3x3', label: '(3mx3m)' },
+          { key: '6x3', label: '(6mx3m)' }
+        ],
+        'Silver': [
+          { key: '3x3-corner', label: '(3mx3m) corner' },
+          { key: '3x3-ushape', label: '(3mx3m) u-shape' },
+          { key: '6x3-corner', label: '(6mx3m) corner' },
+          { key: '6x3-ushape', label: '(6mx3m) u-shape' }
+        ],
+        'Gold': [
+          { key: '3x3-corner', label: '(3mx3m) corner' },
+          { key: '3x3-ushape', label: '(3mx3m) u-shape' },
+          { key: '6x3-corner', label: '(6mx3m) corner' },
+          { key: '6x3-ushape', label: '(6mx3m) u-shape' }
+        ],
+        'Premium': [
+          { key: '3x3-corner', label: '(3mx3m) corner' },
+          { key: '3x3-ushape', label: '(3mx3m) u-shape' },
+          { key: '6x3-corner', label: '(6mx3m) corner' },
+          { key: '6x3-ushape', label: '(6mx3m) u-shape' }
+        ],
+        'Custom': [
+          { key: '6x6-option1', label: '(6mx 6m) Option 1' },
+          { key: '6x6-option2', label: '(6mx 6m) Option 2' }
+        ]
+      };
+
+      const selectSize = (btn) => {
+        const buttons = sizeContainer.querySelectorAll('button');
+        buttons.forEach(b => b.classList.toggle('selected', b === btn));
+        const key = btn.getAttribute('data-size');
+        sizeHidden.value = key || '';
+        if (window.renderBoothPanel) window.renderBoothPanel();
+      };
+
+      const updateSizeButtons = (pkg) => {
+        const options = packageSizeOptions[pkg] || packageSizeOptions['Basic'];
+        sizeContainer.innerHTML = '';
+        options.forEach((opt, idx) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.setAttribute('data-size', opt.key);
+          btn.textContent = opt.label;
+          btn.addEventListener('click', () => selectSize(btn));
+          sizeContainer.appendChild(btn);
+          if (idx === 0) selectSize(btn);
+        });
+      };
+
+      window.updateSizeButtons = updateSizeButtons;
+      updateSizeButtons('Basic');
+    })();
+
+    // Booth panel renderer with configurable package/size content
+    (function () {
+      const sizeLabel = document.getElementById('boothSizeLabel');
+      const priceLabel = document.getElementById('boothPriceLabel');
+      const featuresList = document.getElementById('boothFeatures');
+      const imageEl = document.getElementById('boothImage');
+
+      if (!sizeLabel || !priceLabel || !featuresList) return;
+
+      const packageSizeOptions = {
+        'Basic': [
+          { key: '3x3', label: '(3mx3m)' },
+          { key: '6x3', label: '(6mx3m)' }
+        ],
+        'Silver': [
+          { key: '3x3-corner', label: '(3mx3m) corner' },
+          { key: '3x3-ushape', label: '(3mx3m) u-shape' },
+          { key: '6x3-corner', label: '(6mx3m) corner' },
+          { key: '6x3-ushape', label: '(6mx3m) u-shape' }
+        ],
+        'Gold': [
+          { key: '3x3-corner', label: '(3mx3m) corner' },
+          { key: '3x3-ushape', label: '(3mx3m) u-shape' },
+          { key: '6x3-corner', label: '(6mx3m) corner' },
+          { key: '6x3-ushape', label: '(6mx3m) u-shape' }
+        ],
+        'Premium': [
+          { key: '3x3-corner', label: '(3mx3m) corner' },
+          { key: '3x3-ushape', label: '(3mx3m) u-shape' },
+          { key: '6x3-corner', label: '(6mx3m) corner' },
+          { key: '6x3-ushape', label: '(6mx3m) u-shape' }
+        ],
+        'Custom': [
+          { key: '6x6-option1', label: '(6mx 6m) Option 1' },
+          { key: '6x6-option2', label: '(6mx 6m) Option 2' }
+        ]
+      };
+
+      const boothConfig = {
+        'Basic': {
+          '3x3': {
+            price: 'R12,000 EXCL VAT',
+            image: 'https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/1-1024x1024.png',
+            features: [
+              '9m2 aluminium shell with white infills panels',
+              '1x Plug Point',
+              '1x Long Arm floodlight',
+              '1x Cafe table, glass',
+              '2x Cafe chairs white',
+              '980mmx2414mm graphic print (back wall)',
+              'Fascia board with vinyl cutout company name'
+            ]
+          },
+          '6x3': {
+            price: 'R23,901.00 EXCL VAT',
+            image: '',
+            features: [
+              '9m2 aluminium shell with white infills panels',
+              '2x Plug Point',
+              '2x Long Arm floodlight',
+              '2x Cafe table, glass',
+              '4x Cafe chairs white',
+              '980mmx2414mm graphic print (back wall)',
+              'Fascia board with vinyl cutout company name',
+              'Lockable system counter 500mm with graphic'
+            ]
+          }
+        },
+        'Silver': {
+          '3x3-corner': {
+            price: 'R25,289.45 EXCL VAT',
+            image: 'https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/20-1024x1024.png',
+            features: [
+              '9m2 aluminium shell with white infills panels',
+              '1x Plug Point',
+              '1x Long Arm floodlight',
+              '1x Cafe tables, goblet',
+              '2x Cafe chairs red',
+              '980mmx2414mm graphic print (back wall)',
+              'Fascia board with vinyl cutout company name',
+              'Lockable system counter 500mm with graphic'
+            ]
+          },
+          '3x3-ushape': {
+            price: 'R27,289.45 EXCL VAT',
+            image: 'https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/22.png',
+            features: [
+              '9m2 aluminium shell with white infills panels',
+              '1x Plug Point',
+              '1x Long Arm floodlight',
+              '1x Cafe tables, goblet',
+              '2x Cafe chairs red',
+              '980mmx2414mm graphic print (back wall)',
+              'Fascia board with vinyl cutout company name',
+              'Lockable system counter 500mm with graphic'
+            ]
+          },
+          '6x3-corner': {
+            price: 'R45,578.90 EXCL VAT',
+            image: 'https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/29-1024x1024.png',
+            features: [
+              '18m2 aluminium shell with white infills panels',
+              '2x Plug Point',
+              '2x Long Arm floodlight',
+              '1x Cafe tables, goblet',
+              '4x Cafe chairs red',
+              '3 White Tub Chairs',
+              '1x Small glass table',
+              '980mmx2414mm graphic print (back wall)',
+              'Fascia board with vinyl cutout company name',
+              'Lockable system counter 500mm with graphic'
+            ]
+          },
+          '6x3-ushape': {
+            price: 'R46,278.90 EXCL VAT',
+            image: 'https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/30-1024x1024.png',
+            features: [
+              '18m2 aluminium shell with white infills panels',
+              '2x Plug Point',
+              '2x Long Arm floodlight',
+              '1x Cafe tables, goblet',
+              '4x Cafe chairs red',
+              '3 White Tub Chairs',
+              '1x Small glass table',
+              '980mmx2414mm graphic print (back wall)',
+              'Fascia board with vinyl cutout company name',
+              'Lockable system counter 500mm with graphic'
+            ]
+          }
+        },
+        'Gold': {
+          '3x3-corner': {
+            price: 'R48,033.00 EXCL VAT',
+            image: 'https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-21-at-12.41.45-1024x833.jpeg',
+            features: [
+              'Medium Density Fibre board structure walling painted with colour of choice',
+              '16mm white Floor with aluminium trims',
+              '1x Glass Cocktail Table',
+              '2x White waterfall bar stools',
+              '1mx500mm counter with graphic',
+              '1x Plug point',
+              '2x Long Arm Floodlight',
+              '2x 2550×2100 fabric banner'
+            ]
+          },
+          '3x3-ushape': {
+            price: 'R54,323.50 EXCL VAT',
+            image: 'https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-21-at-12.41.44-1024x810.jpeg',
+            features: [
+              'Medium Density Fibre board structure walling painted with colour of choice',
+              '16mm white Floor with aluminium trims',
+              '1x Glass Cocktail Table',
+              '2x White waterfall bar stools',
+              '1mx500mm counter with graphic',
+              '1x Plug point',
+              '3x Long Arm Floodlight',
+              '3x 2550x2100 fabric banner'
+            ]
+          },
+          '6x3-corner': {
+            price: 'R76,277.60 EXCL VAT',
+            image: 'https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-21-at-12.41.46-1024x484.jpeg',
+            features: [
+              'Medium Density Fibre board structure walling painted with colour of choice',
+              '16mm white Floor with aluminium trims',
+              '1x Glass Cocktail Table',
+              '2x White waterfall bar stools',
+              '3x white tub chairs',
+              '1x coffee table',
+              '1mx500mm counter with graphic',
+              '40 inch TV screen',
+              '2x Plug point',
+              '3x Long Arm Floodlight',
+              '1x 2550x2100mm fabric banner',
+              '2x 2075x2100mm fabric banner'
+            ]
+          },
+          '6x3-ushape': {
+            price: 'R83,683.00 EXCL VAT',
+            image: 'https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-21-at-12.41.46-1-1024x482.jpeg',
+            features: [
+              'Medium Density Fibre board structure walling painted with colour of choice',
+              '16mm white Floor with aluminium trims',
+              '1x Glass Cocktail Table',
+              '2x White waterfall bar stools',
+              '3x white tub chairs',
+              '1x coffee table',
+              '1mx500mm counter with graphic',
+              '40 inch TV screen',
+              '2x Plug point',
+              '4x Long Arm Floodlight',
+              '2x 2550×2100mm fabric banner',
+              '2x 2075×2100mm fabric banner'
+            ]
+          }
+        },
+        'Premium': {
+          '3x3-corner': {
+            price: 'R62,917.19 EXCL VAT',
+            image: 'https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/18-1024x1024.png',
+            features: [
+              'System Hire structure',
+              'Locked in cupboard',
+              '1x Infills ceiling panel for downlighter bulkhead',
+              '1x Plinths with top',
+              '4x waterfall bar stools',
+              '1x Glass and Chrome cocktail table',
+              '2480mmx1680mm fabric banner in frame',
+              'Vinyl graphic prints for walls',
+              '6x LED lights strip for flooring perimeter',
+              '5x Downlighters',
+              '2x Plug Points'
+            ]
+          },
+          '3x3-ushape': {
+            price: 'R83,678.05 EXCL VAT',
+            image: 'https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/19-1024x1024.png',
+            features: [
+              'System Hire structure',
+              'Locked in cupboard',
+              '2x Infills ceiling panel for downlighter bulkhead',
+              '2x Plinths with tops',
+              '4x waterfall bar stools',
+              '1x Glass and Chrome cocktail table',
+              '2x 2480mmx1680mm fabric banner in frame',
+              '1x Vinyl graphic prints for walls',
+              'LED lights strip for flooring perimeter',
+              '10x Downlighters',
+              '2x Plug Points'
+            ]
+          },
+          '6x3-corner': {
+            price: 'R110,133.10 EXCL VAT',
+            image: 'https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/13-1024x1024.png',
+            features: [
+              'System Hire',
+              '1x Back wall cupboards',
+              '1x TV wall melamine panel',
+              '1x Front box feature ceiling and tops',
+              '2x Front box feature, perspex',
+              '1x Maxima counter with overlay top',
+              'Roll vinyl laminate flooring',
+              '1x 2-Seater black couch',
+              '2x Ottomans',
+              '4x Waterfall bar stools',
+              '1x Glass and Cocktail Tables',
+              '1x Glass Tetra Small coffee table',
+              '1x Vinyl Graphic Prints',
+              '8x Long Arm Flood Lights',
+              '4x Plug Points',
+              '50 inch screen mounted',
+              'Structural Engineer Certificate'
+            ]
+          },
+          '6x3-ushape': {
+            price: 'R131,133.10 EXCL VAT',
+            image: 'https://builtenvironmentindaba.africa/wp-content/uploads/2025/02/21-1024x1024.png',
+            features: [
+              'System Hire',
+              'Bulkhead ceiling with soffits',
+              'Plinths with drop in tops with uplighters',
+              'Roll Vinyl laminate flooring',
+              '4x White Tub Chairs',
+              '2x Glass tetra small coffee table',
+              '1x Vinyl graphic prints',
+              '2x 1960 x 2400mm fabric prints',
+              '28x Downlighters',
+              '2x Long Arm lights',
+              '5x Plug Points',
+              '2x 50 inch screen mounted',
+              'Structural engineer certification',
+              '2x Artificial planters in white pots',
+              'White stones'
+            ]
+          }
+        },
+        'Custom': {
+          '6x6-option1': {
+            price: 'R258,234.46 EXCL VAT',
+            image: 'https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/Screenshot-2025-01-26-at-11.09.19-1024x985.png',
+            features: [
+              'Custom stand wood with pine feature',
+              'Furniture',
+              'Vinyl Branding on backwall',
+              '1 x Coffee table / 1 x Cocktail table',
+              '1 x 2 seater couch / 6 x Barstools',
+              '2 x single seater',
+              '1 x Branded Lockable counter',
+              '3 x Plug point',
+              '8 x Light',
+              '1 x TV mounted',
+              '2 x large pot plants, 1 x table top plant',
+              '36 sqm wood vinyl flooring',
+              'Labour'
+            ]
+          },
+          '6x6-option2': {
+            price: 'R258,234.46 EXCL VAT',
+            image: 'https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/Screenshot-2025-01-26-at-11.09.42-1024x999.png',
+            features: [
+              'Custom stand wood with pine feature',
+              'Furniture',
+              'Vinyl Branding on backwall',
+              '1 x Coffee table / 2 x Cocktail table',
+              '1 x 2 seater couch / 6 x Barstools',
+              '2 x single seater',
+              '1 x Branded Lockable counter',
+              '3 x Plug point',
+              '8 x Light',
+              '1 x TV mounted',
+              '2 x large pot plants, 1 x table top plant',
+              '18 sqm wood vinyl flooring',
+              'Labour'
+            ]
+          }
+        }
+      };
+
+      const renderBoothPanel = () => {
+        const pkg = (document.getElementById('selectedPackage')?.value) || 'Basic';
+        const size = (document.getElementById('selectedSize')?.value) || '3x3';
+        const conf = boothConfig[pkg] && boothConfig[pkg][size];
+        if (!conf) return;
+
+        // Update size label dynamically
+        const sizeDisplay = size.replace('-', ' ').replace('ushape', 'u-shape');
+        sizeLabel.textContent = sizeDisplay.includes('x') ? `(${sizeDisplay})` : sizeDisplay;
+
+        priceLabel.textContent = conf.price;
+        featuresList.innerHTML = conf.features.map(f => `<li>${f}</li>`).join('');
+
+        if (imageEl) {
+          if (conf.image && conf.image.trim()) {
+            imageEl.src = conf.image;
+            imageEl.style.display = 'block';
+            imageEl.onerror = () => {
+              imageEl.style.display = 'none';
+            };
+          } else {
+            imageEl.removeAttribute('src');
+            imageEl.style.display = 'none';
+          }
+        }
+      };
+
+      window.renderBoothPanel = renderBoothPanel;
+      renderBoothPanel();
+    })();
+
+    const closeAllModals = () => {
+      document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+      document.body.style.overflow = '';
+    };
+
+    const showStatus = (id, type, message) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.style.display = message ? 'block' : 'none';
+      el.textContent = message || '';
+      if (!message) return;
+      const color = type === 'error' ? '#b91c1c' : '#166534';
+      const bg = type === 'error' ? '#fee2e2' : '#dcfce7';
+      const border = type === 'error' ? '#fca5a5' : '#86efac';
+      el.style.background = bg;
+      el.style.color = color;
+      el.style.border = `1px solid ${border}`;
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    const wireSupabaseForm = (formId, table, successMessage, options = {}) => {
+      const form = document.getElementById(formId);
+      if (!form) return;
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = Object.fromEntries(new FormData(form).entries());
+        const payload = {
+          ...formData,
+          submitted_at: new Date().toISOString(),
+          user_agent: navigator.userAgent
+        };
+
+        if (options.statusId) showStatus(options.statusId, 'info', '');
+
+        if (typeof options.validate === 'function') {
+          const validationMessage = options.validate(payload);
+          if (validationMessage) {
+            if (options.statusId) showStatus(options.statusId, 'error', validationMessage);
+            return;
+          }
+        }
+
+        try {
+          if (!supabaseClient) throw new Error('Supabase is not configured yet.');
+          const { error } = await supabaseClient.from(table).insert([payload]);
+          if (error) throw error;
+          if (options.statusId) showStatus(options.statusId, 'success', successMessage);
+          else alert(successMessage);
+          form.reset();
+          if (options.closeOnSuccess !== false) {
+            closeAllModals();
+          }
+        } catch (err) {
+          console.error(`${formId} submission failed`, err);
+          const fallback = 'We could not submit your request right now. Please try again shortly or contact us at info@builtenvironmentindaba.africa.';
+          if (options.statusId) showStatus(options.statusId, 'error', fallback);
+          else alert(fallback);
+        }
+      });
+    };
+
+    const validateDelegate = (payload) => {
+      const errors = [];
+      if (!payload.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(payload.email)) {
+        errors.push('Enter a valid email address.');
+      }
+      const digits = (payload.mobile || '').replace(/\D/g, '');
+      if (digits.length < 8) {
+        errors.push('Enter a valid mobile number.');
+      }
+      if (!payload.first_name || !payload.last_name) {
+        errors.push('First and last name are required.');
+      }
+      return errors.length ? errors.join(' ') : '';
+    };
+
+    const validateExhibition = (payload) => {
+      const errors = [];
+      if (!payload.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(payload.email)) {
+        errors.push('Enter a valid email address.');
+      }
+      const digits = (payload.phone || '').replace(/\D/g, '');
+      if (digits.length < 8) {
+        errors.push('Enter a valid phone number.');
+      }
+      if (!payload.company_name) errors.push('Company name is required.');
+      if (!payload.contact_name) errors.push('Contact name is required.');
+      return errors.length ? errors.join(' ') : '';
+    };
+
+    const validatePartner = (payload) => {
+      const errors = [];
+      if (!payload.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(payload.email)) {
+        errors.push('Enter a valid email address.');
+      }
+      const digits = (payload.mobile || '').replace(/\D/g, '');
+      if (digits.length < 8) {
+        errors.push('Enter a valid mobile number.');
+      }
+      if (!payload.organisation) errors.push('Organisation is required.');
+      if (!payload.contact_person) errors.push('Contact person is required.');
+      if (!payload.partnership_category) errors.push('Select a partnership category.');
+      return errors.length ? errors.join(' ') : '';
+    };
+
+    const validateSupport = (payload) => {
+      const errors = [];
+      if (!payload.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(payload.email)) {
+        errors.push('Enter a valid email address.');
+      }
+      if (!payload.full_name) errors.push('Full name is required.');
+      if (!payload.support_level) errors.push('Select a support level.');
+      return errors.length ? errors.join(' ') : '';
+    };
+
+    wireSupabaseForm(
+      'delegateForm',
+      'delegate_registrations',
+      'Thank you for registering as a delegate! A confirmation email will be sent to you shortly.',
+      { statusId: 'delegateStatus', validate: validateDelegate, closeOnSuccess: false }
+    );
+    wireSupabaseForm(
+      'exhibitionForm',
+      'exhibition_bookings',
+      'Thank you for your exhibition booking request! Our team will contact you within 24 hours.',
+      { statusId: 'exhibitionStatus', validate: validateExhibition, closeOnSuccess: false }
+    );
+    wireSupabaseForm(
+      'partnerForm',
+      'partner_applications',
+      'Thank you for your partnership enquiry! We will be in touch soon to discuss opportunities.',
+      { statusId: 'partnerStatus', validate: validatePartner, closeOnSuccess: false }
+    );
+    wireSupabaseForm(
+      'supportForm',
+      'support_pledges',
+      'Thank you for confirming your support! We will reach out to you soon.',
+      { statusId: 'supportStatus', validate: validateSupport, closeOnSuccess: false }
+    );
+  </script>
+
+</body>
+
+</html>
