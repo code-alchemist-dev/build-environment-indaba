@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Build and dist files
+dist/
+build/
+.cache/
+
+# OS specific
+*.log
+.DS_Store
+ehthumbs.db
+
+# Package manager files
+package-lock.json
+yarn.lock
+
+# Temporary files
+*.tmp
+*.bak
+.temp/
