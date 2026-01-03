@@ -5,6 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Speakers | Partial</title>
   <style>
+    :root {
+      --green-primary: #2E6B4E;
+      --green-dark: #1F4F3A;
+      --gold: #F2B705;
+      --red: #E34A35;
+      --red-accent: #D6453D;
+
+      --bg: #F7F9F8;
+      --white: #ffffff;
+      --text: #1F2933;
+      --muted: #000000;
+      --border: #E3E7E5;
+
+      --radius: 14px;
+      --shadow: 0 15px 64px rgba(0, 0, .08, .08);
+
+      /* Uniform Spacing Scale */
+      --xs: 0.25rem;    /* 4px */
+      --sm: 0.5rem;     /* 8px */
+      --md: 1rem;       /* 16px */
+      --lg: 1.5rem;     /* 24px */
+      --xl: 2rem;       /* 32px */
+      --xxl: 3rem;      /* 48px */
+      --xxxl: 4rem;     /* 64px */
+    }
+
     /* Speakers view styles only */
     
     .speakers {
@@ -68,7 +94,7 @@
       max-width: 1200px;
       margin: 0 auto 2rem;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
-      gap: 2rem;
+      gap: var(--xl);
       align-items: stretch;
       padding: 0;
     }
@@ -156,14 +182,14 @@
       border-radius: 18px;
       max-width: 520px;
       width: 90%;
-      padding: 2rem;
+      padding: var(--xl);
       box-shadow: 0 10px 30px rgba(0,0,0,.12);
     }
 
     .speakers .modal-box h3 {
       color: var(--green-dark, #1F4F3A);
       margin-top: 0;
-      margin-bottom: .6rem;
+      margin-bottom: var(--sm);
     }
 
     .speakers .modal-box p {
@@ -206,33 +232,73 @@
     </div>
 
     <div class="grid">
-      <div class="card speaker government"
-           onclick="openModal('Minister of Public Works & Infrastructure','Minister of Public Works & Infrastructure','Keynote speaker focusing on national infrastructure delivery, public sector reform and partnerships.')">
-        <div class="photo">Photo</div>
+       <div class="card speaker government"
+         onclick="openModal('Ms. Mameetse Masemola','Minister of Public Works & Infrastructure, South Africa','Keynote on national infrastructure delivery, public-private partnerships, and transforming public works programmes.')">
+        <div class="photo"><img src="https://infrastructuresa.org/wp-content/uploads/2025/12/Head-ISA-Mameetse.jpg" alt="Delegates reviewing sector priorities"></div>
         <div class="card-body">
-          <div class="name">Minister of Public Works</div>
+          <div class="name">Ms. Mameetse Masemola</div>
           <div class="role">Keynote Speaker</div>
           <div class="org">Government of South Africa</div>
         </div>
       </div>
 
        <div class="card speaker regulator"
-         onclick="openModal('CIDB Executive','Executive - CIDB','Discussion on regulatory reform, contractor development and industry transformation.')">
-        <div class="photo">Photo</div>
+         onclick="openModal('Mr. Muzwandile Buthelezi','Acting Chief Executive Officer, Tirisano Construction Fund','Keynote address on the Tirisano Construction Fund, infrastructure financing, contractor support programmes, and unlocking construction sector opportunities.')">
+        <div class="photo"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/04/Speakers-5.png" alt="Delegates reviewing sector priorities"></div>
         <div class="card-body">
-          <div class="name">CIDB Executive</div>
-          <div class="role">Panelist</div>
-          <div class="org">Construction Industry Development Board</div>
+          <div class="name">Mr. Muzwandile Buthelezi</div>
+          <div class="role">Keynote Speaker</div>
+          <div class="org">Tirisano Construction Fund</div>
         </div>
       </div>
 
       <div class="card speaker private"
-           onclick="openModal('IPP Industry Leader','Independent Power Producer','Insights into IPP investment, PPA structuring and energy market trends.')">
-        <div class="photo">Photo</div>
+           onclick="openModal('Mr. Bafana Dube','Deputy President, BBCBE','Perspectives from BBCBE on sector transformation, contractor development, and building sustainable industry capacity across the construction value chain.')">
+        <div class="photo"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/04/Speakers-4.png" alt="Delegates reviewing sector priorities"></div>
         <div class="card-body">
-          <div class="name">IPP Industry Leader</div>
-          <div class="role">Conference Speaker</div>
-          <div class="org">Energy Sector</div>
+          <div class="name">Mr. Bafana Dube</div>
+          <div class="role">Keynote Speaker</div>
+          <div class="org">Black Business Council in the Built Environment (BBCBE)</div>
+        </div>
+      </div>
+
+      <div class="card speaker government"
+           onclick="openModal('Dr. George Elombi','President and Chairman, African Export-Import Bank','Leading Afreximbank in promoting and financing intra- and extra-African trade, supporting trade facilitation infrastructure, and driving economic integration across the continent.')">
+        <div class="photo"><img src="https://www.newsghana.com.gh/wp-content/uploads/2025/06/Dr.-George-Elombi.webp" alt="Dr. George Elombi"></div>
+        <div class="card-body">
+          <div class="name">Dr. George Elombi</div>
+          <div class="role">President & Chairman</div>
+          <div class="org">African Export-Import Bank (Afreximbank)</div>
+        </div>
+      </div>
+
+      <div class="card speaker private"
+           onclick="openModal('Mr. Carrington Tlale','Convener, Built Environment Indaba','Leading the Built Environment Indaba platform to foster collaboration among public and private sectors, academia, and stakeholders on infrastructure development, financing, and delivery solutions.')">
+        <div class="photo"><img src="https://builtenvironmentindaba.africa/wp-content/uploads/2025/04/CARRINGTON-TLALE-1.png" alt="Mr. Carrington Tlale"></div>
+        <div class="card-body">
+          <div class="name">Mr. Carrington Tlale</div>
+          <div class="role">Convener</div>
+          <div class="org">Built Environment Indaba</div>
+        </div>
+      </div>
+
+      <div class="card speaker private"
+           onclick="openModal('Prof. Yunus Ballim','Construction Economist','Keynote address on construction economics, infrastructure investment, and strategic approaches to project delivery and resource optimization in the built environment sector.')">
+        <div class="photo"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS75JZsYx_--MdvKUGEMZuejWzUH-PQC1ICqA&s" alt="Prof. Yunus Ballim"></div>
+        <div class="card-body">
+          <div class="name">Prof. Yunus Ballim</div>
+          <div class="role">Keynote Speaker</div>
+          <div class="org">Construction Economist</div>
+        </div>
+      </div>
+
+      <div class="card speaker private"
+           onclick="openModal('Prof. Joseph Stiglitz','Nobel Prize-Winning Economist, Columbia University','Nobel Memorial Prize in Economic Sciences laureate (2001), former Chair of the Council of Economic Advisers under President Clinton, and former Chief Economist of the World Bank. His groundbreaking work on information asymmetry and market failures has shaped modern economics. Currently University Professor at Columbia University, he advises governments worldwide on economic policy, inequality, and sustainable development.')">
+        <div class="photo"><img src="https://sites.asit.columbia.edu/econdept/wp-content/uploads/sites/18/2017/11/stiglitz-1.jpg" alt="Prof. Joseph Stiglitz"></div>
+        <div class="card-body">
+          <div class="name">Prof. Joseph Stiglitz</div>
+          <div class="role">Keynote Speaker</div>
+          <div class="org">Columbia University</div>
         </div>
       </div>
     </div>

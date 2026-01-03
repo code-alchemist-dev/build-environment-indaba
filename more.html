@@ -6,6 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
+    :root {
+      --green-primary: #2E6B4E;
+      --green-dark: #1F4F3A;
+      --gold: #F2B705;
+      --red: #E34A35;
+      --red-accent: #D6453D;
+
+      --bg: #F7F9F8;
+      --white: #ffffff;
+      --text: #1F2933;
+      --muted: #000000;
+      --border: #E3E7E5;
+
+      --radius: 14px;
+      --shadow: 0 15px 64px rgba(0, 0, .08, .08);
+
+      /* Uniform Spacing Scale */
+      --xs: 0.25rem;    /* 4px */
+      --sm: 0.5rem;     /* 8px */
+      --md: 1rem;       /* 16px */
+      --lg: 1.5rem;     /* 24px */
+      --xl: 2rem;       /* 32px */
+      --xxl: 3rem;      /* 48px */
+      --xxxl: 0.5rem;     /* 64px */
+    }
+
     .more-page {
       background: var(--bg, #F7F9F8);
       color: var(--text, #1F2933);
@@ -16,12 +42,12 @@
     .more-section {
       max-width: 1200px;
       margin: auto;
-      padding: 4rem 2rem;
+      padding: var(--xxxl) var(--xl);
     }
 
     .more-section h2 {
       color: var(--green-dark, #1F4F3A);
-      margin-bottom: .6rem;
+      margin-bottom: var(--sm);
       font-size: 2rem;
     }
 
@@ -46,13 +72,13 @@
     .why-grid {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 2rem;
+      gap: var(--xl);
       margin-top: 2rem;
     }
 
     .why-card {
       background: var(--white, #ffffff);
-      padding: 2rem;
+      padding: var(--xl);
       border-radius: var(--radius, 14px);
       box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
       transition: transform .25s;
@@ -79,7 +105,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.2rem;
+      margin-bottom: var(--lg);
       font-size: 1.8rem;
     }
 
@@ -99,14 +125,14 @@
     .visit-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
+      gap: var(--lg);
       margin-top: 2.5rem;
       grid-auto-rows: minmax(200px, auto);
     }
 
     .visit-card {
       background: var(--white, #ffffff);
-      padding: 2rem;
+      padding: var(--xl);
       border-radius: var(--radius, 14px);
       box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
       transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -126,7 +152,7 @@
       grid-row: span 2;
       background: linear-gradient(135deg, var(--green-primary, #2E6B4E) 0%, var(--green-dark, #1F4F3A) 100%);
       color: #fff;
-      padding: 3rem;
+      padding: var(--xxl);
     }
 
     .visit-card.featured .visit-card-icon {
@@ -272,13 +298,13 @@
     .faq-item {
       background: var(--white, #ffffff);
       border-radius: var(--radius, 14px);
-      margin-bottom: 1rem;
+      margin-bottom: var(--md);
       box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
       overflow: hidden;
     }
 
     .faq-question {
-      padding: 1.5rem;
+      padding: var(--lg);
       cursor: pointer;
       display: flex;
       justify-content: space-between;
@@ -324,18 +350,18 @@
     .doc-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
+      gap: var(--lg);
       margin-top: 2rem;
     }
 
     .doc-card {
       background: var(--white, #ffffff);
-      padding: 1.5rem;
+      padding: var(--lg);
       border-radius: var(--radius, 14px);
       box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: var(--md);
       transition: transform .25s;
       text-decoration: none;
       color: var(--text, #1F2933);
@@ -410,7 +436,7 @@
       }
 
       .more-section {
-        padding: 3rem 1.5rem;
+        padding: var(--xxl) 1.5rem;
       }
 
       .more-section h2 {
@@ -469,7 +495,7 @@
 
     <!-- PLAN YOUR VISIT SECTION -->
     <section class="more-section" id="plan-visit" style="background: var(--white); margin: 0; max-width: 100%;">
-      <div style="max-width: 1300px; margin: auto; padding: 4rem 2rem;">
+      <div style="max-width: 1300px; margin: auto; padding: var(--xxxl) var(--xl);">
         <h2>Plan your visit</h2>
         <p>
           Everything you need to know to make the most of your Built Environment Indaba 2026 experience.
@@ -561,67 +587,51 @@
       </p>
 
       <div class="doc-grid">
-        <a href="#" class="doc-card">
+        <a href="https://builtenvironmentindaba.africa/wp-content/uploads/2025/04/Empowa-Built-Environment-Indaba-Magazine-1.pdf" class="doc-card" target="_blank" rel="noopener">
+          <div class="doc-icon">📖</div>
+          <div class="doc-info">
+            <h4>2025 Event Magazine</h4>
+            <p>Full magazine recap of the Built Environment Indaba</p>
+          </div>
+        </a>
+
+        <a href="https://builtenvironmentindaba.africa/wp-content/uploads/2025/03/The-Built-Environment-Indaba-Event-Brochure.pdf" class="doc-card" target="_blank" rel="noopener">
           <div class="doc-icon">📄</div>
           <div class="doc-info">
-            <h4>Event Brochure</h4>
-            <p>Full program overview and speaker lineup</p>
+            <h4>2025 Event Brochure</h4>
+            <p>Programme overview, speakers, and highlights</p>
           </div>
         </a>
 
-        <a href="#" class="doc-card">
-          <div class="doc-icon">🗓️</div>
-          <div class="doc-info">
-            <h4>Programme Schedule</h4>
-            <p>Detailed session timetable</p>
-          </div>
-        </a>
-
-        <a href="#" class="doc-card">
-          <div class="doc-icon">🏢</div>
-          <div class="doc-info">
-            <h4>Exhibitor Guide</h4>
-            <p>Stand specifications and booking info</p>
-          </div>
-        </a>
-
-        <a href="#" class="doc-card">
+        <a href="https://builtenvironmentindaba.africa/wp-content/uploads/2025/03/The-Built-Environment-Indaba-Sponsorship-Brochure.pdf" class="doc-card" target="_blank" rel="noopener">
           <div class="doc-icon">🤝</div>
           <div class="doc-info">
-            <h4>Sponsorship Packages</h4>
-            <p>Partnership opportunities and benefits</p>
+            <h4>2025 Sponsorship Brochure</h4>
+            <p>Partnership tiers, benefits, and deliverables</p>
           </div>
         </a>
 
-        <a href="#" class="doc-card">
-          <div class="doc-icon">📍</div>
+        <a href="https://builtenvironmentindaba.africa/wp-content/uploads/2025/03/The-Built-Environment-Indaba-Partnership-Brochure.pdf" class="doc-card" target="_blank" rel="noopener">
+          <div class="doc-icon">🤲</div>
           <div class="doc-info">
-            <h4>Venue Map</h4>
-            <p>Canvas Riversands floor plan</p>
+            <h4>2025 Partnership Brochure</h4>
+            <p>Collaboration pathways and strategic partner info</p>
           </div>
         </a>
 
-        <a href="#" class="doc-card">
-          <div class="doc-icon">🏨</div>
+        <a href="https://builtenvironmentindaba.africa/wp-content/uploads/2025/03/exhibition-brochure-compressed_2.pdf" class="doc-card" target="_blank" rel="noopener">
+          <div class="doc-icon">🏢</div>
           <div class="doc-info">
-            <h4>Accommodation Guide</h4>
-            <p>Partner hotels and booking links</p>
+            <h4>2025 Exhibition Brochure</h4>
+            <p>Exhibitor packages, stand specs, and booking details</p>
           </div>
         </a>
 
-        <a href="#" class="doc-card">
-          <div class="doc-icon">📋</div>
-          <div class="doc-info">
-            <h4>Registration Form</h4>
-            <p>Delegate registration details</p>
-          </div>
-        </a>
-
-        <a href="#" class="doc-card">
+        <a href="https://builtenvironmentindaba.africa/wp-content/uploads/2025/01/FINAL-BBCBE-REPORT-single-pages-2.pdf" class="doc-card" target="_blank" rel="noopener">
           <div class="doc-icon">📊</div>
           <div class="doc-info">
-            <h4>2025 Event Report</h4>
-            <p>Highlights and outcomes from previous Indaba</p>
+            <h4>2024 Post Event Report</h4>
+            <p>Key outcomes, metrics, and takeaways</p>
           </div>
         </a>
       </div>
@@ -629,7 +639,7 @@
 
     <!-- FAQ SECTION -->
     <section class="more-section" id="faq" style="background: var(--white); margin: 0; max-width: 100%;">
-      <div style="max-width: 1200px; margin: auto; padding: 4rem 2rem;">
+      <div style="max-width: 1200px; margin: auto; padding: var(--xxxl) var(--xl);">
         <h2>Frequently Asked Questions</h2>
         <p>
           Find answers to common questions about the Built Environment Indaba 2026.

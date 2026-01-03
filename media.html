@@ -6,6 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
+    :root {
+      --green-primary: #2E6B4E;
+      --green-dark: #1F4F3A;
+      --gold: #F2B705;
+      --red: #E34A35;
+      --red-accent: #D6453D;
+
+      --bg: #F7F9F8;
+      --white: #ffffff;
+      --text: #1F2933;
+      --muted: #000000;
+      --border: #E3E7E5;
+
+      --radius: 14px;
+      --shadow: 0 15px 64px rgba(0, 0, .08, .08);
+
+      /* Uniform Spacing Scale */
+      --xs: 0.25rem;    /* 4px */
+      --sm: 0.5rem;     /* 8px */
+      --md: 1rem;       /* 16px */
+      --lg: 1.5rem;     /* 24px */
+      --xl: 2rem;       /* 32px */
+      --xxl: 3rem;      /* 48px */
+      --xxxl: 4rem;     /* 64px */
+    }
+
     .media-page {
       background: var(--bg, #F7F9F8);
       color: var(--text, #1F2933);
@@ -27,7 +53,7 @@
       background-position: center;
       color: #fff;
       border-radius: 18px;
-      padding: 3.5rem 3rem;
+      padding: var(--xxxl) var(--xxl);
       box-shadow: 0 25px 70px rgba(0, 0, 0, 0.22);
       margin: 2.5rem 0 2rem;
       overflow: hidden;
@@ -74,7 +100,7 @@
       backdrop-filter: blur(8px);
       box-shadow: 0 18px 48px rgba(0, 0, 0, 0.2);
       display: grid;
-      gap: 1rem;
+      gap: var(--md);
     }
 
     .badge {
@@ -117,7 +143,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
+      gap: var(--md);
       margin: 3rem 0 1rem;
     }
 
@@ -168,7 +194,7 @@
     .featured-row {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
-      gap: 1.5rem;
+      gap: var(--lg);
       margin-top: 1rem;
     }
 
@@ -179,7 +205,7 @@
       padding: 1.6rem;
       box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
       display: grid;
-      gap: 1rem;
+      gap: var(--md);
       position: relative;
       overflow: hidden;
     }
@@ -331,11 +357,11 @@
       margin-top: 3.5rem;
       background: linear-gradient(135deg, #2E6B4E, #1F4F3A);
       border-radius: 18px;
-      padding: 3rem 2.5rem;
+      padding: var(--xxl) 2.5rem;
       color: #fff;
       box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
       display: grid;
-      gap: 1rem;
+      gap: var(--md);
     }
 
     .media-enquiry h2 {
@@ -366,7 +392,7 @@
     .contact-card strong {
       color: var(--green-dark, #1F4F3A);
       display: block;
-      margin-bottom: .4rem;
+      margin-bottom: var(--sm);
     }
 
     .contact-card a {
@@ -391,7 +417,7 @@
       }
 
       .media-hero {
-        padding: 2.6rem 1.8rem;
+        padding: var(--xxl) 1.8rem;
       }
 
       .section-header {
