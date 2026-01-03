@@ -35,3 +35,4 @@ yarn.lock
 *.tmp
 *.bak
 .temp/
+GEMINI.md
