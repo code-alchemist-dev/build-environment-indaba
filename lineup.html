@@ -125,6 +125,14 @@
       text-decoration: none;
       transition: 0.25s;
       box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: inherit;
+      background: none;
+      padding: 0.9rem 1.4rem;
+      pointer-events: auto;
+      z-index: 10;
       /* Uniform Spacing Scale */
       --xs: 0.25rem;    /* 4px */
       --sm: 0.5rem;     /* 8px */
@@ -133,7 +141,14 @@
       --xl: 2rem;       /* 32px */
       --xxl: 3rem;      /* 48px */
       --xxxl: 4rem;     /* 64px */
-    
+    }
+
+    .lineup-cta:hover {
+      opacity: 0.9;
+    }
+
+    .lineup-cta:active {
+      transform: scale(0.98);
     }
 
     .lineup-cta.primary {
@@ -270,14 +285,13 @@
     }
   </style>
 </head>
-
 <body>
   <div class="lineup-page">
     <main class="lineup-container">
 
       <section aria-labelledby="lineup-overview" class="lineup-section">
         <div class="lineup-section-header">
-          <h2 id="lineup-overview">Lineup Overview</h2>
+          <h2 id="lineup-overview">Lineup</h2>
           <p>Keynotes, sector pipelines, capability sessions, and curated networking lounges anchored by Access Bank, industry partners, and centres of excellence.</p>
         </div>
 
@@ -285,7 +299,7 @@
           <div class="lineup-eyebrow">Venue & Dates</div>
           <div class="lineup-meta-row">
             <div class="lineup-meta-label">Venue:</div>
-            <div class="lineup-meta-value">The Canvas Riversands, Johannesburg</div>
+            <div class="lineup-meta-value">The Canvas Riversands, Fourways</div>
           </div>
           <div class="lineup-meta-row">
             <div class="lineup-meta-label">Dates:</div>
@@ -297,7 +311,7 @@
           </div>
           <div class="lineup-action-strip">
             <a href="#" class="lineup-cta primary sm">Register now</a>
-            <a href="#" class="lineup-cta secondary sm">Add to Calendar</a>
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Built+Environment+Indaba&dates=20260409/20260411&location=The+Canvas+Riversands,+Fourways&details=Keynotes,+sector+pipelines,+capability+sessions,+and+curated+networking+lounges+anchored+by+Access+Bank,+industry+partners,+and+centres+of+excellence." target="_blank" rel="noopener" class="lineup-cta secondary sm">Add to Calendar</a>
           </div>
         </div>
 
@@ -307,7 +321,7 @@
 
         <div class="lineup-grid">
           <div class="lineup-card">
-            <img src="/images/packaged/indaba-lineup/pexels-thirdman-8482829.jpg" alt="Stakeholders in a keynote session">
+            <img src="assets/img/packaged/indaba-lineup/pexels-thirdman-8482829.jpg" alt="Stakeholders in a keynote session">
             <div class="lineup-content">
               <div class="lineup-title">Construction Industry Master Plan</div>
               <div class="lineup-date">Strategic Framework</div>
@@ -317,7 +331,7 @@
           </div>
 
           <div class="lineup-card">
-            <img src="/images/packaged/indaba-lineup/5b7468bf-afb5-4a7e-81ea-1cb042962d24.jpg" alt="Delegates collaborating">
+            <img src="assets/img/packaged/indaba-lineup/5b7468bf-afb5-4a7e-81ea-1cb042962d24.jpg" alt="Delegates collaborating">
             <div class="lineup-content">
               <div class="lineup-title">CIBD B.U.L.D Program</div>
               <div class="lineup-date">Capability Uplift</div>
@@ -327,7 +341,7 @@
           </div>
 
           <div class="lineup-card">
-            <img src="images/packaged/indaba-lineup/image (2).jpg" alt="Funding dialogue on stage">
+            <img src="assets/img/packaged/indaba-lineup/image (2).jpg" alt="Funding dialogue on stage">
             <div class="lineup-content">
               <div class="lineup-title">Tirisano Construction Fund</div>
               <div class="lineup-date">Investment Spotlight</div>
@@ -357,17 +371,17 @@
           </div>
 
           <div class="lineup-card">
-            <img src="https://brics.br/en/news/brics-infrastructure-working-group-advances-proposals-for-sustainable-transport-and-a-greener-economy/@@images/image-1600-b67041609e89eb966afd04700f9286be.jpeg" alt="Materials and construction briefing">
+            <img src="https://media.istockphoto.com/id/2148528656/photo/brics-summit-or-meeting-concept-row-from-flags-of-all-members-of-brics-list-of-countries.jpg?s=612x612&w=0&k=20&c=FEIWNsrNkz2U4l-zeTrkKzI2KmzM85w3zUR9EUkv1P8=" alt="Materials and construction briefing">
             <div class="lineup-content">
-              <div class="lineup-title">Bricks Infrastructure Working Group</div>
+              <div class="lineup-title">BRICS</div>
               <div class="lineup-date">Materials & Standards</div>
               <div class="lineup-tag">Technical Deep Dive</div>
-              <p class="lineup-desc">Collaborating on quality, safety, and innovation in brick and materials supply to keep projects on schedule and on spec.</p>
+              <p class="lineup-desc">BRICS (Brazil, Russia, India, China, South Africa) coalition advancing shared priorities in construction, materials standards, and cross-border infrastructure partnerships.</p>
             </div>
           </div>
 
           <div class="lineup-card">
-            <img src="images/packaged/indaba-lineup/image.jpg" alt="Networking between partners">
+            <img src="assets/img/packaged/indaba-lineup/image.jpg" alt="Networking between partners">
             <div class="lineup-content">
               <div class="lineup-title">Access & Growth Lounge</div>
               <div class="lineup-date">All-day Connectivity</div>
