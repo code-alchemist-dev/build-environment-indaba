@@ -70,16 +70,16 @@
     .container {
       max-width: 1200px;
       margin: auto;
-      padding: var(--xxxl) var(--xl) 5rem;
+      padding: var(--xxxl) var(--xl) var(--xxl);
       background: transparent;
     }
 
     .section {
-      margin-bottom: var(--xxxl);
+      margin-bottom: var(--lg);
     }
 
     .section-header {
-      margin-bottom: var(--xxl);
+      margin-bottom: var(--lg);
     }
 
     .section-header h2 {
@@ -93,7 +93,7 @@
       width: 70px;
       height: 4px;
       background: var(--gold);
-      margin-top: .7rem;
+      margin-top: var(--sm);
     }
 
     .section p {
@@ -101,7 +101,7 @@
       color: var(--muted);
       font-size: 1.05rem;
       line-height: 1.7;
-      margin: 0 0 1.4rem;
+      margin: 0 0 var(--lg);
     }
 
     .section-header p {
@@ -244,7 +244,7 @@
     .partner-group {
       background: #eef4f1;
       border-radius: 20px;
-      padding: var(--lg) 1.5rem 1.8rem;
+      padding: var(--lg) var(--lg) var(--lg);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
       border: 1px solid rgba(46, 107, 78, 0.08);
       overflow: hidden;
@@ -252,7 +252,7 @@
 
     /* Full-width marquee sections - only for non-alt groups */
     .partner-group:not(.alt):has(.partner-marquee) {
-      padding: var(--lg) 0 1.8rem;
+      padding: var(--lg) 0 var(--lg);
       border-radius: 0;
       margin: 0 -2rem;
       width: calc(100% + 4rem);
@@ -406,7 +406,7 @@
     @media(max-width: 640px) {
       .about-hero { padding: 4rem 1.6rem; }
       .about-hero h1 { font-size: 2.2rem; }
-      .section { margin-bottom: 3.5rem; }
+      .section { margin-bottom: var(--lg); }
     }
   </style>
 </head>
