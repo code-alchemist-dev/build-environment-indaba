@@ -5,6 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Speakers | Partial</title>
   <style>
+    :root {
+      --green-primary: #2E6B4E;
+      --green-dark: #1F4F3A;
+      --gold: #F2B705;
+      --bg: #F7F9F8;
+      --white: #ffffff;
+      --text: #1F2933;
+      --muted: #000000;
+      --radius: 14px;
+      --shadow: 0 15px 64px rgba(0, 0, .08, .08);
+
+      /* Uniform Spacing Scale */
+      --xs: 0.25rem;    /* 4px */
+      --sm: 0.5rem;     /* 8px */
+      --md: 1rem;       /* 16px */
+      --lg: 1.5rem;     /* 24px */
+      --xl: 2rem;       /* 32px */
+      --xxl: 3rem;      /* 48px */
+      --xxxl: 4rem;     /* 64px */
+    }
+
     /* Speakers view styles only */
     
     .speakers {
@@ -68,7 +89,7 @@
       max-width: 1200px;
       margin: 0 auto 2rem;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
-      gap: 2rem;
+      gap: var(--xl);
       align-items: stretch;
       padding: 0;
     }
@@ -156,14 +177,14 @@
       border-radius: 18px;
       max-width: 520px;
       width: 90%;
-      padding: 2rem;
+      padding: var(--xl);
       box-shadow: 0 10px 30px rgba(0,0,0,.12);
     }
 
     .speakers .modal-box h3 {
       color: var(--green-dark, #1F4F3A);
       margin-top: 0;
-      margin-bottom: .6rem;
+      margin-bottom: var(--sm);
     }
 
     .speakers .modal-box p {

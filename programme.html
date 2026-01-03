@@ -6,11 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Programme | Partial</title>
     <style>
+    :root {
+      --green-primary: #2E6B4E;
+      --green-dark: #1F4F3A;
+      --gold: #F2B705;
+      --bg: #F7F9F8;
+      --white: #ffffff;
+      --text: #1F2933;
+      --muted: #000000;
+      --radius: 14px;
+      --shadow: 0 15px 64px rgba(0, 0, .08, .08);
+
+      /* Uniform Spacing Scale */
+      --xs: 0.25rem;    /* 4px */
+      --sm: 0.5rem;     /* 8px */
+      --md: 1rem;       /* 16px */
+      --lg: 1.5rem;     /* 24px */
+      --xl: 2rem;       /* 32px */
+      --xxl: 3rem;      /* 48px */
+      --xxxl: 4rem;     /* 64px */
+    }
+
         /* Programme-specific layout only */
         .programme {
             max-width: 1300px;
             margin: auto;
-            padding: 3rem 1.5rem 4rem;
+            padding: var(--xxl) 1.5rem 4rem;
         }
 
         .programme .header {
@@ -31,7 +52,7 @@
         .programme .days {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: var(--md);
             margin-bottom: 1.5rem;
             flex-wrap: wrap;
         }
@@ -60,7 +81,7 @@
         .programme .agenda-download {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: var(--md);
             margin-bottom: 3rem;
             flex-wrap: wrap;
         }
@@ -87,7 +108,7 @@
             background: var(--white, #ffffff);
             border-radius: var(--radius, 14px);
             box-shadow: var(--shadow, 0 15px 64px rgba(0, 0, 0, .08));
-            margin-bottom: 2.5rem;
+            margin-bottom: var(--xxl);
             overflow: hidden;
             border: 1px solid var(--border, #E3E7E5);
         }
@@ -105,7 +126,7 @@
         }
 
         .programme td {
-            padding: 1rem;
+            padding: var(--md);
             border-bottom: 1px solid #e5e7eb;
             vertical-align: top;
         }
@@ -123,7 +144,7 @@
             border-radius: 999px;
             font-size: .75rem;
             font-weight: 800;
-            margin-bottom: .4rem;
+            margin-bottom: var(--sm);
         }
 
         .programme .break {
@@ -167,7 +188,7 @@
             }
 
             .programme .time {
-                margin-bottom: .4rem;
+                margin-bottom: var(--sm);
             }
         }
 

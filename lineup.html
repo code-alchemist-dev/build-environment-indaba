@@ -30,7 +30,7 @@
       border-radius: 18px;
       padding: 5rem 1.5rem 4rem;
       box-shadow: var(--shadow, 0 15px 64px rgba(0, 0, 0, 0.08));
-      margin-bottom: 2.5rem;
+      margin-bottom: var(--xxl);
     }
 
     .lineup-hero h1 {
@@ -54,7 +54,7 @@
 
     .lineup-section {
       display: grid;
-      gap: 1.5rem;
+      gap: var(--lg);
     }
 
     .lineup-section-header {
@@ -78,7 +78,7 @@
       border: 1px solid var(--border, #E3E7E5);
       border-radius: var(--radius, 14px);
       box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
-      padding: 1.4rem 1.6rem;
+      padding: var(--lg) 1.6rem;
       display: grid;
       gap: 0.6rem;
     }
@@ -125,6 +125,15 @@
       text-decoration: none;
       transition: 0.25s;
       box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
+      /* Uniform Spacing Scale */
+      --xs: 0.25rem;    /* 4px */
+      --sm: 0.5rem;     /* 8px */
+      --md: 1rem;       /* 16px */
+      --lg: 1.5rem;     /* 24px */
+      --xl: 2rem;       /* 32px */
+      --xxl: 3rem;      /* 48px */
+      --xxxl: 4rem;     /* 64px */
+    
     }
 
     .lineup-cta.primary {
@@ -149,7 +158,7 @@
       padding: 1.8rem;
       border-radius: var(--radius, 14px);
       box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
-      margin-bottom: 1rem;
+      margin-bottom: var(--md);
     }
 
     .lineup-info-highlight strong {
@@ -159,7 +168,7 @@
     .lineup-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 2rem;
+      gap: var(--xl);
     }
 
     .lineup-card {
@@ -183,7 +192,7 @@
     }
 
     .lineup-content {
-      padding: 2rem;
+      padding: var(--xl);
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
@@ -256,7 +265,7 @@
 
     @media (max-width: 640px) {
       .lineup-content {
-        padding: 1.5rem;
+        padding: var(--lg);
       }
     }
   </style>

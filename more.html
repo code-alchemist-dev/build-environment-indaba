@@ -6,6 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
+    :root {
+      --green-primary: #2E6B4E;
+      --green-dark: #1F4F3A;
+      --gold: #F2B705;
+      --bg: #F7F9F8;
+      --white: #ffffff;
+      --text: #1F2933;
+      --muted: #000000;
+      --radius: 14px;
+      --shadow: 0 15px 64px rgba(0, 0, .08, .08);
+
+      /* Uniform Spacing Scale */
+      --xs: 0.25rem;    /* 4px */
+      --sm: 0.5rem;     /* 8px */
+      --md: 1rem;       /* 16px */
+      --lg: 1.5rem;     /* 24px */
+      --xl: 2rem;       /* 32px */
+      --xxl: 3rem;      /* 48px */
+      --xxxl: 4rem;     /* 64px */
+    }
+
     .more-page {
       background: var(--bg, #F7F9F8);
       color: var(--text, #1F2933);
@@ -16,12 +37,12 @@
     .more-section {
       max-width: 1200px;
       margin: auto;
-      padding: 4rem 2rem;
+      padding: var(--xxxl) var(--xl);
     }
 
     .more-section h2 {
       color: var(--green-dark, #1F4F3A);
-      margin-bottom: .6rem;
+      margin-bottom: var(--sm);
       font-size: 2rem;
     }
 
@@ -46,13 +67,13 @@
     .why-grid {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 2rem;
+      gap: var(--xl);
       margin-top: 2rem;
     }
 
     .why-card {
       background: var(--white, #ffffff);
-      padding: 2rem;
+      padding: var(--xl);
       border-radius: var(--radius, 14px);
       box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
       transition: transform .25s;
@@ -79,7 +100,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.2rem;
+      margin-bottom: var(--lg);
       font-size: 1.8rem;
     }
 
@@ -99,14 +120,14 @@
     .visit-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
+      gap: var(--lg);
       margin-top: 2.5rem;
       grid-auto-rows: minmax(200px, auto);
     }
 
     .visit-card {
       background: var(--white, #ffffff);
-      padding: 2rem;
+      padding: var(--xl);
       border-radius: var(--radius, 14px);
       box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
       transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -126,7 +147,7 @@
       grid-row: span 2;
       background: linear-gradient(135deg, var(--green-primary, #2E6B4E) 0%, var(--green-dark, #1F4F3A) 100%);
       color: #fff;
-      padding: 3rem;
+      padding: var(--xxl);
     }
 
     .visit-card.featured .visit-card-icon {
@@ -272,13 +293,13 @@
     .faq-item {
       background: var(--white, #ffffff);
       border-radius: var(--radius, 14px);
-      margin-bottom: 1rem;
+      margin-bottom: var(--md);
       box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
       overflow: hidden;
     }
 
     .faq-question {
-      padding: 1.5rem;
+      padding: var(--lg);
       cursor: pointer;
       display: flex;
       justify-content: space-between;
@@ -324,18 +345,18 @@
     .doc-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
+      gap: var(--lg);
       margin-top: 2rem;
     }
 
     .doc-card {
       background: var(--white, #ffffff);
-      padding: 1.5rem;
+      padding: var(--lg);
       border-radius: var(--radius, 14px);
       box-shadow: var(--shadow, 0 15px 64px rgba(0,0,0,.08));
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: var(--md);
       transition: transform .25s;
       text-decoration: none;
       color: var(--text, #1F2933);
@@ -410,7 +431,7 @@
       }
 
       .more-section {
-        padding: 3rem 1.5rem;
+        padding: var(--xxl) 1.5rem;
       }
 
       .more-section h2 {
@@ -469,7 +490,7 @@
 
     <!-- PLAN YOUR VISIT SECTION -->
     <section class="more-section" id="plan-visit" style="background: var(--white); margin: 0; max-width: 100%;">
-      <div style="max-width: 1300px; margin: auto; padding: 4rem 2rem;">
+      <div style="max-width: 1300px; margin: auto; padding: var(--xxxl) var(--xl);">
         <h2>Plan your visit</h2>
         <p>
           Everything you need to know to make the most of your Built Environment Indaba 2026 experience.
@@ -629,7 +650,7 @@
 
     <!-- FAQ SECTION -->
     <section class="more-section" id="faq" style="background: var(--white); margin: 0; max-width: 100%;">
-      <div style="max-width: 1200px; margin: auto; padding: 4rem 2rem;">
+      <div style="max-width: 1200px; margin: auto; padding: var(--xxxl) var(--xl);">
         <h2>Frequently Asked Questions</h2>
         <p>
           Find answers to common questions about the Built Environment Indaba 2026.

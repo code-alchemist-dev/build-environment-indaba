@@ -28,6 +28,15 @@
 
       --radius: 14px;
       --shadow: 0 15px 64px rgba(0, 0, .08, .08);
+
+      /* Uniform Spacing Scale */
+      --xs: 0.25rem;    /* 4px */
+      --sm: 0.5rem;     /* 8px */
+      --md: 1rem;       /* 16px */
+      --lg: 1.5rem;     /* 24px */
+      --xl: 2rem;       /* 32px */
+      --xxl: 3rem;      /* 48px */
+      --xxxl: 4rem;     /* 64px */
     }
 
     * {
@@ -53,8 +62,8 @@
 
     .view-placeholder {
       max-width: 960px;
-      margin: 2rem auto;
-      padding: 3rem 2rem;
+      margin: var(--xl) auto;
+      padding: var(--xxl) var(--xl);
       background: var(--white);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
@@ -98,39 +107,39 @@
     /* Full-width header container */
     .nav {
       width: 100%;
-      padding: 1rem 2rem 1rem 0;
-      /* no left padding */
+      padding: var(--sm) var(--xl);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: var(--xl);
     }
 
     /* LOGO – HARD LEFT */
     .brand {
       margin-left: 0;
+      flex-shrink: 0;
     }
 
     .brand img {
-      height: 100px;
-      /* big & visible */
+      height: 80px;
       width: auto;
       display: block;
     }
 
     /* NAVIGATION – RIGHT */
     .main-nav {
-      padding-right: 2rem;
       display: flex;
       align-items: center;
+      gap: var(--lg);
     }
 
     .main-nav a,
     .main-nav .dropdown {
-      margin-left: 2rem;
       text-decoration: none;
       font-weight: 500;
       color: var(--text);
       position: relative;
+      white-space: nowrap;
     }
 
     .main-nav a::after {
@@ -148,6 +157,10 @@
       width: 100%;
     }
 
+    .main-nav a.active::after {
+      width: 100%;
+    }
+
     .dropdown {
       position: relative;
       display: inline-block;
@@ -157,7 +170,7 @@
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: .3rem;
+      gap: var(--xs);
     }
 
     .dropdown-toggle::after {
@@ -172,7 +185,7 @@
 
     .dropdown-menu {
       position: absolute;
-      top: calc(100% + 1rem);
+      top: calc(100% + var(--md));
       left: 0;
       background: var(--white);
       border: 1px solid var(--border);
@@ -194,7 +207,7 @@
 
     .dropdown-menu a {
       display: block;
-      padding: .8rem 1.2rem;
+      padding: var(--sm) var(--lg);
       margin: 0;
       color: var(--text);
       text-decoration: none;
@@ -221,6 +234,7 @@
     .nav-right {
       display: flex;
       align-items: center;
+      gap: var(--xl);
     }
 
     /* Hamburger button */
@@ -229,8 +243,8 @@
       /* hidden on desktop */
       background: transparent;
       border: none;
-      padding: .4rem;
-      margin-right: 1rem;
+      padding: var(--sm);
+      margin-right: var(--lg);
       cursor: pointer;
     }
 
@@ -257,8 +271,7 @@
 
     /* Register button styling */
     .register-btn {
-      margin-left: 2rem;
-      padding: .6rem 1.1rem;
+      padding: 0.65rem 1.3rem;
       border-radius: 10px;
       background: var(--gold);
       color: var(--green-dark);
@@ -266,11 +279,22 @@
       font-weight: 600;
       box-shadow: var(--shadow);
       transition: .25s;
+      display: inline-block;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .register-btn:hover {
       transform: translateY(-2px);
       filter: brightness(1.03);
+    }
+
+    /* Touch-friendly - reduce transform on mobile to avoid unintended effects */
+    @media (hover: none) and (pointer: coarse) {
+      .register-btn:active {
+        transform: translateY(0);
+        filter: brightness(0.98);
+      }
     }
 
     /* =====================================================
@@ -284,25 +308,25 @@
       background-position: center;
       color: white;
       text-align: center;
-      padding: 6rem 2rem;
+      padding: var(--xxxl) var(--xl);
     }
 
     .hero h1 {
       font-size: clamp(2.4rem, 5vw, 3.4rem);
-      margin-bottom: 1rem;
+      margin-bottom: var(--md);
     }
 
     .hero p {
       max-width: 900px;
-      margin: 0 auto 2.8rem;
+      margin: 0 auto var(--xxl);
       color: #eef2f0;
       font-size: 1.15rem;
     }
 
     .cta {
       display: inline-block;
-      padding: .9rem 1.9rem;
-      margin: .4rem;
+      padding: var(--sm) var(--lg);
+      margin: var(--sm);
       border-radius: 10px;
       font-weight: 600;
       text-decoration: none;
@@ -329,7 +353,7 @@
       border: none;
       color: #ffffff;
       padding: 0;
-      margin-top: 1rem;
+      margin-top: var(--md);
       display: block;
       /* force new line below the four buttons */
       font-weight: 600;
@@ -359,12 +383,12 @@
     .section {
       max-width: 1200px;
       margin: auto;
-      padding: .4rem 2rem;
+      padding: var(--sm) var(--xl);
     }
 
     .section h2 {
       color: var(--green-dark);
-      margin-bottom: .6rem;
+      margin-bottom: var(--sm);
     }
 
     .section h2::after {
@@ -373,7 +397,7 @@
       width: 70px;
       height: 4px;
       background: var(--red);
-      margin-top: .7rem;
+      margin-top: var(--sm);
     }
 
     .section p {
@@ -384,15 +408,15 @@
     /* Overview layout */
     .overview {
       max-width: 1400px;
-      padding: .4rem 1rem;
+      padding: var(--sm) var(--md);
       margin: auto;
     }
 
     .overview-header {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      gap: var(--lg);
+      margin-bottom: var(--xl);
       flex-wrap: wrap;
     }
 
@@ -418,7 +442,7 @@
     .overview p {
       max-width: 1200px;
       color: var(--muted);
-      margin-bottom: 2rem;
+      margin-bottom: var(--xl);
       font-size: 1.05rem;
       line-height: 1.7;
     }
@@ -426,7 +450,7 @@
     .overview-grid {
       display: grid;
       grid-template-columns: 1.65fr 1fr;
-      gap: 1.4rem;
+      gap: var(--lg);
       align-items: stretch;
     }
 
@@ -443,7 +467,7 @@
       background: #f8d94c;
       color: #ffffff;
       border-radius: var(--radius);
-      padding: 2rem;
+      padding: var(--xl);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -462,7 +486,7 @@
     /* Carousel */
     .carousel {
       position: relative;
-      margin-top: 3.2rem;
+      margin-top: var(--xxxl);
     }
 
     .carousel-viewport {
@@ -472,7 +496,7 @@
 
     .carousel-track {
       display: flex;
-      gap: 1.5rem;
+      gap: var(--lg);
       transition: transform .4s ease;
       align-items: stretch;
     }
@@ -506,8 +530,8 @@
     .carousel-controls {
       display: flex;
       justify-content: flex-end;
-      gap: .6rem;
-      margin-top: 1rem;
+      gap: var(--sm);
+      margin-top: var(--md);
     }
 
     .carousel-btn {
@@ -515,7 +539,7 @@
       background: var(--white);
       color: var(--text);
       border-radius: 10px;
-      padding: .55rem .85rem;
+      padding: var(--xs) var(--sm);
       cursor: pointer;
       box-shadow: var(--shadow);
       transition: background .2s ease, transform .2s ease;
@@ -535,8 +559,8 @@
     .grid-2col {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 2.2rem;
-      margin-top: 3.2rem;
+      gap: var(--xxxl);
+      margin-top: var(--xxxl);
     }
 
     .grid-2col .card {
@@ -544,7 +568,7 @@
       background: linear-gradient(135deg, #2E6B4E 0%, #1F4F3A 100%);
       background-size: cover;
       background-position: center;
-      padding: 2.5rem;
+      padding: var(--xxl);
       border-radius: var(--radius);
       min-height: 320px;
       display: flex;
@@ -557,7 +581,7 @@
       overflow: hidden;
       box-shadow: var(--shadow);
       transition: transform .3s ease, box-shadow .3s ease;
-      gap: 1rem;
+      gap: var(--md);
     }
 
     .grid-2col .card:nth-child(1) {
@@ -607,7 +631,7 @@
       color: #ffffff;
       font-size: 1.75rem;
       font-weight: 700;
-      margin: 0 0 1rem 0;
+      margin: 0 0 var(--md) 0;
       text-align: center;
     }
 
@@ -650,19 +674,19 @@
 
     /* Partners block (below packages grid) */
     .partners {
-      margin-top: 4rem;
+      margin-top: var(--xxxl);
       text-align: center;
     }
 
     .partners h3 {
       font-size: 2rem;
       color: var(--green-dark);
-      margin-bottom: .8rem;
+      margin-bottom: var(--sm);
     }
 
     .partners p {
       max-width: 1000px;
-      margin: 0 auto 1.8rem;
+      margin: 0 auto var(--lg);
       color: var(--muted);
       line-height: 1.7;
     }
@@ -672,8 +696,8 @@
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 2.2rem 3.2rem;
-      padding: 1rem 0 1.6rem;
+      gap: var(--lg) var(--xxl);
+      padding: var(--md) 0 var(--lg);
     }
 
     .partners-logos img {
@@ -686,7 +710,7 @@
       display: inline-block;
       background: var(--gold);
       color: var(--green-dark);
-      padding: .9rem 1.4rem;
+      padding: var(--sm) var(--lg);
       border-radius: 999px;
       font-weight: 600;
       text-decoration: none;
@@ -704,13 +728,13 @@
     .stats {
       background: var(--green-primary);
       color: white;
-      padding: 2rem 1rem;
+      padding: var(--xl) var(--md);
       overflow: hidden;
     }
 
     .stats-grid {
       display: flex;
-      gap: 2.5rem;
+      gap: var(--xxl);
       text-align: center;
       width: max-content;
       animation: statsMarquee 12s ease-in-out infinite alternate;
@@ -743,7 +767,7 @@
     footer {
       background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-primary) 100%);
       color: #ffffff;
-      padding: 3.5rem 2rem 2rem;
+      padding: var(--xxxl) var(--xl) var(--xl);
     }
 
     .footer-container {
@@ -751,15 +775,15 @@
       margin: 0 auto;
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1.5fr;
-      gap: 3rem;
-      padding-bottom: 2rem;
+      gap: var(--xxl);
+      padding-bottom: var(--xl);
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .footer-brand h3 {
       color: var(--gold);
       font-size: 1.4rem;
-      margin-bottom: 1rem;
+      margin-bottom: var(--md);
     }
 
     .footer-brand p {
@@ -771,7 +795,7 @@
     .footer-section h4 {
       color: var(--gold);
       font-size: 1.1rem;
-      margin-bottom: 1rem;
+      margin-bottom: var(--md);
       font-weight: 600;
     }
 
@@ -799,7 +823,7 @@
 
     .footer-social {
       display: flex;
-      gap: 1rem;
+      gap: var(--md);
       margin-top: 1rem;
     }
 
@@ -842,11 +866,11 @@
     @media(max-width:768px) {
       .footer-container {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: var(--xl);
       }
 
       footer {
-        padding: 2.5rem 1.5rem 1.5rem;
+        padding: var(--xxl) 1.5rem 1.5rem;
       }
     }
 
@@ -909,7 +933,7 @@
     .partnership-category-buttons {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+      gap: var(--md);
       width: 100%;
       margin-bottom: 1.6rem;
     }
@@ -918,7 +942,7 @@
       background: var(--white);
       border: 2px solid var(--gold);
       color: var(--green-dark);
-      padding: 1rem;
+      padding: var(--md);
       border-radius: var(--radius);
       font-weight: 600;
       cursor: pointer;
@@ -947,7 +971,7 @@
       padding: 1.2rem;
       display: grid;
       grid-template-columns: 320px 1fr;
-      gap: 1.4rem;
+      gap: var(--lg);
       align-items: start;
     }
 
@@ -1048,7 +1072,7 @@
     .modal-header {
       background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-primary) 100%);
       color: white;
-      padding: 2rem;
+      padding: var(--xl);
       border-radius: var(--radius) var(--radius) 0 0;
       position: relative;
     }
@@ -1065,8 +1089,8 @@
 
     .modal-close {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
+      top: var(--md);
+      right: var(--md);
       background: rgba(255, 255, 255, 0.2);
       border: none;
       color: white;
@@ -1087,19 +1111,19 @@
     }
 
     .modal-body {
-      padding: .5rem 2rem 2rem 2rem;
+      padding: var(--sm) var(--xl) var(--xl) var(--xl);
     }
 
     .modal-body p {
       line-height: 1.7;
-      margin-bottom: 1.5rem;
+      margin-bottom: var(--lg);
     }
 
     .modal-body .btn-primary {
       display: inline-block;
       background: var(--gold);
       color: var(--green-dark);
-      padding: 0.9rem 1.5rem;
+      padding: var(--sm) var(--lg);
       border-radius: 10px;
       text-decoration: none;
       font-weight: 600;
@@ -1120,15 +1144,15 @@
     }
 
     .info-list li {
-      margin-bottom: .8rem;
+      margin-bottom: var(--sm);
     }
 
     .info-highlight {
       background: linear-gradient(135deg, var(--green-primary), var(--red));
       color: white;
-      padding: 1.6rem;
+      padding: var(--lg);
       border-radius: var(--radius);
-      margin-top: 2rem;
+      margin-top: var(--xl);
     }
 
     .info-highlight strong {
@@ -1160,9 +1184,14 @@
 
     @media(max-width:768px) {
       .nav {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--md);
+      }
+
+      .brand {
+        display: none;
       }
 
       .brand img {
@@ -1171,24 +1200,27 @@
 
       .main-nav {
         padding-right: 0;
-        margin-top: 1rem;
+        margin-top: var(--md);
         display: none;
         /* hidden until menu opened */
         flex-direction: column;
         align-items: flex-start;
+        width: 100%;
       }
 
       .main-nav a {
-        margin: 0.6rem 1.2rem 0 0;
+        margin: var(--sm) var(--lg) 0 0;
       }
 
       .nav-right {
         flex-wrap: wrap;
-        margin-top: 1rem;
+        gap: var(--sm);
+        margin-right: var(--lg);
+        padding: var(--sm);
       }
 
       .nav-right .register-btn {
-        margin: .6rem 0 0 0;
+        margin: 0;
       }
 
       /* Show hamburger on mobile */
@@ -1205,18 +1237,40 @@
     /* Tablet */
     @media(max-width:1024px) {
       .section {
-        padding: 4rem 1.5rem
+        padding: var(--xxxl) var(--lg)
       }
 
       .stats-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr))
+      }
+
+      .nav {
+        padding: var(--sm) var(--lg);
+        gap: var(--lg);
+      }
+
+      .brand img {
+        height: 70px;
+      }
+
+      .main-nav {
+        gap: var(--md);
+      }
+
+      .nav-right {
+        gap: var(--lg);
+      }
+
+      .register-btn {
+        padding: var(--sm) var(--md);
+        font-size: 0.9rem;
       }
     }
 
     /* Mobile */
     @media(max-width:600px) {
       .hero {
-        padding: 4rem 1.4rem
+        padding: var(--xxxl) var(--lg)
       }
 
       .hero h1 {
@@ -1231,25 +1285,121 @@
         font-size: 1rem
       }
 
+      /* Header responsive styles */
+      .nav {
+        padding: var(--sm) var(--xs);
+        gap: var(--sm);
+      }
+
+      .brand img {
+        height: 60px;
+      }
+
+      .nav-right {
+        gap: var(--sm);
+      }
+
+      .menu-toggle {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: var(--md);
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        gap: var(--sm);
+      }
+
+      .nav-right.open .main-nav {
+        max-height: 500px;
+        overflow-y: auto;
+      }
+
+      .main-nav a,
+      .main-nav .dropdown {
+        width: 100%;
+        padding: var(--sm) var(--xs);
+      }
+
+      .dropdown-toggle {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: hidden;
+        transform: none;
+        background: var(--bg);
+        border: none;
+        box-shadow: none;
+        min-width: auto;
+        border-radius: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      .dropdown.open .dropdown-menu {
+        visibility: visible;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
+      .dropdown-menu a {
+        padding: var(--sm) var(--xs);
+        margin-left: var(--md);
+        border-radius: 0;
+      }
+
+      .dropdown-menu a:first-child {
+        border-radius: 0;
+      }
+
+      .dropdown-menu a:last-child {
+        border-radius: 0;
+      }
+
+      .register-btn {
+        width: 100%;
+        text-align: center;
+        padding: var(--sm) var(--md);
+        font-size: 0.95rem;
+        margin-top: var(--sm);
+      }
+
       /* Stack CTAs full width for easier tapping */
       .cta {
         display: block;
         width: 100%;
         max-width: 420px;
-        margin: .6rem auto 0
+        margin: var(--sm) auto 0
       }
 
       .cta.primary {
-        padding: .9rem 1.2rem
+        padding: var(--sm) var(--lg)
       }
 
       .cta.lineup {
-        margin-top: 1rem;
+        margin-top: var(--md);
         text-align: center;
       }
 
       .main-nav a {
-        margin: .5rem .9rem 0 0
+        margin: var(--sm) var(--lg) 0 0
       }
 
       .grid {
@@ -1258,23 +1408,64 @@
 
       .stats-grid {
         grid-template-columns: 1fr;
-        gap: 1.6rem
+        gap: var(--lg)
       }
 
       footer {
         font-size: .85rem;
-        padding: 2rem 1.4rem
+        padding: var(--xl) var(--lg)
       }
     }
 
     /* Small phones */
     @media(max-width:480px) {
+      .brand {
+        display: none;
+      }
+
       .brand img {
-        height: 72px
+        height: 50px
       }
 
       .hero h1 {
         font-size: 2rem
+      }
+
+      .nav {
+        padding: var(--xs) var(--xs);
+        gap: 0.4rem;
+      }
+
+      .menu-toggle {
+        margin-right: 0;
+      }
+
+      .menu-toggle span {
+        width: 20px;
+        height: 1.5px;
+        margin: 3px 0;
+      }
+
+      .main-nav {
+        padding: var(--sm) var(--xs);
+        gap: var(--xs);
+      }
+
+      .main-nav a,
+      .main-nav .dropdown {
+        padding: var(--xs) var(--xs);
+        font-size: 0.95rem;
+      }
+
+      .nav-right {
+        gap: var(--xs);
+      }
+
+      .register-btn {
+        font-size: 0.85rem;
+        padding: var(--xs) var(--sm);
+        width: 100%;
+        margin-top: var(--sm);
       }
     }
   </style>
@@ -1313,7 +1504,7 @@
           <a href="#/media" data-route-link="media">Media</a>
           <a href="#/contact" data-route-link="contact">Contact us</a>
         </nav>
-        <a href="#" class="register-btn">Register via WhatsApp</a>
+        <a href="https://wa.me/27721358460?text=Menu" class="register-btn" target="_blank" rel="noopener">Register via WhatsApp</a>
       </div>
     </div>
   </header>
@@ -1328,7 +1519,7 @@
           Partnering with Government and Key Stakeholders to deliver infrastructure
           projects through innovative funding and delivery models.
         </p>
-        <h3>Thursday, 9th April to Friday, 10th April 2026 | The Canvas Riversands, Johannesburg</h3>
+        <h3>Thursday, 9th April to Friday, 10th April 2026 | <a href="https://www.google.com/maps/search/The+Canvas+Riversands+Fourways" target="_blank" rel="noopener" style="color: inherit; text-decoration: none; border-bottom: 2px solid currentColor;">The Canvas Riversands, Fourways</a></h3>
         <a href="#" class="cta primary" data-modal="register">Register as a Delegate</a>
         <a href="#" class="cta primary" data-modal="exhibition">Book Exhibition Space</a>
         <a href="#" class="cta primary" data-modal="partner">Become a Partner</a>
@@ -1499,7 +1690,6 @@
       <section class="section">
         <div class="overview">
           <div class="overview-header">
-            <img src="./images/bbcbe_logo_img_p1_1_nobg.png" alt="Fly Africa for Africa Logo" class="overview-logo">
             <h2>Overview</h2>
           </div>
           <div class="overview-video">
@@ -1575,10 +1765,10 @@
 
           </p>
           <div class="partners-logos">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv1spFcSXPO5bB26ud4kBWOS6gt451WQBg7g&s"
+            <img src="https://www-idc-co-za.b-cdn.net/wp-content/uploads/2022/12/Tirisano-New-Logo-2022.png"
               alt="Tirisano Construction Fund logo">
             <img
-              src="https://images.squarespace-cdn.com/content/v1/5cc369f4d7819e3f9fa5db30/1559330425948-17V50G0RU4NJYSA9TGO3/CETA_Horizontal_Color.png"
+              src="https://www.ceta.org.za/img/logo.png"
               alt="CETA logo">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkYLChFDLbxCsc4pf_V9U58bSGdYhi-a5arw&s"
               alt="CIDB logo">
@@ -1591,7 +1781,7 @@
               src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e6/Rand_Water_logo.svg/1200px-Rand_Water_logo.svg.png"
               alt="RANDWATER logo">
           </div>
-          <a href="#" class="partners-cta">View All Partners</a>
+          <a href="#" class="partners-cta" data-modal="partners-all">View All Partners</a>
         </div>
       </section>
 
@@ -1704,10 +1894,10 @@
       <div class="footer-section">
         <h4>Participate</h4>
         <ul class="footer-links">
-          <li><a href="Indaba Deligate Register.html">Register</a></li>
-          <li><a href="Indaba Exhibition Booking.html">Exhibition</a></li>
-          <li><a href="Indaba Sponsor.html">Sponsorship</a></li>
-          <li><a href="Indaba Become Partner.html">Partnership</a></li>
+          <li><a href="#" data-modal="register">Register</a></li>
+          <li><a href="#" data-modal="exhibition">Exhibition</a></li>
+          <li><a href="#" data-modal="partner">Partnership</a></li>
+          <li><a href="#" data-modal="support">Sponsorship</a></li>
         </ul>
       </div>
 
@@ -1717,7 +1907,7 @@
         <ul class="footer-links">
           <li><a href="mailto:info@builtenvironmentindaba.africa">info@builtenvironmentindaba.africa</a></li>
           <li><a href="tel:+27000000000">+27 (0) 00 000 0000</a></li>
-          <li>Sandton Convention Centre<br>Johannesburg, South Africa</li>
+          <li><a href="https://www.google.com/maps/search/The+Canvas+Riversands+Fourways" target="_blank">The Canvas Riversands, Fourways<br>Johannesburg, South Africa</a></li>
         </ul>
       </div>
     </div>
@@ -1769,43 +1959,43 @@
       <div class="modal-body">
         <form id="delegateForm">
           <div id="delegateStatus"
-            style="display:none;margin-bottom:1rem;padding:0.75rem 1rem;border-radius:10px;font-weight:600;"></div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.3rem;">
+            style="display:none;margin-bottom:var(--md);padding:var(--sm) var(--md);border-radius:10px;font-weight:600;"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--md);margin-bottom:var(--lg);">
             <div>
-              <label style="font-weight:600;display:block;margin-bottom:.35rem;">First Name</label>
+              <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">First Name</label>
               <input type="text" name="first_name" required
-                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+                style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
             </div>
             <div>
-              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Last Name</label>
+              <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Last Name</label>
               <input type="text" name="last_name" required
-                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+                style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
             </div>
           </div>
 
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.3rem;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--md);margin-bottom:var(--lg);">
             <div>
-              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Email Address</label>
+              <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Email Address</label>
               <input type="email" name="email" required
-                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+                style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
             </div>
             <div>
-              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Mobile Number</label>
+              <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Mobile Number</label>
               <input type="tel" name="mobile" required
-                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+                style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
             </div>
           </div>
 
-          <div style="margin-bottom:1.3rem;">
-            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Organisation / Company</label>
+          <div style="margin-bottom:var(--lg);">
+            <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Organisation / Company</label>
             <input type="text" name="organisation" required
-              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+              style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
           </div>
 
-          <div style="margin-bottom:1.3rem;">
-            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Sector</label>
+          <div style="margin-bottom:var(--lg);">
+            <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Sector</label>
             <select name="sector" required
-              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+              style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
               <option value="">Select sector</option>
               <option>National Government</option>
               <option>Provincial Government</option>
@@ -1819,10 +2009,10 @@
             </select>
           </div>
 
-          <div style="margin-bottom:1.3rem;">
-            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Designation</label>
+          <div style="margin-bottom:var(--lg);">
+            <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Designation</label>
             <select name="designation" required
-              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+              style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
               <option value="">Select designation</option>
               <option>Executive / Director</option>
               <option>Senior Management</option>
@@ -1839,10 +2029,10 @@
             </select>
           </div>
 
-          <div style="margin-bottom:1.3rem;">
-            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Delegate Type</label>
+          <div style="margin-bottom:var(--lg);">
+            <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Delegate Type</label>
             <select name="delegate_type" required
-              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+              style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
               <option value="">Select delegate type</option>
               <option>Standard Delegate</option>
               <option>Government Delegate</option>
@@ -1900,42 +2090,42 @@
       <div class="modal-body">
         <form id="exhibitionForm">
           <div id="exhibitionStatus"
-            style="display:none;margin-bottom:1rem;padding:0.75rem 1rem;border-radius:10px;font-weight:600;"></div>
-          <div style="margin-bottom:1.3rem;">
-            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Company Name</label>
+            style="display:none;margin-bottom:var(--md);padding:var(--sm) var(--md);border-radius:10px;font-weight:600;"></div>
+          <div style="margin-bottom:var(--lg);">
+            <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Company Name</label>
             <input type="text" name="company_name" required
-              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+              style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.3rem;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--md);margin-bottom:var(--lg);">
             <div>
-              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Contact Name</label>
+              <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Contact Name</label>
               <input type="text" name="contact_name" required
-                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+                style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
             </div>
             <div>
-              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Job Title</label>
+              <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Job Title</label>
               <input type="text" name="job_title" required
-                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+                style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
             </div>
           </div>
 
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.3rem;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--md);margin-bottom:var(--lg);">
             <div>
-              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Email Address</label>
+              <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Email Address</label>
               <input type="email" name="email" required
-                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+                style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
             </div>
             <div>
-              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Phone Number</label>
+              <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Phone Number</label>
               <input type="tel" name="phone" required
-                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+                style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
             </div>
           </div>
 
-          <div style="margin-bottom:1.3rem;">
-            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Sector</label>
+          <div style="margin-bottom:var(--lg);">
+            <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Sector</label>
             <select name="sector" required
-              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+              style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
               <option value="">Select sector</option>
               <option>Government / SOE</option>
               <option>Construction & Engineering</option>
@@ -1950,8 +2140,8 @@
             </select>
           </div>
 
-          <div style="margin-bottom:1.3rem;">
-            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Exhibition Package</label>
+          <div style="margin-bottom:var(--lg);">
+            <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Exhibition Package</label>
             <div class="package-buttons">
               <button type="button" data-value="Basic">Basic</button>
               <button type="button" data-value="Silver">Silver</button>
@@ -1963,8 +2153,8 @@
           </div>
 
           <!-- Booth Size and Dynamic Details -->
-          <div style="margin-bottom:1.3rem;">
-            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Booth Size</label>
+          <div style="margin-bottom:var(--lg);">
+            <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Booth Size</label>
             <div class="size-buttons" id="sizeButtonsContainer">
               <button type="button" data-size="3x3">(3mx3m)</button>
               <button type="button" data-size="6x3">(6mx3m)</button>
@@ -1986,10 +2176,10 @@
             </div>
           </div>
 
-          <div style="margin-bottom:1.3rem;">
-            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Additional Requirements</label>
+          <div style="margin-bottom:var(--lg);">
+            <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Additional Requirements</label>
             <select name="additional_requirements" required
-              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+              style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
               <option>No additional requirements</option>
               <option>Electricity Supply</option>
               <option>Audio / Visual Setup</option>
@@ -2046,43 +2236,43 @@
       <div class="modal-body">
         <form id="partnerForm">
           <div id="partnerStatus"
-            style="display:none;margin-bottom:1rem;padding:0.75rem 1rem;border-radius:10px;font-weight:600;"></div>
-          <div style="margin-bottom:1.3rem;">
-            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Organisation / Company Name</label>
+            style="display:none;margin-bottom:var(--md);padding:var(--sm) var(--md);border-radius:10px;font-weight:600;"></div>
+          <div style="margin-bottom:var(--lg);">
+            <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Organisation / Company Name</label>
             <input type="text" name="organisation" required
-              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+              style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
           </div>
 
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.3rem;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--md);margin-bottom:var(--lg);">
             <div>
-              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Contact Person</label>
+              <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Contact Person</label>
               <input type="text" name="contact_person" required
-                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+                style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
             </div>
             <div>
-              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Designation</label>
+              <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Designation</label>
               <input type="text" name="designation" required
-                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+                style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
             </div>
           </div>
 
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.3rem;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--md);margin-bottom:var(--lg);">
             <div>
-              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Email Address</label>
+              <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Email Address</label>
               <input type="email" name="email" required
-                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+                style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
             </div>
             <div>
-              <label style="font-weight:600;display:block;margin-bottom:.35rem;">Mobile Number</label>
+              <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Mobile Number</label>
               <input type="tel" name="mobile" required
-                style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+                style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
             </div>
           </div>
 
-          <div style="margin-bottom:1.3rem;">
-            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Sector</label>
+          <div style="margin-bottom:var(--lg);">
+            <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Sector</label>
             <select name="sector" required
-              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+              style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
               <option value="">Select sector</option>
               <option>Construction & Engineering</option>
               <option>Infrastructure Finance</option>
@@ -2098,8 +2288,8 @@
             </select>
           </div>
 
-          <div style="margin-bottom:1.3rem;">
-            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Partnership Categories</label>
+          <div style="margin-bottom:var(--lg);">
+            <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Partnership Categories</label>
             <div class="partnership-category-buttons">
               <button type="button" data-value="Silver Partner" data-modal="partner-silver">Silver Partner</button>
               <button type="button" data-value="Gold Partner" data-modal="partner-gold">Gold Partner</button>
@@ -2109,10 +2299,10 @@
             <input type="hidden" id="selectedPartnershipCategory" name="partnership_category" required>
           </div>
 
-          <div style="margin-bottom:1.3rem;">
-            <label style="font-weight:600;display:block;margin-bottom:.35rem;">Partnership Objectives / Notes</label>
+          <div style="margin-bottom:var(--lg);">
+            <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Partnership Objectives / Notes</label>
             <textarea rows="4" name="objectives" required
-              style="width:100%;padding:.7rem;border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;resize:vertical;"></textarea>
+              style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;resize:vertical;"></textarea>
           </div>
 
           <input type="hidden" name="form_source" value="partner_modal">
@@ -2332,7 +2522,7 @@
       <div class="modal-body">
         <form id="supportForm">
           <div id="supportStatus"
-            style="display:none;margin-bottom:1rem;padding:0.75rem 1rem;border-radius:10px;font-weight:600;"></div>
+            style="display:none;margin-bottom:var(--md);padding:var(--sm) var(--md);border-radius:10px;font-weight:600;"></div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2.5rem;">
             <div>
               <label style="font-weight:600;display:block;margin-bottom:.5rem;color:var(--text);">Full Name</label>
@@ -2368,6 +2558,188 @@
               style="padding:0.9rem 3rem;font-size:1rem;border-radius:10px;">Send Support Request</button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- View All Partners Modal -->
+  <div id="modal-partners-all" class="modal">
+    <div class="modal-content" style="max-width: 1000px;">
+      <div class="modal-header">
+        <h2>Our Partners & Sponsors</h2>
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="text-align: center; color: var(--muted); margin-bottom: 2rem; font-size: 1.05rem;">
+          Africa Built Environment Indaba has secured partnerships and sponsorship commitments from leading organizations across the infrastructure and built environment sectors.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--xl); margin-bottom: 2rem;">
+          <!-- Tirisano Construction Fund -->
+          <div style="text-align: center; padding: var(--lg); background: #f9fafb; border-radius: 12px;">
+            <img src="https://www-idc-co-za.b-cdn.net/wp-content/uploads/2022/12/Tirisano-New-Logo-2022.png" 
+              alt="Tirisano Construction Fund" 
+              style="display: block; margin: 0 auto 1rem; height: 60px; object-fit: contain;">
+            <h4 style="color: var(--green-dark); margin-bottom: 0.5rem;">Tirisano Construction Fund</h4>
+            <p style="font-size: 0.95rem; color: var(--muted); margin: 0;">Supporting construction skills development and workforce transformation in the built environment</p>
+          </div>
+
+          <!-- CETA -->
+          <div style="text-align: center; padding: var(--lg); background: #f9fafb; border-radius: 12px;">
+            <img src="https://www.ceta.org.za/img/logo.png" 
+              alt="CETA" 
+              style="display: block; margin: 0 auto 1rem; height: 60px; object-fit: contain;">
+            <h4 style="color: var(--green-dark); margin-bottom: 0.5rem;">CETA (Construction Education & Training Authority)</h4>
+            <p style="font-size: 0.95rem; color: var(--muted); margin: 0;">Provider of skills development and workforce planning for the construction sector</p>
+          </div>
+
+          <!-- CIDB -->
+          <div style="text-align: center; padding: var(--lg); background: #f9fafb; border-radius: 12px;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkYLChFDLbxCsc4pf_V9U58bSGdYhi-a5arw&s" 
+              alt="CIDB" 
+              style="display: block; margin: 0 auto 1rem; height: 60px; object-fit: contain;">
+            <h4 style="color: var(--green-dark); margin-bottom: 0.5rem;">CIDB (Construction Industry Development Board)</h4>
+            <p style="font-size: 0.95rem; color: var(--muted); margin: 0;">Regulator and promoter of black economic empowerment in the construction industry</p>
+          </div>
+
+          <!-- SANRAL -->
+          <div style="text-align: center; padding: var(--lg); background: #f9fafb; border-radius: 12px;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4Ylx8KKwNxTa3vjakBnfqNf-EjYfM8tA1hg&s" 
+              alt="SANRAL" 
+              style="display: block; margin: 0 auto 1rem; height: 60px; object-fit: contain;">
+            <h4 style="color: var(--green-dark); margin-bottom: 0.5rem;">SANRAL (South African National Roads Agency)</h4>
+            <p style="font-size: 0.95rem; color: var(--muted); margin: 0;">Managing South Africa's national road infrastructure and development projects</p>
+          </div>
+
+          <!-- DBSA -->
+          <div style="text-align: center; padding: var(--lg); background: #f9fafb; border-radius: 12px;">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/52/Development_Bank_of_Southern_Africa_%28DBSA%29_logo.svg/1200px-Development_Bank_of_Southern_Africa_%28DBSA%29_logo.svg.png" 
+              alt="DBSA" 
+              style="display: block; margin: 0 auto 1rem; height: 60px; object-fit: contain;">
+            <h4 style="color: var(--green-dark); margin-bottom: 0.5rem;">DBSA (Development Bank of Southern Africa)</h4>
+            <p style="font-size: 0.95rem; color: var(--muted); margin: 0;">Financing and developing critical infrastructure across Southern Africa</p>
+          </div>
+
+          <!-- Rand Water -->
+          <div style="text-align: center; padding: var(--lg); background: #f9fafb; border-radius: 12px;">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e6/Rand_Water_logo.svg/1200px-Rand_Water_logo.svg.png" 
+              alt="Rand Water" 
+              style="display: block; margin: 0 auto 1rem; height: 60px; object-fit: contain;">
+            <h4 style="color: var(--green-dark); margin-bottom: 0.5rem;">Rand Water</h4>
+            <p style="font-size: 0.95rem; color: var(--muted); margin: 0;">Water supply and infrastructure provider serving South Africa's major regions</p>
+          </div>
+        </div>
+
+        <div style="background: var(--gold); color: var(--green-dark); padding: var(--xl); border-radius: 12px; text-align: center;">
+          <h3 style="margin: 0 0 0.8rem; color: var(--green-dark);">Interested in Partnering?</h3>
+          <p style="margin: 0 0 1.5rem; font-size: 1rem;">Join our network of strategic partners and sponsors for the 2026 Indaba.</p>
+          <button class="btn-primary" data-modal="partner" style="background: var(--green-primary); color: white; border: none; padding: 0.9rem 2rem; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 1rem;">Become a Partner</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Media Registration Modal -->
+  <div id="modal-media" class="modal">
+    <div class="modal-content" style="max-width: 900px;">
+      <div class="modal-header">
+        <h2>Register as Media #BEI2026</h2>
+        <button class="modal-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--muted); margin-bottom: 1.5rem; font-size: 0.95rem;">
+          Accredited media will receive full access to designated media areas, press briefings, keynote sessions and interviews, subject to approval.
+        </p>
+        <form id="mediaForm">
+          <div id="mediaStatus" style="display:none;margin-bottom:var(--md);padding:var(--sm) var(--md);border-radius:10px;font-weight:600;"></div>
+          
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--md);margin-bottom:var(--lg);">
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">First Name</label>
+              <input type="text" name="first_name" required style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+            </div>
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Last Name</label>
+              <input type="text" name="last_name" required style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--md);margin-bottom:var(--lg);">
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Email Address</label>
+              <input type="email" name="email" required style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+            </div>
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Mobile Number</label>
+              <input type="tel" name="mobile" required style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+            </div>
+          </div>
+
+          <div style="margin-bottom:var(--lg);">
+            <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Media House / Organisation</label>
+            <input type="text" name="media_house" required style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--md);margin-bottom:var(--lg);">
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Platform Type</label>
+              <select name="platform_type" required style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+                <option value="">Select platform</option>
+                <option>Print Media</option>
+                <option>Broadcast TV</option>
+                <option>Radio</option>
+                <option>Online / Digital Media</option>
+                <option>Freelance Journalist</option>
+                <option>Content Creator</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Role</label>
+              <select name="role" required style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+                <option value="">Select role</option>
+                <option>Journalist / Reporter</option>
+                <option>Editor</option>
+                <option>Producer</option>
+                <option>Photographer</option>
+                <option>Videographer</option>
+                <option>Content Creator</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-bottom:var(--lg);">
+            <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Coverage Focus</label>
+            <select name="coverage_focus" required style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;">
+              <option value="">Select focus area</option>
+              <option>Infrastructure & Construction</option>
+              <option>Energy & Utilities</option>
+              <option>Transport & Logistics</option>
+              <option>Human Settlements</option>
+              <option>Finance & Investment</option>
+              <option>Policy & Governance</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom:var(--lg);">
+            <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Links to Previous Coverage / Portfolio</label>
+            <textarea name="portfolio_links" placeholder="Paste links to articles, videos or portfolio" style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;resize:vertical;min-height:80px;"></textarea>
+          </div>
+
+          <div style="margin-bottom:var(--lg);">
+            <label style="font-weight:600;display:block;margin-bottom:calc(var(--xs) + 0.15rem);">Additional Notes</label>
+            <textarea name="additional_notes" placeholder="Any specific interviews or sessions you wish to cover" style="width:100%;padding:var(--sm);border-radius:10px;border:1px solid #E3E7E5;font-family:inherit;resize:vertical;min-height:80px;"></textarea>
+          </div>
+
+          <input type="hidden" name="form_source" value="media_modal">
+
+          <button class="btn-primary" type="submit" style="width:100%;margin-top:1rem;">Submit Media Registration</button>
+        </form>
+
+        <div style="margin-top:1.5rem;background:linear-gradient(135deg,var(--green-primary),var(--green-dark));color:#fff;padding:1.2rem;border-radius:10px;font-size:0.9rem;">
+          <strong>Important:</strong><br>
+          Media accreditation is subject to verification and approval. Successful applicants will receive confirmation via email. The organisers reserve the right to limit access to certain sessions.
+        </div>
       </div>
     </div>
   </div>
@@ -2481,8 +2853,19 @@
         const targetHash = hash || '#/home';
         const { route, scrollTarget } = parseHash(targetHash);
         await showView(route, scrollTarget);
+        updateActiveNavLink(route);
         if (pushState) {
           history.pushState({ route, scrollTarget }, '', targetHash.startsWith('#') ? targetHash : `#${targetHash}`);
+        }
+      };
+
+      const updateActiveNavLink = (route) => {
+        document.querySelectorAll('[data-route-link]').forEach((link) => {
+          link.classList.remove('active');
+        });
+        const activeLink = document.querySelector(`[data-route-link="${route}"]`);
+        if (activeLink) {
+          activeLink.classList.add('active');
         }
       };
 
@@ -2604,6 +2987,25 @@ END:VCALENDAR`;
       toggle.addEventListener('click', function () {
         const isOpen = right.classList.toggle('open');
         toggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      // Mobile dropdown menu toggle
+      const dropdowns = document.querySelectorAll('.dropdown');
+      dropdowns.forEach((dropdown) => {
+        const toggleEl = dropdown.querySelector('.dropdown-toggle');
+        if (!toggleEl) return;
+        toggleEl.addEventListener('click', function (e) {
+          // Only prevent default on mobile
+          if (window.innerWidth <= 600) {
+            e.preventDefault();
+            dropdowns.forEach((d) => {
+              if (d !== dropdown) {
+                d.classList.remove('open');
+              }
+            });
+            dropdown.classList.toggle('open');
+          }
+        });
       });
     })();
 
@@ -3337,6 +3739,24 @@ END:VCALENDAR`;
       return errors.length ? errors.join(' ') : '';
     };
 
+    const validateMedia = (payload) => {
+      const errors = [];
+      if (!payload.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(payload.email)) {
+        errors.push('Enter a valid email address.');
+      }
+      const digits = (payload.mobile || '').replace(/\D/g, '');
+      if (digits.length < 8) {
+        errors.push('Enter a valid mobile number.');
+      }
+      if (!payload.first_name) errors.push('First name is required.');
+      if (!payload.last_name) errors.push('Last name is required.');
+      if (!payload.media_house) errors.push('Media house is required.');
+      if (!payload.platform_type) errors.push('Select a platform type.');
+      if (!payload.role) errors.push('Select a role.');
+      if (!payload.coverage_focus) errors.push('Select a coverage focus area.');
+      return errors.length ? errors.join(' ') : '';
+    };
+
     const validateSupport = (payload) => {
       const errors = [];
       if (!payload.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(payload.email)) {
@@ -3370,6 +3790,12 @@ END:VCALENDAR`;
       'support_pledges',
       'Thank you for confirming your support! We will reach out to you soon.',
       { statusId: 'supportStatus', validate: validateSupport, closeOnSuccess: false }
+    );
+    wireSupabaseForm(
+      'mediaForm',
+      'media_registrations',
+      'Thank you for registering as media! Your accreditation request has been received. We will confirm your approval via email.',
+      { statusId: 'mediaStatus', validate: validateMedia, closeOnSuccess: false }
     );
   </script>
 
